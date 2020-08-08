@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+          <div class="card blue darken-1">
+            <table class="table table-dark">
+              <div class="card-content white-text">
+
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>nomina</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for data in clientes %}
+                  <tr>
+                    <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
+                    <td>{{ data.Identification }}</td>
+                    <td>{{ data.Email }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                </div>
+              </table>
+              <div class="fixed-action-btn">
+                <a href="" class="btn-floating btn-large red">
+                  <i class="large material-icons">>add</i>
+                </a>
+              </div>
+            </div>
+
+{% endblock %}
