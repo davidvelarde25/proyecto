@@ -10,25 +10,28 @@
   </head>
   <body>
     <div class="container">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="home.html" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-            <li><a href="#"><i class="material-icons">view_module</i></a></li>
-            <li>
-              {% if users.is_authenticated %}
-              <h6 class="ml-5">Hola {{ user.username }}!</h6>
-                <a href="{% url 'logout' %}" class="btn btn-info ml-2">Cerrar Sesión</a>
-              {% else %}
-                <a href="#" class="btn btn-light ml-5">Registrarse</a>
-                <a href="{% url 'login' %}" class="btn btn-danger ml-2">Iniciar Sesión</a>
+      <div class="fixed-top">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">Collapsed content</h5>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
+    </div>
+  </div>
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <form class="form-inline my-2 my-lg-0">
+       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+     </form>
+    </nav>
+  </div>
 
-            {% endif %}
-            </li>
-          </ul>
-        </div>
-      </nav>
+
+
+
+
       {% block content %}
 
     {% endblock %}
