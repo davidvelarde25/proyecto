@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="fechadecontacto">Fecha de Contacto</label>
+      <input type="date" class="form-control" id="fechadecontacto" name="fechadecontacto">
+    </div>
+      <div class="form-group col-md-6">
+        <label>Asesor Registra</label>
+          <select class="browser-default">
+            <option disabled selected>Seleccione Asesor</option>
+            {% for x in Advisor_Records.Name %}
+              {{ x }}
+            {% endfor %}
+          </select>
+      </div>
+
+  <div class="form-group col-md-6">
+    <label>Origen</label>
+      <select class="browser-default" name="origen">
+        <option disabled selected>Seleccione Origen</option>
+        <option value="vozavoz">Voz a Voz</option>
+        <option value="facebook">Facebook</option>
+        <option value="referido">Referido</option>
+        <option value="gestioncomercial">Gestión Comercial</option>
+        <option value="paginaweb">Pagina Web</option>
+        <option value="publicidad">Publicidad</option>
+        <option value="instagram">Instagram</option>
+        <option value="telemercadeo">Telemercadeo</option>
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label>Referenciador</label>
+      <select class="browser-default" name="referenciador">
+        <option disabled selected>Referenciador</option>
+        {% for x in Customer_Referrer.Description %}
+          {{ x }}
+        {% endfor %}
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label>Estado Actual</label>
+      <select class="browser-default" name="estadoactual">
+        <option disabled selected>Estado Actual</option>
+        {% for x in Actual_state.Description %}
+          {{ x }}
+        {% endfor %}
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="fechadeestado">Fecha de Estado</label>
+    <input type="date" class="form-control" id="fechadeestado" name="fechadeestado">
+  </div>
+
+  <div class="form-group col-md-6">
+    <label>Sede</label>
+      <select class="browser-default" name="sede">
+        <option disabled selected>Seleccione la Sede</option>
+        <option value="manizales">Manizales</option>
+        <option value="pereira">Pereira</option>
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label>Resultado</label>
+      <select class="browser-default" name="resultado">
+        <option disabled selected>Seleccione el Resultado</option>
+        <option value="rehabilitacionfinanciera">Rehabilitación Financiera</option>
+        <option value="cancelado">Cancelado</option>
+      </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="fechaderesultado">Fecha de Resultado</label>
+    <input type="date" class="form-control" id="fechaderesultado" name="fechaderesultado">
+  </div>
+  <div class="form-group col-md-4">
+    <label for="agregarobligacion">Agregar Obligación</label>
+    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  </div>
+  <div class="form-group col-md-4">
+    <label for="agregarobligacion">Derechos de peticion</label>
+    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  </div>
+  <div class="form-group col-md-4">
+    <label for="agregarobligacion">Cuentas Bancarias </label>
+    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  </div>
+  <div class="form-group col-md-4">
+    <label for="agregarobligacion">Desembolsos</label>
+    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  </div>
+  <div class="form-group col-md-4">
+    <label for="agregarobligacion">cliente</label>
+    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  </div>
+</div>
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Nómina Cliente</label>
+        <select class="browser-default" name="nomina">
+          <option disabled selected>Seleccione la Nómina</option>
+          {% for x in Payroll_Client.Payroll_Company %}
+            {{ x }}
+          {% endfor %}
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="numeroobligacion">Numero de Obligación</label>
+      <input type="text" class="form-control" id="numeroobligacion" name="numeroobligacion">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="tipoobligacion">Tipo Obligación</label>
+      <input type="text" class="form-control" id="tipoobligacion" name="tipoobligacion">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="entidadfinanciera">Entidad Financiera/Cooperativa</label>
+      <input type="text" class="form-control" id="entidadfinanciera" name="entidadfinanciera">
+    </div>
+  <div class="form-group col-md-6">
+    <label>Estado Obligación</label>
+      <select class="browser-default" name="estadoobligacion">
+        <option disabled selected>Seleccione Estado Obligación</option>
+        <option value="normal">Normal</option>
+        <option value="mora">En Mora</option>
+        <option value="castigada">Castigada</option>
+        <option value="embargo">Embargo</option>
+        <option value="ventanilla">Ventanilla</option>
+
+      </select>
+  </div>
+<!-- campos que se colocan cuando la obigacion esta en estado normal -->
+  <div class="form-group col-md-6">
+    <label for="cuotaspendientes">Cuotas Pendientes</label>
+    <input type="number" class="form-control" id="cuotaspendientes" name="cuotaspendientes">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="valorcuota">Valor Cuota</label>
+    <input type="number" class="form-control" id="valorcuota" name="valorcuota">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="valorfuturocartera">Valor futuro cartera</label>
+    <input type="number" class="form-control" id="valorfuturocartera" name="valorfuturocartera">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="valorcertificadoobligacion">Valor certificado obligación</label>
+    <input type="number" class="form-control" id="valorcertificadoobligacion" name="valorcertificadoobligacion">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="valorahorro">Valor Ahorro</label>
+    <input type="number" class="form-control" id="valorahorro" name="valorahorro">
+  </div>
+  <!--campos que se colocal si la obligacion se encuentra en mora  -->
+  <div class="form-group col-md-6">
+    <label for="valormora">Valor Mora</label>
+    <input type="number" class="form-control" id="valormora" name="valormora">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="tiempomora">Tiempo Mora</label>
+    <input type="number" class="form-control" id="tiempomora" name="tiempomora">
+  </div>
+  <div class="form-group col-md-6">
+    <label>Comprar</label>
+      <select class="browser-default" name="comprar">
+        <option disabled selected>Seleccione Opción a comprar</option>
+        <option value="mora">Mora</option>
+        <option value="cartera">Cartera</option>
+      </select>
+  </div>
+  <!-- campos que se colocan si son obligaciones castigadas y con embargos -->
+  <div class="form-group col-md-6">
+    <label for="comprador">Comprador</label>
+    <input type="number" class="form-control" id="comprador" name="comprador">
+  </div>
+
+
+  <div class="form-group col-md-6">
+    <label for="comprador">Comprador</label>
+    <input type="number" class="form-control" id="comprador" name="comprador">
+  </div>
+
+
+
+
+</div>
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+
+{% endblock %}

@@ -46,7 +46,7 @@
             </li> -->
           <div style="text-align: right" >
               {% if users.is_authenticated %}
-              <h6 class="ml-5">Hola {{ user.username }}!</h6>
+              <h6 class="ml-5">Hola {{ user.username }}!</h6>s
                 <a href="{% url 'logout' %}">Cerrar Sesión</a>
               {% else %}
                 <a href="#" class="btn btn-light ml-5">Registrarse</a>

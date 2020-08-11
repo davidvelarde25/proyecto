@@ -1,0 +1,84 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form>
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+
+      <label>Seleccione una Nómina</label>
+        <select class="browser-default " name="nomina">
+          <option value="" disabled selected>Seleccione</option>
+          <option value="activoestado">Activo Estado</option>
+          <option value="pensionado">Pensionado</option>
+          <option value="docente">Docente</option>
+          <option value="microempresario">Microempresario</option>
+          <option value="activoprivada">Activo Privada</option>
+          <option value="independiente">Independiente</option>
+        </select
+    </div>
+
+
+  </div>
+  <div class="form-group col-md-6">
+    <label>Tipo Contrato/Pensión</label>
+      <select class="browser-default " name="tipocontrato">
+        <option value="" disabled selected>Seleccione</option>
+        <option value="propiedad">Propiedad</option>
+        <option value="invalidez">Invalidez</option>
+        <option value="provisionalidad">Provisionalidad</option>
+        <option value="jubilación">Jubilación</option>
+        <option value="carrera">Carrera</option>
+        <option value="vejez">Vejez</option>
+        <option value="microempresario">Microempresario</option>
+        <option value="indefinido">Indefinido</option>
+        <option value="sustitucion">Sustitución</option>
+        <option value="superviviencia">Supervivencia</option>
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="salario">Valor Salario</label>
+    <input type="number" class="form-control" id="salario" name="salario">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="ingresospermanentes">Ingresos Permanentes</label>
+    <input type="number" class="form-control" id="ingresospermanentes" name="ingresospermanentes">
+  </div>
+  <div class="form-group col-md-6">
+    <label>Ley Aplica</label>
+      <select class="browser-default " name="leyaplica">
+        <option value="" disabled selected>Seleccione</option>
+        <option value="ley1527">Ley 1527</option>
+        <option value="ley50">Ley 50</option>
+        <option value="smlv">SMLV</option>
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="seguridadsocial">Seguridad Social</label>
+    <input type="number" class="form-control" id="seguridadsocial" name="seguridadsocial">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="descuentospermanentes">Descuentos Permanentes</label>
+    <input type="number" class="form-control" id="descuentospermanentes" name="descuentospermanentes">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="deudasnocancelables">Deudas no cancelables</label>
+    <input type="number" class="form-control" id="deudasnocancelables" name="deudasnocancelables">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="capacidaddepago">Capacidad de pago</label>
+    <input type="number" class="form-control" id="capacidaddepago" name="capacidaddepago">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="fechadevinculacion">Fecha de Vinculación</label>
+    <input type="date" class="form-control" id="fechadevinculacion" name="fechadevinculacion">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="agregarobligacion">cliente</label>
+    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  </div>
+  <button type="submit" class="btn btn-primary">Ingresar</button>
+</form>
+
+{% endblock %}

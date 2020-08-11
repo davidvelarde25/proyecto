@@ -8,6 +8,7 @@ from users.views import ListUsers
 urlpatterns = [
     path('', views.index, name="index"),
     path('admin/', admin.site.urls),
+    path('crear_referencia/', views.Reference, name="referencia"), # ruta para crear las referencias
     path('accounts/', include('django.contrib.auth.urls')),
     #path('users/', include('users.urls', 'users')),
     #path('userslist/', ListUsers.as_view(), name= "userlist")
