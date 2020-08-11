@@ -2,72 +2,68 @@
 
 {% block content %}
 
-<form>
+<form action="" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre Completo</label>
       <input type="text" class="form-control" id="name" name="nombre" placeholder="Ingresar Nombre">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Email</label>
-      <input type="email" class="form-control" id="email">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="nombre">Dirección</label>
-      <input type="text" class="form-control" id="name" name="nombre" placeholder="Ingresar Nombre">
+      <label for="direccion">Dirección</label>
+      <input type="text" class="form-control" id="direccion" name="direccion" >
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Empresa Laboral</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <label for="empresa laboral">Empresa Laboral</label>
+      <input type="text" class="form-control" id=direccion>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="nombre">Ciudad</label>
-      <input type="text" class="form-control" id="name" name="nombre" placeholder="Ingresar Nombre">
+      <label for="ciudad">Ciudad</label>
+      <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Parentesco</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <label for="parentesco">Parentesco</label>
+      <input type="text" class="form-control" id="parentesco" name="parentesco">
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="nombre">Celular</label>
-      <input type="text" class="form-control" id="name" name="nombre" placeholder="Ingresar Nombre">
+    <div class="form-group col-md-6">
+      <label for="celular">Celular</label>
+      <input type="number" class="form-control" id="celular" name="celular">
     </div>
-    <div class="form-group col-md-4">
-      <label for="inputPassword4">Telefono</label>
-      <input type="password" class="form-control" id="inputPassword4">
+    <div class="form-group col-md-6">
+      <label for="telefono">Telefono</label>
+      <input type="number" class="form-control" id="telefono">
     </div>
-    <div class="form-group col-md-4">
-      <label for="inputPassword4">Cliente</label>
-      <input type="password" class="form-control" id="inputPassword4">
-    </div>
+
   </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
+  <div class="form-group col-md-6">
+    
   </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+
+
+  <button type="submit" class="btn btn-primary">Ingresar</button>
 </form>
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
 
 {% endblock %}

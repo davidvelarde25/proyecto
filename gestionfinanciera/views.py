@@ -1,13 +1,13 @@
 from django.shortcuts import render
 #from django.http import HttpResponseRedirect
-from .models import Client
+from .models import Client, Reference
 from django.contrib.auth.models import User
 
 # muestra todos los clientes
 
 def index(request):
     dataClient = Client.objects.all()
-    return render(request, "crear_cliente.html", { "clientes" : dataClient })
+    return render(request, "crear_obligacion.html", { "clientes" : dataClient })
 
 
 def crear_cliente(request):
@@ -23,4 +23,18 @@ def crear_cliente(request):
     return HttpResponseRedirect('/')
 
     return render(request,template_name,{'form':form})
+
+def Reference(request):
+    template_name = 'crear_referencia.html'
+    form = ReferenciaForm()
+
+    if request.method ==  'POST':
+        form = ReferenciaForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return HttpResponseRedirect('/')
+
+
+    return render(request, template_name, {'form':form})
 '''

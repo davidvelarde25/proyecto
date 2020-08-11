@@ -45,15 +45,14 @@ class Actual_state(models.Model):
 
 # TABLA TIPO DE GESTION ENLA EMPPRESA
 class Management_type(models.Model):
-
     Origin = models.CharField(max_length=250, null=True)
     Campaign = models.CharField(max_length=250, null=False)
     Customer_Referrer = models.ForeignKey(Customer_Referrer, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
-
     Campus = models.CharField(max_length=250, null=True)
     Outcome = models.CharField(max_length=250, null=True)
     Result_Date = models.DateField(default=datetime.date.today, blank=True)
     Date_Of_Contact = models.DateField(default=datetime.date.today, blank=True)
+    Status_Date = models.DateField(default=datetime.date.today, blank=True)
     Client  = models.ForeignKey(Client, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
     Advisor_Records  = models.ForeignKey(Advisor_Records, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
     Actual_state = models.ForeignKey(Actual_state, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
@@ -88,11 +87,19 @@ class Payroll_Client(models.Model):
     Permanent_Discounts = models.DecimalField(max_digits=15, decimal_places=2)
     Non_Concellable_Value = models.DecimalField(max_digits=15, decimal_places=2)
     Payment_Capacity = models.DecimalField(max_digits=15, decimal_places=2)
-    Contract_Type = models.CharField(max_length=250, null=False)
-    Bonding_Date = models.CharField(max_length=250, null=False)
+    Bonding_Date = models.DateField(default=datetime.date.today, blank=True)
     Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE)
 
 
+
+# tabla simulacion bancaria
+class Simulation_Banking(models.Model):
+    Bank = models.CharField(max_length=250, null=False)
+    Number_Quotas = models.DecimalField(max_digits=15, decimal_places=2)
+    Factor = models.DecimalField(max_digits=15, decimal_places=2)
+    Estimed_Credit = models.DecimalField(max_digits=15, decimal_places=2)
+    Quota_Value = models.DecimalField(max_digits=15, decimal_places=2)
+    Client_Payroll = models.ForeignKey(Payroll_Client, null=True, on_delete = models.CASCADE)
 
 # tabla derecho peticion
 class Right_Petition(models.Model):
