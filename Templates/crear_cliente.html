@@ -1,54 +1,82 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-<div class="container">
-
 
 <form>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
+      <label for="inputEmail4">Nombre</label>
       <input type="email" class="form-control" id="inputEmail4">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
+      <label for="inputPassword4">Cedula</label>
       <input type="password" class="form-control" id="inputPassword4">
     </div>
   </div>
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputAddress">Correo Electronico</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputAddress2">Direccion</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="">
+    </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
+      <label for="inputCity">Ciudad</label>
       <input type="text" class="form-control" id="inputCity">
     </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Celular</label>
+      <input type="text" class="form-control" id="inputCity">
     </div>
   </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Estrato</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputCity">Barrio</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Referencia</label>
+      <button type="submit" style="background:#336EFF" class="btn btn.default">Crear Referencia</button>
+    </div>
+    <div style="text-align: right" class="form-group col-md-6">
+      <label for="inputCity">Nomina</label>
+        <button type="submit" style="background:#336EFF" class="btn btn-blue">Registrar Nomina</button>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+  <div style="text-align: right">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </div>
+
 </form>
-</div>
+
 {% endblock %}
+
+<!--  <label class="form-check-label" for="gridCheck">
+
+  </label>
+
+  <div class="form-group col-md-4">
+    <label for="inputState">Celular</label>
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+
+-->
