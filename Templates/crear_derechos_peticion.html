@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form>
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="tipodesolicitud">Tipo de Solicitud</label>
+      <input type="number" class="form-control" id="tipodesolicitud" name="tipodesolicitud">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="fechadeenvio">Fecha de Envio</label>
+      <input type="date" class="form-control" id="fechadeenvio" name="fechadeenvio">
+    </div>
+  <div class="form-group col-md-6">
+    <label for="numeroderadicado">Numero de Radicado</label>
+    <input type="number" class="form-control" id="numeroderadicado" name="numeroderadicado">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="fechaderespuesta">Fecha de Respuesta</label>
+    <input type="date" class="form-control" id="fechaderespuesta" name="fechaderespuesta">
+  </div>
+  <div class="form-group col-md-6">
+    <label>Estado del proceso</label>
+      <select class="browser-default " name="leyaplica">
+        <option value="" disabled selected>Seleccione</option>
+        <option value="enviado">Enviado</option>
+        <option value="respuesto">Respuesto</option>
+        <option value="aceptado">Aceptado</option>
+        <option value="noaceptado">No aceptado</option>
+        <option value="terminado">Terminado</option>
+        <option value="pendiente">Pendiente</option>
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="respuesta">Respuesta</label>
+    <input type="number" class="form-control" id="respuesta" name="respuesta">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="fechadeenviotutela">Fecha de Envio Tutela</label>
+    <input type="date" class="form-control" id="fechadeenviotutela" name="fechadeenviotutela">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="juzgado">Juzgado</label>
+    <input type="number" class="form-control" id="juzgado" name="juzgado">
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="fechaderespuestatutela">Fecha de Respuesta Tutela</label>
+    <input type="date" class="form-control" id="fechaderespuestatutela" name="fechaderespuestatutela">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="observacion">Observacion</label>
+    <input type="button" class="form-control" id="observacion" name="observacion">
+  </div>
+  </div>
+  <div style="text-align: right">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </div>
+</form>
+
+{% endblock %}
