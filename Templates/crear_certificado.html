@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form>
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+
+      <label>Tipo Certificado</label>
+        <select class="browser-default " name="nomina">
+          <option value="" disabled selected>Seleccione</option>
+          <option value="certificadodeuda">Certificado Deuda</option>
+          <option value="pazysalvo">Paz y Salvo</option>
+        </select
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="fechasolicitud">Fecha Solicitud</label>
+    <input type="date" class="form-control" id="fechasolicitud" name="fechasolicitud">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="fecharecibido">Fecha Recibido</label>
+    <input type="date" class="form-control" id="fecharecibido" name="fecharecibido">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="valorcertificado">Valor Certificado</label>
+    <input type="number" class="form-control" id="valorcertificado" name="valorcertificado">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="fechapago">Fecha de Pago</label>
+    <input type="date" class="form-control" id="fechapago" name="fechapago">
+  </div>
+  <button type="submit" class="btn btn-primary">Ingresar</button>
+</form>
+
+{% endblock %}

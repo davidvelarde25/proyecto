@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 
 def index(request):
     dataClient = Client.objects.all()
+
     return render(request, "crear_desembolso.html", { "clientes" : dataClient })
+    
 
 
 def crear_cliente(request):
