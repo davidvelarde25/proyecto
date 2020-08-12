@@ -50,9 +50,9 @@ class Management_type(models.Model):
     Customer_Referrer = models.ForeignKey(Customer_Referrer, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
     Campus = models.CharField(max_length=250, null=True)
     Outcome = models.CharField(max_length=250, null=True)
-    Result_Date = models.DateField(default=datetime.datetime.now, blank=True)
-    Date_Of_Contact = models.DateField(default=datetime.datetime.now, blank=True)
-    Status_Date = models.DateField(default=datetime.datetime.now, blank=True)
+    Result_Date = models.DateField(default=datetime.datetime.today, blank=True)
+    Date_Of_Contact = models.DateField(default=datetime.datetime.today, blank=True)
+    Status_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Client  = models.ForeignKey(Client, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
     Advisor_Records  = models.ForeignKey(Advisor_Records, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
     Actual_state = models.ForeignKey(Actual_state, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
@@ -60,8 +60,8 @@ class Management_type(models.Model):
 # modelo de las bitacoras
 class Tracing(models.Model):
     Description = models.CharField(max_length=2000)
-    Follow_Date = models.DateField(default=datetime.datetime.now, blank=True)
-    Adviser = models.DateField(default=datetime.datetime.now, blank=True)
+    Follow_Date = models.DateField(default=datetime.datetime.today, blank=True)
+    Adviser = models.DateField(default=datetime.datetime.today, blank=True)
     Management_type  = models.ForeignKey(Management_type, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
 
 #  modelo  de los datos de las referencias de los usuarios
@@ -87,7 +87,7 @@ class Payroll_Client(models.Model):
     Permanent_Discounts = models.DecimalField(max_digits=15, decimal_places=2)
     Non_Concellable_Value = models.DecimalField(max_digits=15, decimal_places=2)
     Payment_Capacity = models.DecimalField(max_digits=15, decimal_places=2)
-    Bonding_Date = models.DateField(default=datetime.datetime.now, blank=True)
+    Bonding_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE)
 
 
@@ -105,14 +105,14 @@ class Simulation_Banking(models.Model):
 class Right_Petition(models.Model):
 
     Type_Application = models.CharField(max_length=250, null=False)
-    Send_Date = models.DateField(default=datetime.datetime.now, blank=True)
+    Send_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Filed_Number = models.DecimalField(max_digits=15, decimal_places=2)
-    Reply_Date = models.DateField(default=datetime.datetime.now, blank=True)
+    Reply_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Process_state = models.CharField(max_length=250, null=True)
     Reply = models.CharField(max_length=600, null=True)
-    Guardianship_Date = models.DateField(default=datetime.datetime.now, blank=True)
+    Guardianship_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Court = models.CharField(max_length=250, null=True)
-    Guardianship_Response_Date = models.DateField(default=datetime.datetime.now, blank=True)
+    Guardianship_Response_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Observation = models.CharField(max_length=1000, null=True)
     Management_type = models.ForeignKey(Management_type, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo
 
@@ -126,8 +126,9 @@ class Bank_Accounts(models.Model):
 
 #creacion tabla desembolso
 class Disbursement(models.Model):
+    Future_Value_Portfolio = models.DecimalField(max_digits=15, decimal_places=2)
     Payment_value = models.CharField(max_length=250, null=True)
-    Pay_Date = models.DateField(default=datetime.datetime.now, blank=True)
+    Pay_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Banking_Entity = models.CharField(max_length=250, null=True)
     Disbursement_Amount = models.CharField(max_length=250, null=True)
     Odds_Number = models.CharField(max_length=250, null=True)
@@ -144,7 +145,6 @@ class Financial_Obligation(models.Model):
     State = models.CharField(max_length=250, null=False)
     Outstanding_Fees = models.IntegerField(null=True)
     Quota_Value = models.DecimalField(max_digits=15, decimal_places=2)
-    Future_Value_Portfolio = models.DecimalField(max_digits=15, decimal_places=2)
     Certified_Value_Obligation = models.DecimalField(max_digits=15, decimal_places=2)
     Saving_Value = models.DecimalField(max_digits=15, decimal_places=2)
     Buyer = models.CharField(max_length=250, null=True)
@@ -161,9 +161,9 @@ class Financial_Obligation(models.Model):
 # tabla certificados
 class Certificate(models.Model):
     Type = models.CharField(max_length=250, null=False)
-    Application_Date = models.DateField(default=datetime.datetime.now, blank=True)
-    Date_Of_Receipt = models.DateField(default=datetime.datetime.now, blank=True)
+    Application_Date = models.DateField(default=datetime.datetime.today, blank=True)
+    Date_Of_Receipt = models.DateField(default=datetime.datetime.today, blank=True)
     Certificate_Days = models.DecimalField(max_digits=15, decimal_places=2)
     Certified_Value =  models.DecimalField(max_digits=15, decimal_places=2)
-    Payment_Date = models.DateField(default=datetime.datetime.now, blank=True)
+    Payment_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Financial_Obligation = models.ForeignKey(Financial_Obligation, null=True, on_delete = models.CASCADE) # se crea una llave foranea llamando al modelo categoria
