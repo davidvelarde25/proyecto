@@ -1,8 +1,15 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-
-<form>
+<form method="post">
+    {% csrf_token %}
+      {{ form.as_p }}
+     <div class="input-field col s12">
+       <input type="submit" value="Enviar" class="blue darken-1 btn">
+     </div>
+ </form>
+ <!--
+<form method="post" action="{% url 'cliente' %}">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Nombre</label>
@@ -58,7 +65,7 @@
   <div style="text-align: right">
     <button type="submit" class="btn btn-primary">Crear</button>
   </div>
-</form>
+</form>-->
 {% endblock %}
 
 <!--  <label class="form-check-label" for="gridCheck">

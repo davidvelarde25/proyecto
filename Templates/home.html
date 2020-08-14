@@ -9,7 +9,7 @@
                 <thead>
                   <tr>
                     <th>Nombre</th>
-                    <th>nomina</th>
+                    <th>Cedula</th>
                     <th>Email</th>
                   </tr>
                 </thead>
@@ -19,13 +19,18 @@
                     <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Identification }}</td>
                     <td>{{ data.Email }}</td>
+                    <td>
+                          <a href="{% url 'editar' data.id %}">
+                          <i class="material-icons">update_forever</i>
+                          </a>
+                        </td>
                   </tr>
                   {% endfor %}
                 </tbody>
                 </div>
               </table>
               <div class="fixed-action-btn">
-                <a href="" class="btn-floating btn-large red">
+                <a href="{% url 'crear_cliente'%}" class="btn-floating btn-large red">
                   <i class="large material-icons">>add</i>
                 </a>
               </div>
