@@ -66,6 +66,8 @@ class Reference(models.Model):
     Cell_Phone = models.DecimalField(max_digits=20, decimal_places=0, null=False,blank=True)
     Phone = models.IntegerField(null=True,blank=True)
     Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
+    def __str__(self):
+        return '{}'.format(self.Name)
 
 # tabla nomina cliente
 class Payroll_Client(models.Model):

@@ -10,12 +10,25 @@
     </div>
       <div class="form-group col-md-6">
         <label>Asesor Registra</label>
-          <select class="browser-default">
-            <option disabled selected>Seleccione Asesor</option>
-            {% for x in Advisor_Records.Name %}
-              {{ x }}
-            {% endfor %}
-          </select>
+
+        <table class="table table-dark">
+          <div class="card-content white-text">
+
+            <thead>
+              <tr>
+                <th>Nombre</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in asesores %}
+              <tr>
+                <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
+              </tr>
+              {% endfor %}
+            </tbody>
+            </div>
+          </table>
       </div>
 
   <div class="form-group col-md-6">
@@ -75,21 +88,29 @@
     <label for="fechaderesultado">Fecha de Resultado</label>
     <input type="date" class="form-control" id="fechaderesultado" name="fechaderesultado">
   </div>
-  <div class="form-group col-md-4">
-    <label for="agregarobligacion">Agregar Obligación</label>
-    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  <div style="text-align: right" class="form-group col-md-5">
+    <label for="agregarobligacion">Obligaciones Financieras</label>
+    <a href="{% url 'crearobligacion' %}">
+      <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
+    </a>
   </div>
-  <div class="form-group col-md-4">
-    <label for="agregarobligacion">Derechos de peticion</label>
-    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  <div style="text-align: left" class="form-group col-md-5">
+    <label for="agregarobligacion">Derechos de petición</label>
+    <a href="{% url 'crearderechopeticion' %}">
+      <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
+    </a>
   </div>
-  <div class="form-group col-md-4">
-    <label for="agregarobligacion">Cuentas Bancarias </label>
-    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  <div style="text-align: center" class="form-group col-md-5">
+    <label for="agregarobligacion">Cuentas Bancarias</label>
+    <a href="{% url 'crearcuentas' %}">
+      <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
+    </a>
   </div>
-  <div class="form-group col-md-4">
-    <label for="agregarobligacion">Desembolsos</label>
-    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
+  <div style="text-align: left" class="form-group col-md-5">
+    <label for="creardesembolso">Desembolsos</label>
+    <a href="{% url 'creardesembolso' %}">
+      <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
+    </a>
   </div>
   <div class="form-group col-md-4">
     <label for="agregarobligacion">cliente</label>

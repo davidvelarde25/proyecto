@@ -14,8 +14,6 @@ from .tokens import account_activation_token
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 
-# ListView
-from django.views.generic.list import ListView
 #Login Requerido
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
@@ -38,7 +36,7 @@ def signup(request):
 #Enviar rorreo eLectrónica para activar usuario
 def SendEmailActivateUser(request, user):
     current_site = get_current_site(request)
-    subject = 'Activar cuenta CINEMA'
+    subject = 'Activar cuenta en Go Finanzas'
     html_content = render_to_string('email/account_activation.html',{
          'user': user,
          'domain': current_site.domain,
@@ -51,6 +49,7 @@ def SendEmailActivateUser(request, user):
     )
     msg.attach_alternative(html_content,"text/html")
     msg.send()
+
 #Activar un usuario que previamente se ha registrado
 def ActivateUser(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
@@ -71,14 +70,14 @@ def templateEmailSent(request, username):
     return render(request,'registration/account_activation.html', {'username': username})
 
 
-class UserList(PermissionRequiredMixin, ListView):
-    permission_required = 'users.listarusuarios'
-    model = User
+'''class UserList(PermissionRequiredMixin, ListView):
+    permission_required = 'users.listarclientes'
+    model = User'''
 
 @login_required
 def UserApp(request):
     return render(request, "auth/user_app.html")
 
 
-class ListUsers(ListView):
-    model = User
+'''class ListUsers(ListView):
+    model = User'''

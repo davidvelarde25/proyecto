@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+          <div class="card blue darken-1">
+            <table class="table table-dark">
+              <div class="card-content white-text">
+
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Celular</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for data in referencia %}
+                  <tr>
+                    <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
+                    <td>{{ data.Address }}</td>
+                    <td>{{ data.Cell_Phone }}</td>
+                    <td>
+                        <a href="{% url 'editarreferencia' data.id %}" class="">
+                          <i class="material-icons">update_forever</i>
+                        </a>
+                    </td>
+                    <td>
+                      <a href="{% url 'eliminarreferencia' data.id %}" class="">
+                        <i class="material-icons">delete_forever</i>
+                      </a>
+                  </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                </div>
+              </table>
+              <div class="fixed-action-btn">
+                <a href="{% url 'crearcliente' %}" class="btn-floating btn-large red">
+                  <i class="large material-icons">>add</i>
+                </a>
+              </div>
+            </div>
+
+{% endblock %}

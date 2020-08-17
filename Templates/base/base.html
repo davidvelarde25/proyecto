@@ -19,22 +19,26 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'crear_cliente' %}">Crear Cliente </a>
+              <a class="nav-link" href="{% url 'crearcliente' %}">Crear Cliente </a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="#">Gestionar</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gestionar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'listarobligacion' %}">Obligación</a>
+                  <a class="dropdown-item" href="{% url 'creargestion' %}">Gestión</a>
+                  <a class="dropdown-item" href="{% url 'crearderechopeticion' %}">Derechos de Petición</a>
+                  <a class="dropdown-item" href="{% url 'crearcuentas' %}">Cuentas Bancarias</a>
+                  <a class="dropdown-item" href="{% url 'creardesembolso' %}">Desembolsos</a>
+                </div>
             </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Nomina
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
             </li>
             <!--<li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -50,7 +54,7 @@
               <h6 class="ml-5">Hola {{ user.username }}!</h6>s
                 <a href="{% url 'logout' %}">Cerrar Sesión</a>
               {% else %}
-                <a href="#" class="btn btn-light ml-5">Registrarse</a>
+                <a href="" class="btn btn-light ml-5">Registrarse</a>
                 <a href="{% url 'login' %}" class="btn btn-danger ml-2">Iniciar Sesión</a>
             {% endif %}
           </div>

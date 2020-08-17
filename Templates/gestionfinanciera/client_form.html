@@ -1,29 +1,33 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+<!--
 <form method="post">
     {% csrf_token %}
       {{ form.as_p }}
-     <div class="input-field col s12">
+     <div class="input-field col-md-6">
        <input type="submit" value="Enviar" class="blue darken-1 btn">
      </div>
  </form>
- <!--
-<form method="post" action="{% url 'cliente' %}">
+-->
+
+
+<form  action="{%url 'crearcliente' %}" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
+      {% csrf_token %}
       <label for="inputEmail4">Nombre</label>
-      <input type="email" class="form-control" id="inputEmail4">
+      <input type="text" class="form-control" >
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Cedula</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <input type="number" class="form-control" >
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputAddress">Correo Electronico</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="">
+      <input type="email" class="form-control" id="inputAddress" placeholder="">
     </div>
     <div class="form-group col-md-6">
       <label for="inputAddress2">Direccion</label>
@@ -37,13 +41,13 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputCity">Celular</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input type="number" class="form-control" id="inputCity">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Estrato</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input type="number" class="form-control" id="inputCity">
     </div>
     <div class="form-group col-md-6">
       <label for="inputCity">Barrio</label>
@@ -51,21 +55,23 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">Referencia</label>
-      <button type="submit" style="background:#336EFF" class="btn btn.default">Crear Referencia</button>
+    <div style="text-align: right" class="form-group col-md-2">
+      <a href="{% url 'listarreferencia' %}">
+        <i type="submit" style="background:#336EFF" class="btn btn.default">Referencia</i>
+      </a>
     </div>
-    <div style="text-align: right" class="form-group col-md-6">
-      <label for="inputCity">Nomina</label>
-      <button type="submit" style="background:#336EFF" class="btn btn-blue">Registrar Nomina</button>
+    <div style="text-align: right" class="form-group col-md-2">
+      <a href="{% url 'listarnomina' %}">
+        <i type="submit" style="background:#336EFF" class="btn btn.default">Nomina</i>
+      </a>
     </div>
-  </div>
 
+  </div>
 
   <div style="text-align: right">
-    <button type="submit" class="btn btn-primary">Crear</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
   </div>
-</form>-->
+</form>
 {% endblock %}
 
 <!--  <label class="form-check-label" for="gridCheck">
