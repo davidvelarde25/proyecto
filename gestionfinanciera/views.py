@@ -115,9 +115,11 @@ class FinancialObligationCreate(CreateView):
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
+
 # clase para listar las referencias de los clientes
 class FinancialObligationView(ListView):
     model = Financial_Obligation
+    #template_name = 'gestionfinanciera/listarobligacion.html'
     context_object_name = 'obligacion'
 
 # clase para actualziar las referencias de los clientes
@@ -125,7 +127,7 @@ class FinancialObligationUpdate(UpdateView):
     model = Financial_Obligation
     fields = '__all__'
     def get_success_url(self):
-        return reverse('index')
+        return reverse('')
 
 # se crea la clase para eliminar las referencias
 class FinancialObligationDelete(DeleteView):

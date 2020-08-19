@@ -16,42 +16,54 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       {% csrf_token %}
-      <label for="inputEmail4">Nombre</label>
-      <input type="text" class="form-control" >
+      <label for="Name">Nombre</label>
+      <input type="text" class="form-control" id="Name" name="Name" >
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Cedula</label>
-      <input type="number" class="form-control" >
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputAddress">Correo Electronico</label>
-      <input type="email" class="form-control" id="inputAddress" placeholder="">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputAddress2">Direccion</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="">
+      <label for="Identification">Cedula</label>
+      <input type="number" class="form-control" id="Identification"  name="Identification">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Ciudad</label>
-      <input type="text" class="form-control" id="inputCity">
+      <label for="Email">Correo Electronico</label>
+      <input type="email" class="form-control" id="Email" Name="Email">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputCity">Celular</label>
-      <input type="number" class="form-control" id="inputCity">
+      <label for="Address">Direccion</label>
+      <input type="text" class="form-control" id="Address" name="Address">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Estrato</label>
-      <input type="number" class="form-control" id="inputCity">
+      <label for="City">Ciudad</label>
+      <input type="text" class="form-control" id="City" name="City">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputCity">Barrio</label>
-      <input type="text" class="form-control" id="inputCity">
+      <label for="Cell_Phone">Celular</label>
+      <input type="number" class="form-control" id="Cell_Phone" name="Cell_Phone">
+    </div>
+  </div>
+  <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="Stratum">Estrato</label>
+      <input type="number" class="form-control" id="Stratum" name="Stratum">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Neighborhood">Barrio</label>
+      <input type="text" class="form-control" id="Neighborhood" name="Neighborhood">
+    </div>
+  </div>
+  <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="Phone">Telefono</label>
+      <input type="number" class="form-control" id="Phone" name="Phone">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Date_of_birth">Fecha de Nacimiento</label>
+      <input type="date" class="form-control" id="Date_of_birth" name="Date_of_birth">
     </div>
   </div>
   <div class="form-row">
