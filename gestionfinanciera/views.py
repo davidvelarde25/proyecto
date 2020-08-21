@@ -34,7 +34,7 @@ class AdvisorRecordsView(ListView):
 # clase para actualziar los clientes
 class ClientUpdate(UpdateView):
     model = Client
-    fields =  ['Name', 'Identification', 'Email']
+    fields = ['Name', 'Identification', 'Email']
     def get_success_url(self):
         return reverse('index')
 
@@ -170,7 +170,18 @@ class DisbursementCreate(CreateView):
         return reverse('')
 
 
+'''def Client(request):
+    template_name = 'client_form.html'
+    form = ClienteForm()
 
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return HttpResponseRedirect('/')
+
+    return render(request, template_name, {'form':form})'''
 
 '''def crear_cliente(request):
     if request.method == "POST":

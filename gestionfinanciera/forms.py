@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 from .models import  Client
 
 # se crea la clase para el formulario de cliente
-class ClienteForm(forms.ModelForm):
+'''class ClienteForm(forms.ModelForm):
     class Meta:
         model = Client
-        field = '__all__
+        fields = '__all__' '''
 
 
 # se crea el formulario para registrar los nuevos usuarios

@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.ClientView.as_view(), name= 'index'),# ruta pra mostrar los clientes registrados
     path('admin/', admin.site.urls),
     path('crearcliente/', views.ClientCreate.as_view(), name="crearcliente"), # ruta para crear nuevos clientes
-    path('editarcliente/<int:pk>/', views.ClientUpdate.as_view(), name="editarcliente"), # ruta para actualizar un cliente especifico
+    path('editarcliente/<int:pk>/', views.ClientUpdate.as_view(), name='editarcliente'), # ruta para actualizar un cliente especifico
     path('creargestion/', views.ManagementTypeCreate.as_view(), name="creargestion"), # ruta para crear la gestion de un cliente
     #path('creargestion/', views.AdvisorRecordsView.as_view()), # ruta para crear la gestion de un cliente
     path('crearnomina/', views.PayrollClientCreate.as_view(), name="crearnomina"), # ruta para crear la nomina del cliente
