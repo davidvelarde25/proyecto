@@ -1,17 +1,23 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-<!--
+
 <form method="post">
     {% csrf_token %}
-      {{ form.as_p }}
+    {{ form.as_p }}
      <div class="input-field col-md-6">
        <input type="submit" value="Enviar" class="blue darken-1 btn">
      </div>
  </form>
+<<<<<<< HEAD
 
 -->
 <form  action="{%url 'crearcliente' %}" method="post">
+=======
+
+
+<!--<form  action="{%url 'crearcliente' %}" method="post">
+>>>>>>> c732432e70bee9c902b8649722367743c7f93533
   <div class="form-row">
     <div class="form-group col-md-6">
       {% csrf_token %}
@@ -83,7 +89,11 @@
     <button type="submit" class="btn btn-primary">Guardar</button>
   </div>
 </form>
+<<<<<<< HEAD
 
+=======
+-->
+>>>>>>> c732432e70bee9c902b8649722367743c7f93533
 {% endblock %}
 
 <!--  <label class="form-check-label" for="gridCheck">
