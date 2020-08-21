@@ -7,7 +7,7 @@ from .models import  Client
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Client
-        field = '__all__
+        field = '__all__'
 
 
 # se crea el formulario para registrar los nuevos usuarios

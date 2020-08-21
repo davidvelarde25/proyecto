@@ -8,6 +8,23 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 # importamos el logging
 import logging
+
+#importamos el formulario
+'''from .forms import ClienteForm
+
+def Client(request):
+    template_name = 'client_form.html'
+    form = ClienteForm()
+    if request.method == ' POST':
+        form= ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect('/')
+
+    return render(request, template_name, {'form':form})
+
+'''
+
 # muestra todos los clientes
 '''def index(request):
     dataClient = Client.objects.all()
@@ -34,7 +51,7 @@ class AdvisorRecordsView(ListView):
 # clase para actualziar los clientes
 class ClientUpdate(UpdateView):
     model = Client
-    fields =  ['Name', 'Identification', 'Email']
+    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone','Phone', 'Date_of_birth','Stratum','Neighborhood']
     def get_success_url(self):
         return reverse('index')
 
@@ -44,6 +61,7 @@ class ClientCreate(CreateView):
     model = Client
     #template_name = 'Templates/gestionfinanciera/client_form.html'
     fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone','Phone', 'Date_of_birth','Stratum','Neighborhood']
+    #fields = ['_all_']
     def get_success_url(self):
         return reverse('index')
 
@@ -144,6 +162,25 @@ class CertificateCreate(CreateView):
     def get_success_url(self):
         return reverse('')
 
+# clase para listar los certifiados de los clientes
+class CertificateView(ListView):
+    model = Certificate
+    #template_name = 'gestionfinanciera/listarobligacion.html'
+    context_object_name = 'certificado'
+
+# clase para actualziar los certificados de los clientes
+class CertificateUpdate(UpdateView):
+    model = Certificate
+    fields = '__all__'
+    def get_success_url(self):
+        return reverse('actualizarcertificado')
+
+# se crea la clase para eliminar las certificados
+class CertificateDelete(DeleteView):
+    model= Certificate
+    def get_success_url(self):
+        return reverse('eliminarcertificado')
+
 # clase para crear los derechos de peticion
 class RightPetitionCreate(CreateView):
     model = Right_Petition
@@ -151,6 +188,25 @@ class RightPetitionCreate(CreateView):
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
+
+# clase para listar los derechoos de peticion de los clientes
+class RightPetitionView(ListView):
+    model = Right_Petition
+    #template_name = 'gestionfinanciera/listarobligacion.html'
+    context_object_name = 'derechopeticion'
+
+# clase para actualziar los derechos de peticion de los clientes
+class RightPetitionUpdate(UpdateView):
+    model = Right_Petition
+    fields = '__all__'
+    def get_success_url(self):
+        return reverse('actualizarderechopeticion')
+
+# se crea la clase para eliminar las derechos de peticion
+class RightPetitionDelete(DeleteView):
+    model= Right_Petition
+    def get_success_url(self):
+        return reverse('eliminarderechopeticion')
 
 
 # clase para crear los derechos de peticion
@@ -161,6 +217,25 @@ class BankAccountsCreate(CreateView):
     def get_success_url(self):
         return reverse('')
 
+# clase para listar los cuentas bancarias de peticion de los clientes
+class BankAccountsView(ListView):
+    model = Bank_Accounts
+    #template_name = 'gestionfinanciera/listarobligacion.html'
+    context_object_name = 'cuenta'
+
+# clase para actualziar los derechos de peticion de los clientes
+class BankAccountsUpdate(UpdateView):
+    model = Bank_Accounts
+    fields = '__all__'
+    def get_success_url(self):
+        return reverse('actualizarcuenta')
+
+# se crea la clase para eliminar las derechos de peticion
+class BankAccountsDelete(DeleteView):
+    model= Bank_Accounts
+    def get_success_url(self):
+        return reverse('eliminarcuenta')
+
 # clase para crear ls desembolsos
 class DisbursementCreate(CreateView):
     model = Disbursement
@@ -168,6 +243,26 @@ class DisbursementCreate(CreateView):
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
+
+# clase para listar los deembolsos de peticion de los clientes
+class DisbursementView(ListView):
+    model = Disbursement
+    #template_name = 'gestionfinanciera/listarobligacion.html'
+    context_object_name = 'desembolso'
+
+# clase para actualziar los Desembolsos de los clientes
+class DisbursementUpdate(UpdateView):
+    model = Disbursement
+    fields = '__all__'
+    def get_success_url(self):
+        return reverse('actualizardesembolso')
+
+# se crea la clase para eliminar las desembolsos
+class DisbursementDelete(DeleteView):
+    model= Disbursement
+    def get_success_url(self):
+        return reverse('eliminardesembolso')
+
 
 
 

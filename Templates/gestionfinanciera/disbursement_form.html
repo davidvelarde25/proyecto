@@ -5,38 +5,38 @@
 <form>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="valordesembolso">Valor Desembolso</label>
-      <input type="number" class="valordesembolso" id="valordesembolso">
+      <label for="Payment_Value">Valor Desembolso</label>
+      <input type="number" class="valordesembolso" id="Payment_Value" name="Payment_Value">
     </div>
     <div class="form-group col-md-6">
-      <label for="fechadepago">Fecha de Pago</label>
-      <input type="date" class="form-control" id="fechadepago" name="fechadepago">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="entidadbancaria">Entidad Bancaria</label>
-      <input type="text" class="entidadbancaria" id="entidadbancaria" placeholder="">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="montodesembolso">Monto desembolso</label>
-      <input type="number" class="montodesembolso" id="montodesembolso" placeholder="">
+      <label for="Pay_Date">Fecha de Pago</label>
+      <input type="date" class="form-control" id="Pay_Date" name="Pay_Date">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="numerocuentas">Numero Cuotas</label>
-      <input type="text" class="numerocuentas" id="numerocuentas" placeholder="">
+      <label for="Banking_Entity">Entidad Bancaria</label>
+      <input type="text" class="Banking_Entity" id="Banking_Entity" >
     </div>
     <div class="form-group col-md-6">
-      <label for="asesor">Asesor</label>
-      <input type="text" class="asesor" id="asesor" placeholder="">
+      <label for="Disbursement_Amount">Monto desembolso</label>
+      <input type="number" class="Disbursement_Amount" id="Disbursement_Amount" placeholder="">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Number_Installment">Numero Cuotas</label>
+      <input type="text" class="Number_Installment" id="Number_Installment" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Adviser">Asesor</label>
+      <input type="text" class="Adviser" id="Adviser" placeholder="">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Estado Desembolso</label>
-        <select class="browser-default " name="leyaplica">
+        <select class="browser-default " name="State" id="State">
           <option value="" disabled selected>Seleccione</option>
           <option value="enproceso">En Proceso</option>
           <option value="radicado">Radicado</option>

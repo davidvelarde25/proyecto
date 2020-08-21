@@ -5,9 +5,10 @@
           <div class="card blue darken-1">
             <table class="table table-dark">
               <div class="card-content white-text">
-                
+
                 <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Cedula</th>
                     <th>Email</th>
@@ -16,6 +17,7 @@
                 <tbody>
                   {% for data in clientes %}
                   <tr>
+                    <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Identification }}</td>
                     <td>{{ data.Email }}</td>

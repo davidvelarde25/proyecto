@@ -6,12 +6,12 @@
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="tipodesolicitud">Tipo de Solicitud</label>
-      <input type="text" class="form-control" id="tipodesolicitud" name="tipodesolicitud">
+      <label for="Type_Application">Tipo de Solicitud</label>
+      <input type="text" class="form-control" id="Type_Application" name="Type_Application">
     </div>
     <div class="form-group col-md-6">
       <label>Linea Go</label>
-        <select class="browser-default " name="lineago">
+        <select class="browser-default " name="Line" id="Line">
           <option value="" disabled selected>Seleccione</option>
           <option value="rehabilitacion">Rehabilitación Financiera</option>
           <option value="reparacion">Reparación</option>
@@ -20,20 +20,20 @@
         </select>
     </div>
     <div class="form-group col-md-6">
-      <label for="fechadeenvio">Fecha de Envio</label>
-      <input type="date" class="form-control" id="fechadeenvio" name="fechadeenvio">
+      <label for="Send_Date">Fecha de Envio</label>
+      <input type="date" class="form-control" id="Send_Date" name="Send_Date">
     </div>
   <div class="form-group col-md-6">
-    <label for="numeroderadicado">Numero de Radicado</label>
-    <input type="number" class="form-control" id="numeroderadicado" name="numeroderadicado">
+    <label for="Filed_Number">Numero de Radicado</label>
+    <input type="number" class="form-control" id="Filed_Number" name="Filed_Number">
   </div>
   <div class="form-group col-md-6">
-    <label for="fechaderespuesta">Fecha de Respuesta</label>
-    <input type="date" class="form-control" id="fechaderespuesta" name="fechaderespuesta">
+    <label for="Reply_Date">Fecha de Respuesta</label>
+    <input type="date" class="form-control" id="Reply_Date" name="Reply_Date">
   </div>
   <div class="form-group col-md-6">
     <label>Estado del proceso</label>
-      <select class="browser-default " name="leyaplica">
+      <select class="browser-default " name="Process_State" id="Process_State">
         <option value="" disabled selected>Seleccione</option>
         <option value="enviado">Enviado</option>
         <option value="respuesto">Respuesto</option>
@@ -44,25 +44,25 @@
       </select>
   </div>
   <div class="form-group col-md-6">
-    <label for="respuesta">Respuesta</label>
-    <input type="text" class="form-control" id="respuesta" name="respuesta">
+    <label for="Reply">Respuesta</label>
+    <input type="text" class="form-control" id="Reply" name="Reply">
   </div>
   <div class="form-group col-md-6">
-    <label for="fechadeenviotutela">Fecha de Envio Tutela</label>
-    <input type="date" class="form-control" id="fechadeenviotutela" name="fechadeenviotutela">
+    <label for="Guardianship_Date">Fecha de Envio Tutela</label>
+    <input type="date" class="form-control" id="Guardianship_Date" name="Guardianship_Date">
   </div>
   <div class="form-group col-md-6">
-    <label for="juzgado">Juzgado</label>
-    <input type="text" class="form-control" id="juzgado" name="juzgado">
+    <label for="Court">Juzgado</label>
+    <input type="text" class="form-control" id="Court" name="Court">
   </div>
 
   <div class="form-group col-md-6">
-    <label for="fechaderespuestatutela">Fecha de Respuesta Tutela</label>
-    <input type="date" class="form-control" id="fechaderespuestatutela" name="fechaderespuestatutela">
+    <label for="Guardianship_Response_Date">Fecha de Respuesta Tutela</label>
+    <input type="date" class="form-control" id="Guardianship_Response_Date" name="Guardianship_Response_Date">
   </div>
   <div class="form-group col-md-6">
-    <label for="observacion">Observacion</label>
-    <input type="textarea" class="form-control" id="observacion" name="observacion">
+    <label for="Observation">Observacion</label>
+    <input type="textarea" class="form-control" id="Observation" name="Observation">
   </div>
   </div>
   <div style="text-align: right">

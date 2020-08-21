@@ -15,20 +15,20 @@
         </select>
     </div>
     <div class="form-group col-md-6">
-      <label for="numeroobligacion">Numero de Obligación</label>
-      <input type="text" class="form-control" id="numeroobligacion" name="numeroobligacion">
+      <label for="Obligation_Number">Numero de Obligación</label>
+      <input type="text" class="form-control" id="Obligation_Number" name="Obligation_Number">
     </div>
     <div class="form-group col-md-6">
-      <label for="tipoobligacion">Tipo Obligación</label>
-      <input type="text" class="form-control" id="tipoobligacion" name="tipoobligacion">
+      <label for="Type">Tipo Obligación</label>
+      <input type="text" class="form-control" id="Type" name="Type">
     </div>
     <div class="form-group col-md-6">
-      <label for="entidadfinanciera">Entidad Financiera/Cooperativa</label>
-      <input type="text" class="form-control" id="entidadfinanciera" name="entidadfinanciera">
+      <label for="Entity_Cooperative">Entidad Financiera/Cooperativa</label>
+      <input type="text" class="form-control" id="Entity_Cooperative" name="Entity_Cooperative">
     </div>
   <div class="form-group col-md-6">
     <label>Estado Obligación</label>
-      <select class="browser-default" name="estadoobligacion">
+      <select class="browser-default" name="State" id="State">
         <option disabled selected>Seleccione Estado Obligación</option>
         <option value="normal">Normal</option>
         <option value="mora">En Mora</option>
@@ -40,37 +40,37 @@
   </div>
 <!-- campos que se colocan cuando la obigacion esta en estado normal -->
   <div class="form-group col-md-6">
-    <label for="cuotaspendientes">Cuotas Pendientes</label>
-    <input type="number" class="form-control" id="cuotaspendientes" name="cuotaspendientes">
+    <label for="Outstanding_Fees">Cuotas Pendientes</label>
+    <input type="number" class="form-control" id="Outstanding_Fees" name="Outstanding_Fees">
   </div>
   <div class="form-group col-md-6">
-    <label for="valorcuota">Valor Cuota</label>
-    <input type="number" class="form-control" id="valorcuota" name="valorcuota">
+    <label for="Quota_Value">Valor Cuota</label>
+    <input type="number" class="form-control" id="Quota_Value" name="Quota_Value">
   </div>
   <div class="form-group col-md-6">
-    <label for="valorfuturocartera">Valor futuro cartera</label>
-    <input type="number" class="form-control" id="valorfuturocartera" name="valorfuturocartera">
+    <label for="Future_Value_Portfolio">Valor futuro cartera</label>
+    <input type="number" class="form-control" id="Future_Value_Portfolio" name="Future_Value_Portfolio">
   </div>
   <div class="form-group col-md-6">
-    <label for="valorcertificadoobligacion">Valor certificado obligación</label>
-    <input type="number" class="form-control" id="valorcertificadoobligacion" name="valorcertificadoobligacion">
+    <label for="Certified_Value_Obligation">Valor certificado obligación</label>
+    <input type="number" class="form-control" id="Certified_Value_Obligation" name="Certified_Value_Obligation">
   </div>
   <div class="form-group col-md-6">
-    <label for="valorahorro">Valor Ahorro</label>
-    <input type="number" class="form-control" id="valorahorro" name="valorahorro">
+    <label for="Saving_Value">Valor Ahorro</label>
+    <input type="number" class="form-control" id="Saving_Value" name="Saving_Value">
   </div>
   <!--campos que se colocal si la obligacion se encuentra en mora  -->
   <div class="form-group col-md-6">
-    <label for="valormora">Valor Mora</label>
-    <input type="number" class="form-control" id="valormora" name="valormora">
+    <label for="Default_Value">Valor Mora</label>
+    <input type="number" class="form-control" id="Default_Value" name="Default_Value">
   </div>
   <div class="form-group col-md-6">
-    <label for="tiempomora">Tiempo Mora</label>
-    <input type="number" class="form-control" id="tiempomora" name="tiempomora">
+    <label for="Default_Time">Tiempo Mora</label>
+    <input type="number" class="form-control" id="Default_Time" name="Default_Time">
   </div>
   <div class="form-group col-md-6">
     <label>Comprar</label>
-      <select class="browser-default" name="comprar">
+      <select class="browser-default" name="Buy_Mora_Portfolio" id="Buy_Mora_Portfolio">
         <option disabled selected>Seleccione Opción a comprar</option>
         <option value="mora">Mora</option>
         <option value="cartera">Cartera</option>
@@ -78,14 +78,32 @@
   </div>
   <!-- campos que se colocan si son obligaciones castigadas y con embargos -->
   <div class="form-group col-md-6">
-    <label for="comprador">Comprador</label>
-    <input type="number" class="form-control" id="comprador" name="comprador">
+    <label for="Reported_Value">Valor Reportado</label>
+    <input type="number" class="form-control" id="Reported_Value" name="Reported_Value">
   </div>
-
-
+  <div class="form-group col-md-6">
+    <label for="Offer_Value_To_Entity">Valor Oferta a Entidad</label>
+    <input type="number" class="form-control" id="Offer_Value_To_Entity" name="Offer_Value_To_Entity">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Negotiated_Value">Valor Negociado</label>
+    <input type="number" class="form-control" id="Negotiated_Value" name="Negotiated_Value">
+  </div>
+  <div class="form-group col-md-6">
+    <label>Negociado Con</label>
+      <select class="browser-default" name="Negotiated_With" id="Negotiated_With">
+        <option disabled selected>Seleccione Opción a comprar</option>
+        <option value="aboado">Abogado</option>
+        <option value="acreedor">Acreedor</option>
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Buyer">Comprador</label>
+    <input type="text" class="form-control" id="Buyer" name="Buyer">
+  </div>
   <div style="text-align: center" class="form-group col-md-5">
     <label for="agregarobligacion">Certificado</label>
-    <a href="{% url 'crearcertificado' %}">
+    <a href="{% url 'listarcertificado' %}">
       <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
     </a>
   </div>
