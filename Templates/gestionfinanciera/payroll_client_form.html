@@ -3,7 +3,7 @@
 {% block content %}
 
 {{client}}
-<form>
+<form action="{%url 'crearnomina' %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
