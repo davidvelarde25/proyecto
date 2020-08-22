@@ -51,11 +51,11 @@ class AdvisorRecordsView(ListView):
 # clase para actualziar los clientes
 class ClientUpdate(UpdateView):
     model = Client
-<<<<<<< HEAD
+
     fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone','Phone', 'Date_of_birth','Stratum','Neighborhood']
-=======
+
     fields = ['Name', 'Identification', 'Email']
->>>>>>> c732432e70bee9c902b8649722367743c7f93533
+
     def get_success_url(self):
         return reverse('index')
 
