@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Bank">Banco</label>
+      <input type="text" class="Bank" id="Bank">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Number_Quotas">Numero cuotas</label>
+      <input type="number" class="Number_Quotas" id="Number_Quotas">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Factor">Factor</label>
+      <input type="number" class="Factor" id="Factor" placeholder="">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Estimed_Credit">Credito estimado</label>
+      <input type="number" class="Estimed_Credit" id="Estimed_Credit" placeholder="">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Quota_Value">Valor cuota</label>
+      <input type="number" class="Quota_Value" id="Quota_Value" placeholder="">
+    </div>
+    
+
+  </div>
+
+
+
+  <div style="text-align: right">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </div>
+</form>
+{% endblock %}
+
+<!--  <label class="form-check-label" for="gridCheck">
+
+  </label>
+
+  <div class="form-group col-md-4">
+    <label for="inputState">Celular</label>
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+
+-->

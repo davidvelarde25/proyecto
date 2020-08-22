@@ -10,7 +10,12 @@
     </div>
       <div class="form-group col-md-6">
         <label>Asesor Registra</label>
-        <select class="browser-default" name="Advisor_Records" id="Advisor_Records">
+        <select class="browser-default" name="Customer_Referrer" id="Customer_Referrer">
+          <option value="" disabled selected>Seleccione</option>
+          {% for x in customer_referrer %}
+            <option value="{{x.id}}">{{x.Name}}</option>
+
+          {% endfor %}
 
         </select>
       </div>
@@ -33,7 +38,7 @@
     <label>Referenciador</label>
       <select class="browser-default" name="Customer_Referrer" id="Customer_Referrer">
         <option disabled selected>Referenciador</option>
-        {% for x in Customer_Referrer.Description %}
+        {% for x in Customer_Referrer.Name %}
           {{ x }}
         {% endfor %}
       </select>
@@ -87,7 +92,7 @@
   </div>
   <div style="text-align: center" class="form-group col-md-5">
     <label for="listarcuentas">Cuentas Bancarias</label>
-    <a href="{% url 'listarcuentas' %}">
+    <a href="{% url 'listarcuenta' %}">
       <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
     </a>
   </div>
