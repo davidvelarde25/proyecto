@@ -98,6 +98,11 @@ class PayrollClientCreate(CreateView):
     model = Payroll_Client
     #template_name = 'Templates/gestionfinanciera/client_form.html'
     fields = '__all__'
+    def get_context_data(self,**kwargs):
+        context = super(PayrollClientCreate,self).get_context_data(**kwargs)
+        context['client'] = Client.objects.all()
+
+        return context
     def get_success_url(self):
         return reverse('')
 

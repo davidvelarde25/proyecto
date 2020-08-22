@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-        
+
           <div class="card blue darken-1">
             <table class="table table-dark">
               <div class="card-content white-text">
@@ -35,7 +35,7 @@
                 </div>
               </table>
               <div class="fixed-action-btn">
-                <a href="{% url 'crearnomina' %}" class="btn-floating btn-large red">
+                <a href="{% url 'crearnomina' client.id %}" class="btn-floating btn-large red">
                   <i class="large material-icons">add</i>
                 </a>
               </div>
