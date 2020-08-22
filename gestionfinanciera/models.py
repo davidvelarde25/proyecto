@@ -51,9 +51,9 @@ class Management_Type(models.Model):
     Result_Date = models.DateField(default=datetime.datetime.today, blank=True)
     Date_Of_Contact = models.DateField(default=datetime.datetime.today, blank=True)
     Status_Date = models.DateField(default=datetime.datetime.today, blank=True)
-    Client  = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
-    Advisor_Records  = models.ForeignKey(Advisor_Records, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
-    Actual_State = models.ForeignKey(Actual_State, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
+    Fk_Client  = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
+    Fk_Advisor_Records  = models.ForeignKey(Advisor_Records, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
+    Fk_Actual_State = models.ForeignKey(Actual_State, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
 
 #  modelo  de los datos de las referencias de los usuarios
 class Reference(models.Model):
@@ -65,7 +65,7 @@ class Reference(models.Model):
     Relationship = models.CharField(max_length=250, null=True,blank=True)
     Cell_Phone = models.DecimalField(max_digits=20, decimal_places=0, null=False,blank=True)
     Phone = models.IntegerField(null=True,blank=True)
-    Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
+    Fk_Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
     def __str__(self):
         return '{}'.format(self.Name)
 
@@ -82,7 +82,7 @@ class Payroll_Client(models.Model):
     Non_Concellable_Value = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Payment_Capacity = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Bonding_Date = models.DateField(default=datetime.datetime.today, blank=True, null=False)
-    Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
+    Fk_Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
 
 # tabla simulacion bancaria
 class Simulation_Banking(models.Model):
@@ -91,7 +91,7 @@ class Simulation_Banking(models.Model):
     Factor = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Estimed_Credit = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Quota_Value = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
-    Client_Payroll = models.ForeignKey(Payroll_Client, null=True, on_delete = models.CASCADE,blank=True)
+    Fk_Client_Payroll = models.ForeignKey(Payroll_Client, null=True, on_delete = models.CASCADE,blank=True)
 
 # tabla derecho peticion
 class Right_Petition(models.Model):
@@ -106,7 +106,7 @@ class Right_Petition(models.Model):
     Court = models.CharField(max_length=250, null=False,blank=True)
     Guardianship_Response_Date = models.DateField(default=datetime.datetime.today, blank=True, null=False)
     Observation = models.CharField(max_length=1000, null=False,blank=True)
-    Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
+    Fk_Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
 
 # tabla cuentas bancarias
 class Bank_Accounts(models.Model):
@@ -114,7 +114,7 @@ class Bank_Accounts(models.Model):
     Number = models.DecimalField(max_digits=15, decimal_places=2,blank=True)
     Bank = models.CharField(max_length=250, null=False,blank=True)
     State = models.CharField(max_length=250, null=False,blank=True)
-    Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
+    Fk_Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
 
 #creacion tabla desembolso
 class Disbursement(models.Model):
@@ -127,7 +127,7 @@ class Disbursement(models.Model):
     Disbursement_Value = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Adviser = models.CharField(max_length=250, null=False,blank=True)
     State = models.CharField(max_length=250, blank=True, null=False)
-    Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
+    Fk_Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
 
 # creacion tabla obigaciones  financieras
 class Financial_Obligation(models.Model):
@@ -148,7 +148,7 @@ class Financial_Obligation(models.Model):
     Offer_Value_To_Entity = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Negotiated_Value = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Negotiated_With = models.CharField(max_length=250, null=False,blank=True)
-    Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
+    Fk_Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
 
 # tabla certificados
 class Certificate(models.Model):
@@ -158,4 +158,4 @@ class Certificate(models.Model):
     Certificate_Days = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Certified_Value =  models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Payment_Date = models.DateField(default=datetime.datetime.today, blank=True, null=False)
-    Financial_Obligation = models.ForeignKey(Financial_Obligation, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo categoria
+    Fk_Financial_Obligation = models.ForeignKey(Financial_Obligation, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo categoria

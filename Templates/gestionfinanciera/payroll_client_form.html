@@ -2,6 +2,7 @@
 
 {% block content %}
 
+{{client}}
 <form>
   {% csrf_token %}
   <div class="form-row">
@@ -72,9 +73,16 @@
       <label for="Bonding_Date">Fecha de Vinculación</label>
       <input type="date" class="form-control" id="Bonding_Date" name="Bonding_Date">
     </div>
+    <div style="text-align: center" class="form-group col-md-5">
+      <label for="listarcuentas">Simulacion Bancaria</label>
+      <a href="{% url 'crearsimulacion' %}">
+        <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
+      </a>
+    </div>
+
     <div class="form-group col-md-6">
-      <label for="agregarobligacion">cliente</label>
-      <input type="text" class="form-control" id="agregarobligacion" name="agregarobligacion">
+      <label for="Fk_Client">cliente</label>
+      <input type="text" class="form-control" id="Fk_Client" name="Fk_Client" value="{{client.Id}}">
     </div>
     <div class="form-group col-md-6">
     </div>

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 #from django.http import HttpResponseRedirect
-from .models import Client, Reference, Management_Type,Advisor_Records, Certificate,Payroll_Client, Reference, Financial_Obligation, Right_Petition, Bank_Accounts,Disbursement
+from .models import (Client, Reference,Simulation_Banking,Customer_Referrer,
+ Management_Type,Advisor_Records, Certificate,Payroll_Client, Reference,
+ Financial_Obligation, Right_Petition, Bank_Accounts,Disbursement)
 from django.contrib.auth.models import User
 from django.urls import reverse
 # vistas basadas en clase
@@ -74,6 +76,15 @@ class ManagementTypeCreate(CreateView):
     model = Management_Type
     #template_name = 'Templates/gestionfinanciera/client_form.html'
     fields = '__all__'
+
+     #se sobreescribe este método para obtener información de otros modelos
+    def get_context_data(self,**kwargs):
+        context = super(ManagementTypeCreate,self).get_context_data(**kwargs)
+        context['customer_referrer'] = Advisor_Records.objects.all()
+
+        return context
+
+
     def get_success_url(self):
         return reverse('')
 
@@ -82,6 +93,11 @@ class PayrollClientCreate(CreateView):
     model = Payroll_Client
     #template_name = 'Templates/gestionfinanciera/client_form.html'
     fields = '__all__'
+    def get_context_data(self,**kwargs):
+        context = super(PayrollClientCreate,self).get_context_data(**kwargs)
+        context['client'] = Client.objects.all()
+
+        return context
     def get_success_url(self):
         return reverse('')
 
@@ -89,6 +105,13 @@ class PayrollClientCreate(CreateView):
 class PayrollClientView(ListView):
     model = Payroll_Client
     context_object_name = 'nomina'
+
+    def get_context_data(self,**kwargs):
+        context = super(PayrollClientView,self).get_context_data(**kwargs)
+        context['client'] = Client.objects.all()
+
+        return context
+
 
 # clase para actualziar las referencias de los clientes
 class PayrollClientUpdate(UpdateView):
@@ -267,6 +290,12 @@ class DisbursementDelete(DeleteView):
     def get_success_url(self):
         return reverse('eliminardesembolso')
 
+class SimulationBankingCreate(CreateView):
+    model = Simulation_Banking
+    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    fields = '__all__'
+    def get_success_url(self):
+        return reverse('')
 
 
 '''def Client(request):

@@ -7,15 +7,16 @@ urlpatterns = [
     path('', views.ClientView.as_view(), name= 'index'),# ruta pra mostrar los clientes registrados
     path('admin/', admin.site.urls),
     path('crearcliente/', views.ClientCreate.as_view(), name="crearcliente"), # ruta para crear nuevos clientes
-
     path('editarcliente/<int:pk>/', views.ClientUpdate, name="editarcliente"), # ruta para actualizar un cliente especifico
 
     path('editarcliente/<int:pk>/', views.ClientUpdate.as_view(), name='editarcliente'), # ruta para actualizar un cliente especifico
 
+
+
     path('creargestion/', views.ManagementTypeCreate.as_view(), name="creargestion"), # ruta para crear la gestion de un cliente
     #path('creargestion/', views.AdvisorRecordsView.as_view()), # ruta para crear la gestion de un cliente
-    path('crearnomina/', views.PayrollClientCreate.as_view(), name="crearnomina"), # ruta para crear la nomina del cliente
-    path('listarnomina/', views.PayrollClientView.as_view(), name= 'listarnomina'),# ruta pra mostrar las nominas de cada clientes
+    path('crearnomina/<int:pk>/', views.PayrollClientCreate.as_view(), name="crearnomina"), # ruta para crear la nomina del cliente
+    path('listarnomina/<int:pk>/', views.PayrollClientView.as_view(), name= 'listarnomina'),# ruta pra mostrar las nominas de cada clientes
     path('editarnomina/<int:pk>/', views.PayrollClientUpdate.as_view(), name="editarnomina"), # ruta para actualizar la nomina del cliente
     path('eliminarnomina/<int:pk>/', views.PayrollClientDelete.as_view(), name='eliminarnomina'),# ruta para elimiar las referncia
     path('crearreferencia/', views.ReferenceCreate.as_view(), name="crearreferencia"), # ruta para crear las referencias de los cliente
@@ -44,6 +45,7 @@ urlpatterns = [
     path('editardesembolso/<int:pk>/', views.BankAccountsUpdate.as_view(), name="editardesembolso"), # ruta para editar los datos de los desembolsos de un cliente
     path('eliminardesembolso/<int:pk>/', views.BankAccountsDelete.as_view(), name='eliminardesembolso'),# ruta para eliminar las desembolsos de un cliente
 
+    path('crearsimulacion/', views.SimulationBankingCreate.as_view(), name="crearsimulacion"), # ruta para crear la simulacion bancaria de los clientes
 
 
 
