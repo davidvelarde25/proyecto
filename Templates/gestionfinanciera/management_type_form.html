@@ -10,13 +10,11 @@
     </div>
       <div class="form-group col-md-6">
         <label>Asesor Registra</label>
-        <select class="browser-default" name="Customer_Referrer" id="Customer_Referrer">
+        <select class="browser-default" name="Advisor_Records" id="Advisor_Records">
           <option value="" disabled selected>Seleccione</option>
-          {% for x in customer_referrer %}
+          {% for x in advisor_records %}
             <option value="{{x.id}}">{{x.Name}}</option>
-
           {% endfor %}
-
         </select>
       </div>
 
@@ -36,19 +34,19 @@
   </div>
   <div class="form-group col-md-6">
     <label>Referenciador</label>
-      <select class="browser-default" name="Customer_Referrer" id="Customer_Referrer">
-        <option disabled selected>Referenciador</option>
-        {% for x in Customer_Referrer.Name %}
-          {{ x }}
-        {% endfor %}
-      </select>
+    <select class="browser-default" name="Customer_Referrer" id="Customer_Referrer">
+      <option value="" disabled selected>Seleccione</option>
+      {% for x in customer_referrer %}
+        <option value="{{x.id}}">{{x.Name}}</option>
+      {% endfor %}
+    </select>
   </div>
   <div class="form-group col-md-6">
     <label>Estado Actual</label>
       <select class="browser-default" name="Actual_State" id="Actual_State">
-        <option disabled selected>Estado Actual</option>
-        {% for x in Actual_state.Description %}
-          {{ x }}
+        <option value="" disabled selected>Seleccione</option>
+        {% for x in actual_state %}
+          <option value="{{x.id}}">{{x.Name}}</option>
         {% endfor %}
       </select>
   </div>
@@ -103,7 +101,7 @@
     </a>
   </div>
   <div class="form-group col-md-4">
-    <label for="agregarobligacion">cliente</label>
+    <label for="agregarobligacion">Agregar Obligación</label>
     <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
   </div>
 </div>

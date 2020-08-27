@@ -14,11 +14,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for data in referencia %}
+                  {% for data in nomina %}
                   <tr>
-                    <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
-                    <td>{{ data.Address }}</td>
-                    <td>{{ data.Cell_Phone }}</td>
+                    <td>{{ data.Payroll_Company }}</td> <!-- con upper colocamos las letras en mayuscula -->
+                    <td>{{ data.Payroll_Type }}</td>
+                    <td>{{ data.Salary_Value }}</td>
                     <td>
                         <a href="{% url 'editarnomina' data.id %}" class="">
                           <i class="material-icons">update_forever</i>
@@ -35,7 +35,7 @@
                 </div>
               </table>
               <div class="fixed-action-btn">
-                <a href="{% url 'crearnomina' client.id %}" class="btn-floating btn-large red">
+                <a href="{% url 'crearnomina' %}" class="btn-floating btn-large red">
                   <i class="large material-icons">add</i>
                 </a>
               </div>

@@ -7,6 +7,10 @@
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
+      <label for="Payroll_Company">Empresa</label>
+        <input type="number" class="form-control" id="Payroll_Company" name="Payroll_Company" value="{{Payroll_Client.Payroll_Company}}>
+    </div>
+    <div class="form-group col-md-6">
       <label>Seleccione una Nómina</label>
         <select class="browser-default " name="Payroll_Type" id="Payroll_Type">
           <option value="" disabled selected>Seleccione</option>
@@ -63,7 +67,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="Non_Concellable_Value">Deudas no cancelables</label>
-      <input type="number" class="form-control" id="Non_Concellable_Value" name="deudasnocancelables">
+      <input type="number" class="form-control" id="Non_Concellable_Value" name="Non_Concellable_Value">
     </div>
     <div class="form-group col-md-6">
       <label for="Payment_Capacity">Capacidad de pago</label>
@@ -81,8 +85,11 @@
     </div>
 
     <div class="form-group col-md-6">
-      <label for="Fk_Client">cliente</label>
-      <input type="text" class="form-control" id="Fk_Client" name="Fk_Client" value="{{client.Id}}">
+      <select class="browser-default" name="Fk_Client" id="Fk_Client">
+        {% for x in client %}
+          <option value="{{x.id}}">{{x.id}}</option>
+        {% endfor %}
+      </select>
     </div>
     <div class="form-group col-md-6">
     </div>

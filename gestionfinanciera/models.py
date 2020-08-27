@@ -83,6 +83,8 @@ class Payroll_Client(models.Model):
     Payment_Capacity = models.DecimalField(max_digits=15, decimal_places=2,blank=True, null=False)
     Bonding_Date = models.DateField(default=datetime.datetime.today, blank=True, null=False)
     Fk_Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
+    def __str__(self):
+        return '{}'.format(self.Payroll_Company)
 
 # tabla simulacion bancaria
 class Simulation_Banking(models.Model):

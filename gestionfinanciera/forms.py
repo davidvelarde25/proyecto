@@ -7,11 +7,8 @@ from .models import  Client
 '''class ClienteForm(forms.ModelForm):
     class Meta:
         model = Client
-<<<<<<< HEAD
-        field = '__all__'
-=======
-        fields = '__all__' '''
->>>>>>> c732432e70bee9c902b8649722367743c7f93533
+
+'''
 
 
 # se crea el formulario para registrar los nuevos usuarios

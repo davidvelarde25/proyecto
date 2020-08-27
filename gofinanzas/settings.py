@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gestionfinanciera',
     'users',
+    "django_adminlte_theme",
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
 ]
 
 ROOT_URLCONF = 'gofinanzas.urls'
@@ -130,7 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 #STATICFILES_DIRS = (os.path.join(BASE_DIR),'static')
-STATIC_URL = '/static/'
+
 
 # se creanlas variables de redireccionamiento,, as cuales se les coloca la ruta donde se va a ir l momento de iniciar o cerrar sesion
 LOGIN_REDIRECT_URL = '/'
@@ -143,3 +146,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'sistemasmanizalesgofinanzas@gmail.com'
 EMAIL_HOST_PASSWORD ='463phago'
 EMAIL_PORT = 465
+
+
+STATIC_URL='/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR), 'static')
