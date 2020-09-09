@@ -2,7 +2,7 @@ from django.shortcuts import render
 #from django.http import HttpResponseRedirect
 from .models import (Client, Reference,Simulation_Banking,Customer_Referrer,
  Management_Type,Advisor_Records, Certificate,Payroll_Client, Reference,
- Financial_Obligation, Right_Petition, Bank_Accounts,Disbursement)
+ Financial_Obligation, Right_Petition, Bank_Accounts,Disbursement,Actual_State)
 from django.contrib.auth.models import User
 from django.urls import reverse
 # vistas basadas en clase
@@ -52,6 +52,15 @@ class AdvisorRecordsView(ListView):
     #template_name = 'gestionfinanciera/management_type_form.html'
     context_object_name = 'clientes'
 '''
+# clase para crear los clientes
+class ClientCreate(CreateView):
+    model = Client
+    template_name = 'gestionfinanciera/Client/client_form.html'
+    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone',
+    'Phone', 'Date_of_birth','Stratum','Neighborhood']
+    #fields = ['_all_']
+    def get_success_url(self):
+        return reverse('index')
 
 # clase para actualziar los clientes
 class ClientUpdate(UpdateView):
@@ -60,16 +69,6 @@ class ClientUpdate(UpdateView):
     fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone',
     'Phone', 'Date_of_birth','Stratum','Neighborhood']
 
-    def get_success_url(self):
-        return reverse('index')
-
-# clase para crear los clientes
-class ClientCreate(CreateView):
-    model = Client
-    template_name = 'gestionfinanciera/Client/client_form.html'
-    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone',
-    'Phone', 'Date_of_birth','Stratum','Neighborhood']
-    #fields = ['_all_']
     def get_success_url(self):
         return reverse('index')
 
@@ -82,6 +81,29 @@ class ManagementTypeCreate(CreateView):
      #se sobreescribe este método para obtener información de otros modelos
     def get_context_data(self,**kwargs):
         context = super(ManagementTypeCreate,self).get_context_data(**kwargs)
+        context['customer_referrer'] = Customer_Referrer.objects.all()
+        context['advisor_records'] = Advisor_Records.objects.all()
+        context['actual_state'] = Actual_State.objects.all()
+
+        return context
+    def get_success_url(self):
+        return reverse('')
+
+# clase para listar la gestion que se le va a realziar al cliente
+class ManagementTypeList(ListView):
+    model = Management_Type
+    template_name = 'gestionfinanciera/management_type_list.html'
+    context_object_name = 'tipogestion'
+
+# clase para actualizar el tipo de gestion de un usuario
+class ManagementTypeUpdate(UpdateView):
+    model = Management_Type
+    template_name = 'gestionfinanciera/management_type_update.html'
+    fields = '__all__'
+
+     #se sobreescribe este método para obtener información de otros modelos
+    def get_context_data(self,**kwargs):
+        context = super(ManagementTypeUpdate,self).get_context_data(**kwargs)
         context['customer_referrer'] = Customer_Referrer.objects.all()
         context['advisor_records'] = Advisor_Records.objects.all()
         context['actual_state'] = Actual_State.objects.all()
@@ -127,7 +149,7 @@ class PayrollClientView(ListView):
 # clase para actualziar las referencias de los clientes
 class PayrollClientUpdate(UpdateView):
     model = Payroll_Client
-    template_name = 'gestionfinanciera/Client/payroll_client_form.html'
+    template_name = 'gestionfinanciera/Client/payroll_client_edit.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('listarnomina')
@@ -142,7 +164,7 @@ class PayrollClientDelete(DeleteView):
 # clase para crear las referencias del cliente
 class ReferenceCreate(CreateView):
     model = Reference
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/Client/reference_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -150,11 +172,13 @@ class ReferenceCreate(CreateView):
 # clase para listar las referencias de los clientes
 class ReferenceView(ListView):
     model = Reference
+    template_name = 'gestionfinanciera/Client/reference_list.html'
     context_object_name = 'referencia'
 
 # clase para actualziar las referencias de los clientes
 class ReferenceUpdate(UpdateView):
     model = Reference
+    template_name = 'gestionfinanciera/Client/reference_edit.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('index')
@@ -168,7 +192,7 @@ class ReferenceDelete(DeleteView):
 # clase para crear las obligaciones de los clientes
 class FinancialObligationCreate(CreateView):
     model = Financial_Obligation
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/obligation/financial_obligation_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -176,12 +200,13 @@ class FinancialObligationCreate(CreateView):
 # clase para listar las referencias de los clientes
 class FinancialObligationView(ListView):
     model = Financial_Obligation
-    #template_name = 'gestionfinanciera/listarobligacion.html'
+    template_name = 'gestionfinanciera/obligation/financial_obligation_list.html'
     context_object_name = 'obligacion'
 
 # clase para actualziar las referencias de los clientes
 class FinancialObligationUpdate(UpdateView):
     model = Financial_Obligation
+    template_name = 'gestionfinanciera/obligation/financial_obligation_edit.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -196,7 +221,7 @@ class FinancialObligationDelete(DeleteView):
 # clase para crear el certificado
 class CertificateCreate(CreateView):
     model = Certificate
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/obligation/certificate_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -204,12 +229,13 @@ class CertificateCreate(CreateView):
 # clase para listar los certifiados de los clientes
 class CertificateView(ListView):
     model = Certificate
-    #template_name = 'gestionfinanciera/listarobligacion.html'
+    template_name = 'gestionfinanciera/obligation/certificate_list.html'
     context_object_name = 'certificado'
 
 # clase para actualziar los certificados de los clientes
 class CertificateUpdate(UpdateView):
     model = Certificate
+    template_name = 'gestionfinanciera/obligation/certificate_edit.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('actualizarcertificado')
@@ -223,7 +249,7 @@ class CertificateDelete(DeleteView):
 # clase para crear los derechos de peticion
 class RightPetitionCreate(CreateView):
     model = Right_Petition
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/obligation/right_petition_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -231,7 +257,7 @@ class RightPetitionCreate(CreateView):
 # clase para listar los derechoos de peticion de los clientes
 class RightPetitionView(ListView):
     model = Right_Petition
-    #template_name = 'gestionfinanciera/listarobligacion.html'
+    template_name = 'gestionfinanciera/obligation/right_petition_list.html'
     context_object_name = 'derechopeticion'
 
 # clase para actualziar los derechos de peticion de los clientes
@@ -251,7 +277,7 @@ class RightPetitionDelete(DeleteView):
 # clase para crear los derechos de peticion
 class BankAccountsCreate(CreateView):
     model = Bank_Accounts
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/bank_management/bank_accounts_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -259,12 +285,13 @@ class BankAccountsCreate(CreateView):
 # clase para listar los cuentas bancarias de peticion de los clientes
 class BankAccountsView(ListView):
     model = Bank_Accounts
-    #template_name = 'gestionfinanciera/listarobligacion.html'
+    template_name = 'gestionfinanciera/bank_management/bank_accounts_list.html'
     context_object_name = 'cuenta'
 
 # clase para actualziar los derechos de peticion de los clientes
 class BankAccountsUpdate(UpdateView):
     model = Bank_Accounts
+    template_name = 'gestionfinanciera/bank_management/bank_accounts_update.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('actualizarcuenta')

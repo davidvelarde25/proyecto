@@ -3,7 +3,7 @@
 {% block content %}
 
 {{client}}
-<form action="{%url 'crearnomina' %}" method="post">
+<form action="{%url 'editarnomina' %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -23,11 +23,10 @@
         </select
     </div>
   </div>
-
     <div class="form-group col-md-6">
       <label>Tipo Contrato/Pensión</label>
         <select class="browser-default " name="tipocontrato">
-          <option value="" disabled selected>Seleccione</option>
+          <option value="" disabled selected>{{Payroll_Client.Permanent_Income}}</option>
           <option value="propiedad">Propiedad</option>
           <option value="invalidez">Invalidez</option>
           <option value="provisionalidad">Provisionalidad</option>
@@ -42,16 +41,16 @@
     </div>
     <div class="form-group col-md-6">
       <label for="Salary_Value">Valor Salario</label>
-        <input type="number" class="form-control" id="Salary_Value" name="Salary_Value">
+        <input type="number" class="form-control" id="Salary_Value" name="Salary_Value" value="{{Payroll_Client.Salary_Value}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Permanent_Income">Ingresos Permanentes</label>
-        <input type="number" class="form-control" id="Permanent_Income" name="Permanent_Income">
+        <input type="number" class="form-control" id="Permanent_Income" name="Permanent_Income" value="{{Payroll_Client.Permanent_Income}}">
     </div>
     <div class="form-group col-md-6">
       <label>Ley Aplica</label>
         <select class="browser-default " name="Law_Applies" id="Law_Applies">
-          <option value="" disabled selected>Seleccione</option>
+          <option value="" disabled selected>{{Payroll_Client.Law_Applies}}</option>
           <option value="ley1527">Ley 1527</option>
           <option value="ley50">Ley 50</option>
           <option value="smlv">SMLV</option>
@@ -59,23 +58,23 @@
     </div>
     <div class="form-group col-md-6">
       <label for="Social_Security">Seguridad Social</label>
-      <input type="number" class="form-control" id="Social_Security" name="Social_Security">
+      <input type="number" class="form-control" id="Social_Security" name="Social_Security" value="{{Payroll_Client.Social_Security}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Permanent_Discounts">Descuentos Permanentes</label>
-      <input type="number" class="form-control" id="Permanent_Discounts" name="Permanent_Discounts">
+      <input type="number" class="form-control" id="Permanent_Discounts" name="Permanent_Discounts" value="{{Payroll_Client.Permanent_Discounts}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Non_Concellable_Value">Deudas no cancelables</label>
-      <input type="number" class="form-control" id="Non_Concellable_Value" name="Non_Concellable_Value">
+      <input type="number" class="form-control" id="Non_Concellable_Value" name="Non_Concellable_Value" value="{{Payroll_Client.Non_Concellable_Value}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Payment_Capacity">Capacidad de pago</label>
-      <input type="number" class="form-control" id="Payment_Capacity" name="Payment_Capacity">
+      <input type="number" class="form-control" id="Payment_Capacity" name="Payment_Capacity" value="{{Payroll_Client.Payment_Capacity}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Bonding_Date">Fecha de Vinculación</label>
-      <input type="date" class="form-control" id="Bonding_Date" name="Bonding_Date">
+      <input type="date" class="form-control" id="Bonding_Date" name="Bonding_Date" value="{{Payroll_Client.Bonding_Date}}">
     </div>
     <div style="text-align: center" class="form-group col-md-5">
       <label for="listarcuentas">Simulacion Bancaria</label>

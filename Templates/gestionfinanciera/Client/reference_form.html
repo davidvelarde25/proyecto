@@ -1,8 +1,9 @@
-{% extends 'base/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<form action="" method="post">
+<form action="{%url 'crearreferencia' %}" method="post">
+  {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Name">Nombre Completo</label>
