@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{%url 'crearsimulacion' %}">
+<form action="{%url 'editarsimulacion' %}">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Bank">Banco</label>
@@ -27,12 +27,13 @@
       <input type="number" class="Quota_Value" id="Quota_Value" placeholder="">
     </div>
 
+
   </div>
+
+
+
   <div style="text-align: right">
     <button type="submit" class="btn btn-primary">Crear</button>
-  </div>
-  <div style="text-align: right">
-    <button type="submit" class="btn btn-primary">Regresar</button>
   </div>
 </form>
 {% endblock %}

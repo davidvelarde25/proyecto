@@ -8,17 +8,21 @@
 
                 <thead>
                   <tr>
+                    <th>id</th>
                     <th>Empresa</th>
                     <th>Tipo</th>
                     <th>Salario</th>
+                    <th>Cliente</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for data in nomina %}
                   <tr>
+                    <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Payroll_Company }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Payroll_Type }}</td>
                     <td>{{ data.Salary_Value }}</td>
+                    <td>{{ data.Fk_Client }}</td>
                     <td>
                         <a href="{% url 'editarnomina' data.id %}" class="">
                           <i class="material-icons">update_forever</i>

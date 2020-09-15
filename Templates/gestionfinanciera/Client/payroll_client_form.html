@@ -2,13 +2,12 @@
 
 {% block content %}
 
-{{client}}
 <form action="{%url 'crearnomina' %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Payroll_Company">Empresa</label>
-        <input type="number" class="form-control" id="Payroll_Company" name="Payroll_Company" value="{{Payroll_Client.Payroll_Company}}">
+        <input type="TEXT" class="form-control" id="Payroll_Company" name="Payroll_Company" required>
     </div>
     <div class="form-group col-md-6">
       <label>Seleccione una Nómina</label>
@@ -77,9 +76,10 @@
       <label for="Bonding_Date">Fecha de Vinculación</label>
       <input type="date" class="form-control" id="Bonding_Date" name="Bonding_Date">
     </div>
+
     <div style="text-align: center" class="form-group col-md-5">
-      <label for="listarcuentas">Simulacion Bancaria</label>
-      <a href="{% url 'crearsimulacion' %}">
+      <label for="">Simulacion Bancaria</label>
+      <a href="{% url 'listarsimulacion' %}">
         <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
       </a>
     </div>

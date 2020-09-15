@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{%url 'creartipogestion' %}" method="post">
+<form action="{%url 'creargestion' %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -11,7 +11,7 @@
     </div>
       <div class="form-group col-md-6">
         <label>Asesor Registra</label>
-        <select class="browser-default" name="Advisor_Records" id="Advisor_Records">
+        <select class="browser-default" name="Fk_Advisor_Records" id="Fk_Advisor_Records">
           <option value="" disabled selected>Seleccione</option>
           {% for x in advisor_records %}
             <option value="{{x.id}}">{{x.Name}}</option>
@@ -23,19 +23,18 @@
     <label>Origen</label>
       <select class="browser-default" name="Origin" id="Origin">
         <option disabled selected>Seleccione Origen</option>
-        <option value="vozavoz">Voz a Voz</option>
-        <option value="facebook">Facebook</option>
-        <option value="referido">Referido</option>
-        <option value="gestioncomercial">Gestión Comercial</option>
-        <option value="paginaweb">Pagina Web</option>
-        <option value="publicidad">Publicidad</option>
-        <option value="instagram">Instagram</option>
-        <option value="telemercadeo">Telemercadeo</option>
-      </select>
+        <option value="Voz a Voz">Voz a Voz</option>
+        <option value="Facbook">Facebook</option>
+        <option value="Referido">Referido</option>
+        <option value="Gestión Comercial">Gestión Comercial</option>
+        <option value="Pagina Web">Pagina Web</option>
+        <option value="Publicidad">Publicidad</option>
+        <option value="Instagram">Instagram</option>
+        <option value="Telemercadeo">Telemercadeo</option>
   </div>
   <div class="form-group col-md-6">
     <label>Referenciador</label>
-    <select class="browser-default" name="Customer_Referrer" id="Customer_Referrer">
+    <select class="browser-default" name="Fk_Customer_Referrer" id="Fk_Customer_Referrer">
       <option value="" disabled selected>Seleccione</option>
       {% for x in customer_referrer %}
         <option value="{{x.id}}">{{x.Name}}</option>
@@ -44,10 +43,10 @@
   </div>
   <div class="form-group col-md-6">
     <label>Estado Actual</label>
-      <select class="browser-default" name="Actual_State" id="Actual_State">
+      <select class="browser-default" name="Fk_Actual_State" id="Fk_Actual_State">
         <option value="" disabled selected>Seleccione</option>
         {% for x in actual_state %}
-          <option value="{{x.id}}">{{x.Name}}</option>
+          <option value="{{x.id}}">{{x.Detail}}</option>
         {% endfor %}
       </select>
   </div>
@@ -68,14 +67,19 @@
     <label>Resultado</label>
       <select class="browser-default" name="Outcome" id="Outcome">
         <option disabled selected>Seleccione el Resultado</option>
-        <option value="rehabilitacionfinanciera">Rehabilitación Financiera</option>
-        <option value="cancelado">Cancelado</option>
+        <option value="Rehabilitacion Financiera">Rehabilitación Financiera</option>
+        <option value="Canceado">Cancelado</option>
       </select>
   </div>
   <div class="form-group col-md-4">
     <label for="Result_Date">Fecha de Resultado</label>
     <input type="date" class="form-control" id="Result_Date" name="Result_Date">
   </div>
+  <div class="form-group col-md-4">
+    <label for="Result_Date">cliente</label>
+    <input type="text" class="form-control" id="Fk_Client" name="Fk_Client">
+  </div>
+
 
   <div style="text-align: right" class="form-group col-md-5">
     <label for="agregarobligacion">Obligaciones Financieras</label>
@@ -101,10 +105,7 @@
       <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
     </a>
   </div>
-  <div class="form-group col-md-4">
-    <label for="agregarobligacion">Agregar Obligación</label>
-    <input type="button" class="form-control" id="agregarobligacion" name="agregarobligacion">
-  </div>
+
 </div>
   <button type="submit" class="btn btn-primary">Registrar</button>
 </form>

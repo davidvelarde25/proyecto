@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Reference, Payroll_Client, Certificate, Right_Petition, Bank_Accounts, Disbursement, Financial_Obligation, Management_Type, Client,Advisor_Records, Actual_State,Customer_Referrer
+from .models import Reference,Disbursement,Management_Type, Payroll_Client, Certificate, Right_Petition, Bank_Accounts, Disbursement, Financial_Obligation,Client,Advisor_Records, Actual_State,Customer_Referrer
 
 # Register your models here.
 admin.site.register(Client)

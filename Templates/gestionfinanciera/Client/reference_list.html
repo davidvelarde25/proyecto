@@ -8,6 +8,7 @@
 
                 <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Direccion</th>
                     <th>Celular</th>
@@ -16,6 +17,7 @@
                 <tbody>
                   {% for data in referencia %}
                   <tr>
+                    <td>{{ data.id }}</td>
                     <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Address }}</td>
                     <td>{{ data.Cell_Phone }}</td>

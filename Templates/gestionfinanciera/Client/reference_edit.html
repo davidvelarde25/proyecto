@@ -2,46 +2,46 @@
 
 {% block content %}
 
-<form action="{%url 'editarreferencia' %}" method="post">
+<form action="{%url 'editarreferencia' reference.id %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Name">Nombre Completo</label>
-      <input type="text" class="form-control" id="Name" name="Name" value="{{Reference.Name}}">
+      <input type="text" class="form-control" id="Name" name="Name" value="{{reference.Name}}">
     </div>
     <div class="form-group col-md-6">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="Email" name="Email" value="{{Reference.Email}}">
+      <input type="email" class="form-control" id="Email" name="Email" value="{{reference.Email}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Address">Dirección</label>
-      <input type="text" class="form-control" id="Address" name="Address" value="{{Reference.Address}}" >
+      <input type="text" class="form-control" id="Address" name="Address" value="{{reference.Address}}" >
     </div>
     <div class="form-group col-md-6">
       <label for="Labor_Company">Empresa Laboral</label>
-      <input type="text" class="form-control" id="Labor_Company" name="Labor_Company" value="{{Reference.Labor_Company}}">
+      <input type="text" class="form-control" id="Labor_Company" name="Labor_Company" value="{{reference.Labor_Company}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="City">Ciudad</label>
-      <input type="text" class="form-control" id="City" name="City" value="{{Reference.City}}">
+      <input type="text" class="form-control" id="City" name="City" value="{{reference.City}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Relationship">Parentesco</label>
-      <input type="text" class="form-control" id="Relationship" name="Relationship" value="{{Reference.Relationship}}">
+      <input type="text" class="form-control" id="Relationship" name="Relationship" value="{{reference.Relationship}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Cell_Phone">Celular</label>
-      <input type="number" class="form-control" id="Cell_Phone" name="Cell_Phone" value="{{Reference.Cell_Phone}}">
+      <input type="number" class="form-control" id="Cell_Phone" name="Cell_Phone" value="{{reference.Cell_Phone}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Phone">Telefono</label>
-      <input type="number" class="form-control" id="Phone" name="Phone" value="{{Reference.Phone}}">
+      <input type="number" class="form-control" id="Phone" name="Phone" value="{{reference.Phone}}">
     </div>
   </div>
   <div class="form-group col-md-6">

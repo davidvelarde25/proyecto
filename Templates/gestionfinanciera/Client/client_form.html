@@ -6,9 +6,9 @@
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
-      
+
       <label for="Name">Nombre</label>
-      <input type="text" class="form-control" id="Name" name="Name" value="{{client.Name}}">
+      <input type="text" class="form-control" id="Name" name="Name" value="{{client.Name}}" required>
     </div>
     <div class="form-group col-md-6">
       <label for="Identification">Cedula</label>
@@ -32,7 +32,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="Cell_Phone">Celular</label>
-      <input type="number" class="form-control" id="Cell_Phone" name="Cell_Phone" value="{{client.Cell_Phone}}">
+      <input type="number" class="form-control" id="Cell_Phone" name="Cell_Phone" value="{{client.Cell_Phone}}" required>
     </div>
   </div>
   <div class="form-row">
@@ -64,12 +64,10 @@
       </a>
     </div>
     <div style="text-align: right" class="form-group col-md-2">
-      <a href="{% url  'listarnomina' %}">
+      <a href="{% url  'crearnomina' %}">
         <i type="submit" style="background:#336EFF" class="btn btn.default">Nomina</i>
       </a>
     </div>
-
-
   </div>
 
   <div style="text-align: right">
