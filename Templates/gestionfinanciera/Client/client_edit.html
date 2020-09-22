@@ -61,17 +61,17 @@
       </div>
       <div class="form-group col-md-6">
         <label for="Date_of_birth">Fecha de Nacimiento</label>
-        <input type="date" class="form-control" id="Date_of_birth" name="Date_of_birth" value="{{client.Date_of_birth}}">
+        <input type="text" class="form-control" id="Date_of_birth" name="Date_of_birth" value="{{client.Date_of_birth}}">
       </div>
     </div>
     <div class="form-row">
       <div style="text-align: right" class="form-group col-md-2">
-        <a href="{% url 'listarreferencia' %}">
+        <a href="{% url 'listarreferencia' client.id %}">
           <i type="submit" style="background:#336EFF" class="btn btn-default">Referencia</i>
         </a>
       </div>
       <div style="text-align: right" class="form-group col-md-2">
-        <a href="{% url 'listarnomina' %}">
+        <a href="{% url 'listarnomina' client.id  %}">
           <i type="submit" style="background:#336EFF" class="btn btn-primary">Nomina</i>
         </a>
       </div>

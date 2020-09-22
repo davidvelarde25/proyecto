@@ -1,7 +1,6 @@
 from django.db import models
 import datetime
 
-
 # Create your models here.
 
 #creamos la tabla cliente donde se guadan todos los datos que se le solicitan al cliente

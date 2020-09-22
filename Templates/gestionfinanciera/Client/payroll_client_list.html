@@ -16,24 +16,26 @@
                   </tr>
                 </thead>
                 <tbody>
+
                   {% for data in nomina %}
-                  <tr>
-                    <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
-                    <td>{{ data.Payroll_Company }}</td> <!-- con upper colocamos las letras en mayuscula -->
-                    <td>{{ data.Payroll_Type }}</td>
-                    <td>{{ data.Salary_Value }}</td>
-                    <td>{{ data.Fk_Client }}</td>
-                    <td>
-                        <a href="{% url 'editarnomina' data.id %}" class="">
-                          <i class="material-icons">update_forever</i>
-                        </a>
-                    </td>
-                    <td>
-                      <a href="{% url 'eliminarnomina' data.id %}" class="">
-                        <i class="material-icons">delete_forever</i>
-                      </a>
-                  </td>
-                  </tr>
+
+                        <tr>
+                          <td>{{ data.Fk_Client.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
+                          <td>{{ data.Payroll_Company }}</td> <!-- con upper colocamos las letras en mayuscula -->
+                          <td>{{ data.Payroll_Type }}</td>
+                          <td>{{ data.Salary_Value }}</td>
+                          <td>{{ data.Fk_Client.id }}</td>
+                          <td>
+                              <a href="{% url 'detallenomina' data.id %}" class="">
+                                <i class="material-icons">update_forever</i>
+                              </a>
+                          </td>
+                          <td>
+                            <a href="{% url 'eliminarnomina' data.id %}" class="">
+                              <i class="material-icons">delete_forever</i>
+                            </a>
+                        </td>
+                        </tr>
                   {% endfor %}
                 </tbody>
                 </div>

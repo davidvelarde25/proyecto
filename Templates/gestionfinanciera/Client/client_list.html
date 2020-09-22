@@ -15,7 +15,9 @@
                   </tr>
                 </thead>
                 <tbody>
+
                   {% for data in clientes %}
+                    <h2>{{ data.Name }}</h2>
                   <tr>
                     <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
@@ -34,7 +36,7 @@
               <div class="fixed-action-btn">
                 <a href="{% url 'crearcliente' %}" class="btn-floating btn-large red">
                   <i class="material-icons">add</i>
-        
+
                 </a>
               </div>
             </div>

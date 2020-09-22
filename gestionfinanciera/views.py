@@ -5,9 +5,12 @@ from .models import (Client, Reference,Simulation_Banking, Customer_Referrer,
  Financial_Obligation, Right_Petition, Bank_Accounts,Disbursement,Actual_State)
 from django.contrib.auth.models import User
 from django.urls import reverse
+
 # vistas basadas en clase
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.views.generic import DetailView
+
 # importamos el logging
 import logging
 
@@ -75,7 +78,7 @@ class ClientUpdate(UpdateView):
 # clase para crear el tipo de gestion de un usuario
 class ManagementTypeCreate(CreateView):
     model = Management_Type
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/management_type_form.html'
     fields = '__all__'
 
      #se sobreescribe este método para obtener información de otros modelos
@@ -84,6 +87,7 @@ class ManagementTypeCreate(CreateView):
         context['customer_referrer'] = Customer_Referrer.objects.all()
         context['advisor_records'] = Advisor_Records.objects.all()
         context['actual_state'] = Actual_State.objects.all()
+        context['client'] = Client.objects.all()
 
         return context
     def get_success_url(self):
@@ -136,12 +140,15 @@ class PayrollClientCreate(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('listarnomina')
+        return reverse('listarnomina/<int:pk>/')
 
 # clase para listar las nominas de los clientes
 class PayrollClientView(ListView):
+
     model = Payroll_Client
+
     template_name = 'gestionfinanciera/Client/payroll_client_list.html'
+
     context_object_name = 'nomina'
 
     #nominas = Payroll_Client.objects.filter(Fk_Client=)
@@ -150,6 +157,12 @@ class PayrollClientView(ListView):
         context['client'] = Client.objects.all()
 
         return context
+
+# clase para mostrar los detalles de una tabla
+class PayrollClientDetailView(DetailView):
+    model = Payroll_Client
+    template_name = 'gestionfinanciera/Client/'
+    context_object_name = 'nomina'
 
 # clase para actualziar las referencias de los clientes
 class PayrollClientUpdate(UpdateView):
