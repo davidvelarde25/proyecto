@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form  action="{%url 'crearcliente' %}" method="post">
+<form  action="{%url 'editarcliente' %}" method="post">
 
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -12,49 +12,49 @@
     </div>
     <div class="form-group col-md-6">
       <label for="Identification">Cedula</label>
-      <input type="number" class="form-control" id="Identification"  name="Identification" default= "0">
+      <input type="number" class="form-control" id="Identification"  name="Identification" default= "0" value="{{client.Identification}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Email">Correo Electronico</label>
-      <input type="email" class="form-control" id="Email" Name="Email">
+      <input type="email" class="form-control" id="Email" Name="Email" value="{{client.Email}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Address">Direccion</label>
-      <input type="text" class="form-control" id="Address" name="Address">
+      <input type="text" class="form-control" id="Address" name="Address" value="{{client.Address}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="City">Ciudad</label>
-      <input type="text" class="form-control" id="City" name="City">
+      <input type="text" class="form-control" id="City" name="City" value="{{client.City}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Cell_Phone">Celular</label>
-      <input type="number" class="form-control" id="Cell_Phone" name="Cell_Phone">
+      <input type="number" class="form-control" id="Cell_Phone" name="Cell_Phone" value="{{client.Cell_Phone}}">
     </div>
   </div>
   <div class="form-row">
 
     <div class="form-group col-md-6">
       <label for="Stratum">Estrato</label>
-      <input type="number" class="form-control" id="Stratum" name="Stratum">
+      <input type="number" class="form-control" id="Stratum" name="Stratum" value="{{client.Stratum}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Neighborhood">Barrio</label>
-      <input type="text" class="form-control" id="Neighborhood" name="Neighborhood">
+      <input type="text" class="form-control" id="Neighborhood" name="Neighborhood" value="{{client.Neighborhood}}">
     </div>
   </div>
   <div class="form-row">
 
     <div class="form-group col-md-6">
       <label for="Phone">Telefono</label>
-      <input type="number" class="form-control" id="Phone" name="Phone">
+      <input type="number" class="form-control" id="Phone" name="Phone" value="{{client.Phone}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Date_of_birth">Fecha de Nacimiento</label>
-      <input type="date" class="form-control" id="Date_of_birth" name="Date_of_birth">
+      <input type="date" class="form-control" id="Date_of_birth" name="Date_of_birth" value="{{client.Date_of_birth}}">
     </div>
   </div>
   <div class="form-row">

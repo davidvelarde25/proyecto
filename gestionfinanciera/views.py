@@ -28,10 +28,10 @@ def Client(request):
 '''
 
 # muestra todos los clientes
-'''def index(request):
+def index(request):
     dataClient = Client.objects.all()
-    return render(request, "home.html", { "clientes" : dataClient })
-'''
+    return render(request, "base.html", { "clientes" : dataClient })
+
 # funcion para traer loss aesores registrados en la base de datos
 '''def Advisor_Records(request):
     Advisor_Records = Advisor_Records.objects.all()
@@ -42,7 +42,9 @@ def Client(request):
 # clase para listar los clientes
 class ClientView(ListView):
     model = Client
+    template_name = 'gestionfinanciera/Client/client_list.html'
     context_object_name = 'clientes'
+
 '''
 # clase para listar los asesores
 class AdvisorRecordsView(ListView):
@@ -50,23 +52,23 @@ class AdvisorRecordsView(ListView):
     #template_name = 'gestionfinanciera/management_type_form.html'
     context_object_name = 'clientes'
 '''
+
 # clase para actualziar los clientes
 class ClientUpdate(UpdateView):
     model = Client
-
-    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone','Phone', 'Date_of_birth','Stratum','Neighborhood']
-
-    fields = ['Name', 'Identification', 'Email']
+    template_name = 'gestionfinanciera/Client/client_edit.html'
+    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone',
+    'Phone', 'Date_of_birth','Stratum','Neighborhood']
 
     def get_success_url(self):
         return reverse('index')
 
-
 # clase para crear los clientes
 class ClientCreate(CreateView):
     model = Client
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
-    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone','Phone', 'Date_of_birth','Stratum','Neighborhood']
+    template_name = 'gestionfinanciera/Client/client_form.html'
+    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone',
+    'Phone', 'Date_of_birth','Stratum','Neighborhood']
     #fields = ['_all_']
     def get_success_url(self):
         return reverse('index')
@@ -80,42 +82,52 @@ class ManagementTypeCreate(CreateView):
      #se sobreescribe este método para obtener información de otros modelos
     def get_context_data(self,**kwargs):
         context = super(ManagementTypeCreate,self).get_context_data(**kwargs)
-        context['customer_referrer'] = Advisor_Records.objects.all()
+        context['customer_referrer'] = Customer_Referrer.objects.all()
+        context['advisor_records'] = Advisor_Records.objects.all()
+        context['actual_state'] = Actual_State.objects.all()
 
         return context
-
-
     def get_success_url(self):
         return reverse('')
+
+# clase para listar la gestionde un cliente
+'''class ManagementTypeCreate(ListView):
+    model = Management_Type
+    template_name = 'gestionfinanciera/Client/payroll_client_list.html'
+    context_object_name = 'nomina'
+'''
 
 # clase para crear el la nomina del cliente
 class PayrollClientCreate(CreateView):
     model = Payroll_Client
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
-    fields = '__all__'
+    template_name = 'gestionfinanciera/Client/payroll_client_form.html'
+    fields=['Payroll_Company', 'Payroll_Type', 'Salary_Value','Permanent_Income','Social_Security','Law_Applies','Permanent_Discounts', 'Non_Concellable_Value','Payment_Capacity','Bonding_Date','Fk_Client']
     def get_context_data(self,**kwargs):
         context = super(PayrollClientCreate,self).get_context_data(**kwargs)
         context['client'] = Client.objects.all()
 
         return context
+
     def get_success_url(self):
-        return reverse('')
+        return reverse('index')
 
 # clase para listar las nominas de los clientes
 class PayrollClientView(ListView):
     model = Payroll_Client
+    template_name = 'gestionfinanciera/Client/payroll_client_list.html'
     context_object_name = 'nomina'
 
+    #nominas = Payroll_Client.objects.filter(Fk_Client=)
     def get_context_data(self,**kwargs):
         context = super(PayrollClientView,self).get_context_data(**kwargs)
         context['client'] = Client.objects.all()
 
         return context
 
-
 # clase para actualziar las referencias de los clientes
 class PayrollClientUpdate(UpdateView):
     model = Payroll_Client
+    template_name = 'gestionfinanciera/Client/payroll_client_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('listarnomina')
@@ -123,9 +135,9 @@ class PayrollClientUpdate(UpdateView):
 # se crea la clase para eliminar las referencias
 class PayrollClientDelete(DeleteView):
     model= Payroll_Client
+    template_name = 'gestionfinanciera/Client/payroll_client_form.html'
     def get_success_url(self):
         return reverse('listarnomina')
-
 
 # clase para crear las referencias del cliente
 class ReferenceCreate(CreateView):

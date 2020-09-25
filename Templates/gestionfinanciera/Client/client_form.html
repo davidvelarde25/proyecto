@@ -1,0 +1,94 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form  action="{%url 'crearcliente' %}" method="post">
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      {% csrf_token %}
+      <label for="Name">Nombre</label>
+      <input type="text" class="form-control" id="Name" name="Name" value="{{client.Name}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Identification">Cedula</label>
+      <input type="number" class="form-control" id="Identification"  name="Identification" default= "0" value="{{client.Identification}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Email">Correo Electronico</label>
+      <input type="email" class="form-control" id="Email" Name="Email" value="{{client.Email}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Address">Direccion</label>
+      <input type="text" class="form-control" id="Address" name="Address" value="{{client.Address}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="City">Ciudad</label>
+      <input type="text" class="form-control" id="City" name="City" value="{{client.City}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Cell_Phone">Celular</label>
+      <input type="number" class="form-control" id="Cell_Phone" name="Cell_Phone" value="{{client.Cell_Phone}}">
+    </div>
+  </div>
+  <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="Stratum">Estrato</label>
+      <input type="number" class="form-control" id="Stratum" name="Stratum" value="{{client.Stratum}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Neighborhood">Barrio</label>
+      <input type="text" class="form-control" id="Neighborhood" name="Neighborhood" value="{{client.Neighborhood}}">
+    </div>
+  </div>
+  <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="Phone">Telefono</label>
+      <input type="number" class="form-control" id="Phone" name="Phone" value="{{client.Phone}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Date_of_birth">Fecha de Nacimiento</label>
+      <input type="date" class="form-control" id="Date_of_birth" name="Date_of_birth" value="{{client.Date_of_birth}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div style="text-align: right" class="form-group col-md-2">
+      <a href="{% url 'listarreferencia' %}">
+        <i type="submit" style="background:#336EFF" class="btn btn.default">Referencia</i>
+      </a>
+    </div>
+    <div style="text-align: right" class="form-group col-md-2">
+      <a href="{% url  'listarnomina' client.id %}">
+        <i type="submit" style="background:#336EFF" class="btn btn.default">Nomina</i>
+      </a>
+    </div>
+
+  </div>
+
+  <div style="text-align: right">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </div>
+</form>
+
+
+{% endblock %}
+
+<!--  <label class="form-check-label" for="gridCheck">
+
+  </label>
+
+  <div class="form-group col-md-4">
+    <label for="inputState">Celular</label>
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+
+-->
