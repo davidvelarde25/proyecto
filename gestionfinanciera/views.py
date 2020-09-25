@@ -88,7 +88,6 @@ class ManagementTypeCreate(CreateView):
         context['advisor_records'] = Advisor_Records.objects.all()
         context['actual_state'] = Actual_State.objects.all()
         context['client'] = Client.objects.all()
-
         return context
     def get_success_url(self):
         return reverse('listargestion')
@@ -106,7 +105,6 @@ class ManagementTypeUpdate(UpdateView):
     fields=['Origin', 'Campaign', 'Fk_Customer_Referrer',
     'Campus','Outcome','Result_Date','Date_Of_Contact',
     'Status_Date','Fk_Client','Fk_Advisor_Records','Fk_Actual_State']
-
 
      #se sobreescribe este método para obtener información de otros modelos
     def get_context_data(self,**kwargs):
@@ -137,25 +135,24 @@ class PayrollClientCreate(CreateView):
     def get_context_data(self,**kwargs):
         context = super(PayrollClientCreate,self).get_context_data(**kwargs)
         context['client'] = Client.objects.all()
+        context['clientId'] = self.kwargs['pk']
         return context
 
     def get_success_url(self):
-        return reverse('listarnomina/<int:pk>/')
+        return reverse('listarnomina',)
 
 # clase para listar las nominas de los clientes
 class PayrollClientView(ListView):
 
     model = Payroll_Client
-
     template_name = 'gestionfinanciera/Client/payroll_client_list.html'
-
-    context_object_name = 'nomina'
+    #context_object_name = 'nomina'
 
     #nominas = Payroll_Client.objects.filter(Fk_Client=)
     def get_context_data(self,**kwargs):
         context = super(PayrollClientView,self).get_context_data(**kwargs)
-        context['client'] = Client.objects.all()
-
+        context['nomina'] = Payroll_Client.objects.filter(Fk_Client=self.kwargs['pk'])
+        context['clientId'] = self.kwargs['pk']
         return context
 
 # clase para mostrar los detalles de una tabla

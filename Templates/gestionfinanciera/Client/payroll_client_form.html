@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{%url 'crearnomina' %}" method="post">
+<form action="{%url 'crearnomina' clientId %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -85,14 +85,9 @@
     </div>
 
     <div class="form-group col-md-6">
-      <select class="browser-default" name="Fk_Client" id="Fk_Client">
-        {% for x in client %}
-          <option value="{{x.id}}">{{x.id}}</option>
-        {% endfor %}
-      </select>
+      <input type="text" class="form-control" id="Bonding_Date" name="Fk_Client" value="{{clientId}}">
     </div>
-    <div class="form-group col-md-6">
-    </div>
+
 
     <div style="text-align: right" class="col-md-12">
       <button type="submit" class="btn btn-primary">Crear</button>

@@ -19,10 +19,9 @@ urlpatterns = [
     path('listargestion/', views.ManagementTypeView.as_view(), name="listargestion"), # ruta para listar la gestion de un cliente
     path('editargestion/<int:pk>/', views.ManagementTypeUpdate.as_view(), name="editargestion"), # ruta para editar la gestion de un cliente especifico
 
-    path('crearnomina/', views.PayrollClientCreate.as_view(), name="crearnomina"), # ruta para crear la nomina del cliente
+    path('crearnomina/<int:pk>/', views.PayrollClientCreate.as_view(), name="crearnomina"), # ruta para crear la nomina del cliente
     path('listarnomina/<int:pk>/', views.PayrollClientView.as_view(), name= 'listarnomina'),# ruta pra mostrar las nominas de cada clientes
-    path('editarnomina/<int:pk>/', views.PayrollClientUpdate.as_view(), name="editarnomina"), # ruta para actualizar la nomina del cliente
-    path('detallenomina/<int:pk>/', views.PayrollClientDetailView.as_view(), name="detallenomina"), # ruta para actualizar la nomina del cliente
+    path('editarnomina/<int:pk>/', views.PayrollClientUpdate.as_view(), name='editarnomina'), # ruta para actualizar la nomina del cliente
     path('eliminarnomina/<int:pk>/', views.PayrollClientDelete.as_view(), name='eliminarnomina'),# ruta para elimiar las referncia
 
     path('crearreferencia/', views.ReferenceCreate.as_view(), name="crearreferencia"), # ruta para crear las referencias de los cliente
