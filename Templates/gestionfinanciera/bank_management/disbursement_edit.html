@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="{%url 'editardesembolso' %}">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Payment_Value">Valor Desembolso</label>
+      <input type="number" class="valordesembolso" id="Payment_Value" name="Payment_Value" value="{{disbursement.Payment_Value}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Pay_Date">Fecha de Pago</label>
+      <input type="date" class="form-control" id="Pay_Date" name="Pay_Date" value="{{disbursement.Pay_Date}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Banking_Entity">Entidad Bancaria</label>
+      <input type="text" class="Banking_Entity" id="Banking_Entity" value="{{disbursement.Banking_Entity}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Disbursement_Amount">Monto desembolso</label>
+      <input type="number" class="Disbursement_Amount" id="Disbursement_Amount" placeholder="" value="{{disbursement.Disbursement_Amount}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Number_Installment">Numero Cuotas</label>
+      <input type="text" class="Number_Installment" id="Number_Installment" value="{{disbursement.Number_Installment}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Adviser">Asesor</label>
+      <input type="text" class="Adviser" id="Adviser" placeholder="" value="{{disbursement.Adviser}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Estado Desembolso</label>
+        <select class="browser-default " name="State" id="State" value="{{disbursement.State}}">
+          <option value="" disabled selected>Seleccione</option>
+          <option value="enproceso">En Proceso</option>
+          <option value="radicado">Radicado</option>
+          <option value="desembolsado">Desembolsado</option>
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Adviser">Gestion</label>
+      <input type="text" class="Adviser" id="Adviser" placeholder="" value="{{disbursement.Fk_Management_Type}}">
+    </div>
+  </div>
+
+
+  <div style="text-align: right">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </div>
+</form>
+{% endblock %}
+
+<!--  <label class="form-check-label" for="gridCheck">
+
+  </label>
+
+  <div class="form-group col-md-4">
+    <label for="inputState">Celular</label>
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+
+-->

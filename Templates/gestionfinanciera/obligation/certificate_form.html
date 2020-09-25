@@ -1,8 +1,8 @@
-{% extends 'base/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<form>
+<form action="{%url 'crearcertificado' %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -10,8 +10,8 @@
       <label>Tipo Certificado</label>
         <select class="browser-default " name="Type" id="Type">
           <option value="" disabled selected>Seleccione</option>
-          <option value="certificadodeuda">Certificado Deuda</option>
-          <option value="pazysalvo">Paz y Salvo</option>
+          <option value="Certificado de Deuda">Certificado Deuda</option>
+          <option value="Paz y Salvo">Paz y Salvo</option>
         </select
     </div>
   </div>

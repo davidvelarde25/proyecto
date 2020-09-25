@@ -8,24 +8,26 @@
 
                 <thead>
                   <tr>
-                    <th>Entidad / Cooperativa</th>
-                    <th>Estado</th>
-                    <th></th>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Celular</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for data in referencia %}
                   <tr>
+                    <td>{{ data.id }}</td>
                     <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Address }}</td>
                     <td>{{ data.Cell_Phone }}</td>
                     <td>
-                        <a href="{% url 'editarobligacion' data.id %}" class="">
+                        <a href="{% url 'editarreferencia' data.id %}" class="">
                           <i class="material-icons">update_forever</i>
                         </a>
                     </td>
                     <td>
-                      <a href="{% url 'eliminarobligacion' data.id %}" class="">
+                      <a href="{% url 'eliminarreferencia' data.id %}" class="">
                         <i class="material-icons">delete_forever</i>
                       </a>
                   </td>
@@ -35,7 +37,7 @@
                 </div>
               </table>
               <div class="fixed-action-btn">
-                <a href="{% url 'crearobligacion' %}" class="btn-floating btn-large red">
+                <a href="{% url 'crearreferencia' %}" class="btn-floating btn-large red">
                   <i class="large material-icons">>add</i>
                 </a>
               </div>

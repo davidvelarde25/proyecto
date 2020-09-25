@@ -1,13 +1,16 @@
 from django.shortcuts import render
 #from django.http import HttpResponseRedirect
-from .models import (Client, Reference,Simulation_Banking,Customer_Referrer,
+from .models import (Client, Reference,Simulation_Banking, Customer_Referrer,
  Management_Type,Advisor_Records, Certificate,Payroll_Client, Reference,
- Financial_Obligation, Right_Petition, Bank_Accounts,Disbursement)
+ Financial_Obligation, Right_Petition, Bank_Accounts,Disbursement,Actual_State)
 from django.contrib.auth.models import User
 from django.urls import reverse
+
 # vistas basadas en clase
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.views.generic import DetailView
+
 # importamos el logging
 import logging
 
@@ -52,17 +55,6 @@ class AdvisorRecordsView(ListView):
     #template_name = 'gestionfinanciera/management_type_form.html'
     context_object_name = 'clientes'
 '''
-
-# clase para actualziar los clientes
-class ClientUpdate(UpdateView):
-    model = Client
-    template_name = 'gestionfinanciera/Client/client_edit.html'
-    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone',
-    'Phone', 'Date_of_birth','Stratum','Neighborhood']
-
-    def get_success_url(self):
-        return reverse('index')
-
 # clase para crear los clientes
 class ClientCreate(CreateView):
     model = Client
@@ -73,10 +65,20 @@ class ClientCreate(CreateView):
     def get_success_url(self):
         return reverse('index')
 
+# clase para actualziar los clientes
+class ClientUpdate(UpdateView):
+    model = Client
+    template_name = 'gestionfinanciera/Client/client_edit.html'
+    fields = ['Name', 'Identification', 'Email','Address','City','Cell_Phone',
+    'Phone', 'Date_of_birth','Stratum','Neighborhood']
+
+    def get_success_url(self):
+        return reverse('listarcliente')
+
 # clase para crear el tipo de gestion de un usuario
 class ManagementTypeCreate(CreateView):
     model = Management_Type
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/management_type_form.html'
     fields = '__all__'
 
      #se sobreescribe este método para obtener información de otros modelos
@@ -85,10 +87,35 @@ class ManagementTypeCreate(CreateView):
         context['customer_referrer'] = Customer_Referrer.objects.all()
         context['advisor_records'] = Advisor_Records.objects.all()
         context['actual_state'] = Actual_State.objects.all()
+        context['client'] = Client.objects.all()
+        return context
+    def get_success_url(self):
+        return reverse('listargestion')
+
+# clase para listar la gestion que se le va a realziar al cliente
+class ManagementTypeView(ListView):
+    model = Management_Type
+    template_name = 'gestionfinanciera/management_type_list.html'
+    context_object_name = 'tipogestion'
+
+# clase para actualizar el tipo de gestion de un usuario
+class ManagementTypeUpdate(UpdateView):
+    model = Management_Type
+    template_name = 'gestionfinanciera/management_type_update.html'
+    fields=['Origin', 'Campaign', 'Fk_Customer_Referrer',
+    'Campus','Outcome','Result_Date','Date_Of_Contact',
+    'Status_Date','Fk_Client','Fk_Advisor_Records','Fk_Actual_State']
+
+     #se sobreescribe este método para obtener información de otros modelos
+    def get_context_data(self,**kwargs):
+        context = super(ManagementTypeUpdate,self).get_context_data(**kwargs)
+        context['customer_referrer'] = Customer_Referrer.objects.all()
+        context['advisor_records'] = Advisor_Records.objects.all()
+        context['actual_state'] = Actual_State.objects.all()
 
         return context
     def get_success_url(self):
-        return reverse('')
+        return reverse('listargestion')
 
 # clase para listar la gestionde un cliente
 '''class ManagementTypeCreate(ListView):
@@ -101,34 +128,48 @@ class ManagementTypeCreate(CreateView):
 class PayrollClientCreate(CreateView):
     model = Payroll_Client
     template_name = 'gestionfinanciera/Client/payroll_client_form.html'
-    fields=['Payroll_Company', 'Payroll_Type', 'Salary_Value','Permanent_Income','Social_Security','Law_Applies','Permanent_Discounts', 'Non_Concellable_Value','Payment_Capacity','Bonding_Date','Fk_Client']
+    fields=['Payroll_Company', 'Payroll_Type', 'Salary_Value',
+    'Permanent_Income','Social_Security','Law_Applies','Permanent_Discounts',
+    'Non_Concellable_Value','Payment_Capacity','Bonding_Date','Fk_Client']
+
     def get_context_data(self,**kwargs):
         context = super(PayrollClientCreate,self).get_context_data(**kwargs)
         context['client'] = Client.objects.all()
-
+        context['clientId'] = self.kwargs['pk']
         return context
 
     def get_success_url(self):
-        return reverse('index')
+        return reverse('listarnomina',)
 
 # clase para listar las nominas de los clientes
 class PayrollClientView(ListView):
+
     model = Payroll_Client
     template_name = 'gestionfinanciera/Client/payroll_client_list.html'
-    context_object_name = 'nomina'
+    #context_object_name = 'nomina'
 
     #nominas = Payroll_Client.objects.filter(Fk_Client=)
     def get_context_data(self,**kwargs):
         context = super(PayrollClientView,self).get_context_data(**kwargs)
-        context['client'] = Client.objects.all()
-
+        context['nomina'] = Payroll_Client.objects.filter(Fk_Client=self.kwargs['pk'])
+        context['clientId'] = self.kwargs['pk']
         return context
+
+# clase para mostrar los detalles de una tabla
+class PayrollClientDetailView(DetailView):
+    model = Payroll_Client
+    template_name = 'gestionfinanciera/Client/'
+    context_object_name = 'nomina'
 
 # clase para actualziar las referencias de los clientes
 class PayrollClientUpdate(UpdateView):
     model = Payroll_Client
-    template_name = 'gestionfinanciera/Client/payroll_client_form.html'
-    fields = '__all__'
+    context_object_name = 'nomina'
+    template_name = 'gestionfinanciera/Client/payroll_client_edit.html'
+    fields=['Payroll_Company', 'Payroll_Type', 'Salary_Value',
+    'Permanent_Income','Social_Security','Law_Applies','Permanent_Discounts',
+    'Non_Concellable_Value','Payment_Capacity','Bonding_Date','Fk_Client']
+
     def get_success_url(self):
         return reverse('listarnomina')
 
@@ -142,22 +183,26 @@ class PayrollClientDelete(DeleteView):
 # clase para crear las referencias del cliente
 class ReferenceCreate(CreateView):
     model = Reference
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/Client/reference_form.html'
     fields = '__all__'
     def get_success_url(self):
-        return reverse('')
+        return reverse('listarreferencia')
 
 # clase para listar las referencias de los clientes
 class ReferenceView(ListView):
     model = Reference
+    template_name = 'gestionfinanciera/Client/reference_list.html'
     context_object_name = 'referencia'
 
 # clase para actualziar las referencias de los clientes
 class ReferenceUpdate(UpdateView):
     model = Reference
-    fields = '__all__'
+    template_name = 'gestionfinanciera/Client/reference_edit.html'
+    fields = ['Name', 'Email','Address','Labor_Company','Cell_Phone',
+    'Phone', 'City','Relationship','Fk_Client']
+
     def get_success_url(self):
-        return reverse('index')
+        return reverse('listarreferencia')
 
 # se crea la clase para eliminar las referencias
 class ReferenceDelete(DeleteView):
@@ -168,7 +213,7 @@ class ReferenceDelete(DeleteView):
 # clase para crear las obligaciones de los clientes
 class FinancialObligationCreate(CreateView):
     model = Financial_Obligation
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/obligation/financial_obligation_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -176,12 +221,13 @@ class FinancialObligationCreate(CreateView):
 # clase para listar las referencias de los clientes
 class FinancialObligationView(ListView):
     model = Financial_Obligation
-    #template_name = 'gestionfinanciera/listarobligacion.html'
+    template_name = 'gestionfinanciera/obligation/financial_obligation_list.html'
     context_object_name = 'obligacion'
 
 # clase para actualziar las referencias de los clientes
 class FinancialObligationUpdate(UpdateView):
     model = Financial_Obligation
+    template_name = 'gestionfinanciera/obligation/financial_obligation_edit.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -196,20 +242,21 @@ class FinancialObligationDelete(DeleteView):
 # clase para crear el certificado
 class CertificateCreate(CreateView):
     model = Certificate
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/obligation/certificate_form.html'
     fields = '__all__'
     def get_success_url(self):
-        return reverse('')
+        return reverse('listarcertificado')
 
 # clase para listar los certifiados de los clientes
 class CertificateView(ListView):
     model = Certificate
-    #template_name = 'gestionfinanciera/listarobligacion.html'
+    template_name = 'gestionfinanciera/obligation/certificate_list.html'
     context_object_name = 'certificado'
 
 # clase para actualziar los certificados de los clientes
 class CertificateUpdate(UpdateView):
     model = Certificate
+    template_name = 'gestionfinanciera/obligation/certificate_edit.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('actualizarcertificado')
@@ -223,7 +270,7 @@ class CertificateDelete(DeleteView):
 # clase para crear los derechos de peticion
 class RightPetitionCreate(CreateView):
     model = Right_Petition
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/obligation/right_petition_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -231,7 +278,7 @@ class RightPetitionCreate(CreateView):
 # clase para listar los derechoos de peticion de los clientes
 class RightPetitionView(ListView):
     model = Right_Petition
-    #template_name = 'gestionfinanciera/listarobligacion.html'
+    template_name = 'gestionfinanciera/obligation/right_petition_list.html'
     context_object_name = 'derechopeticion'
 
 # clase para actualziar los derechos de peticion de los clientes
@@ -251,23 +298,29 @@ class RightPetitionDelete(DeleteView):
 # clase para crear los derechos de peticion
 class BankAccountsCreate(CreateView):
     model = Bank_Accounts
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/bank_management/bank_accounts_form.html'
     fields = '__all__'
+    def get_context_data(self,**kwargs):
+        context = super(BankAccountsCreate,self).get_context_data(**kwargs)
+        context['Payroll_Client'] = Payroll_Client.objects.all()
+        context['Client'] = Client.objects.all()
+        return context
     def get_success_url(self):
-        return reverse('')
+        return reverse('listarcuenta')
 
 # clase para listar los cuentas bancarias de peticion de los clientes
 class BankAccountsView(ListView):
     model = Bank_Accounts
-    #template_name = 'gestionfinanciera/listarobligacion.html'
-    context_object_name = 'cuenta'
+    template_name = 'gestionfinanciera/bank_management/bank_accounts_list.html'
+    context_object_name = 'cuentas'
 
 # clase para actualziar los derechos de peticion de los clientes
 class BankAccountsUpdate(UpdateView):
     model = Bank_Accounts
+    template_name = 'gestionfinanciera/bank_management/bank_accounts_update.html'
     fields = '__all__'
     def get_success_url(self):
-        return reverse('actualizarcuenta')
+        return reverse('listarcuenta')
 
 # se crea la clase para eliminar las derechos de peticion
 class BankAccountsDelete(DeleteView):
@@ -278,7 +331,7 @@ class BankAccountsDelete(DeleteView):
 # clase para crear ls desembolsos
 class DisbursementCreate(CreateView):
     model = Disbursement
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+    template_name = 'gestionfinanciera/bank_management/disbursement_form.html'
     fields = '__all__'
     def get_success_url(self):
         return reverse('')
@@ -286,7 +339,7 @@ class DisbursementCreate(CreateView):
 # clase para listar los deembolsos de peticion de los clientes
 class DisbursementView(ListView):
     model = Disbursement
-    #template_name = 'gestionfinanciera/listarobligacion.html'
+    template_name = 'gestionfinanciera/bank_management/disbursement_list.html'
     context_object_name = 'desembolso'
 
 # clase para actualziar los Desembolsos de los clientes
@@ -302,13 +355,33 @@ class DisbursementDelete(DeleteView):
     def get_success_url(self):
         return reverse('eliminardesembolso')
 
-class SimulationBankingCreate(CreateView):
-    model = Simulation_Banking
-    #template_name = 'Templates/gestionfinanciera/client_form.html'
+# clase para actualizar la simulacion bancaria
+class DisbursementUpdate(UpdateView):
+    model = Disbursement
     fields = '__all__'
     def get_success_url(self):
-        return reverse('')
+        return reverse('actualizardesembolso')
 
+#clase para crear la simluacion bancaria
+class SimulationBankingCreate(CreateView):
+    model = Simulation_Banking
+    template_name = 'gestionfinanciera/bank_management/simulation_banking_form.html'
+    fields = '__all__'
+    def get_context_data(self,**kwargs):
+        context = super(SimulationBankingCreate,self).get_context_data(**kwargs)
+        context['Payroll_Client'] = Payroll_Client.objects.all()
+        context['Client'] = Client.objects.all()
+        return context
+    def get_success_url(self):
+        return reverse('listarsimulacion')
+
+
+# clase para listar las simulaciones bancariaas de los clientes
+class SimulationBankingView(ListView):
+    model = Simulation_Banking
+    template_name = 'gestionfinanciera/bank_management/simulation_banking_list.html'
+    fields='__all__'
+    context_object_name = 'simulacion'
 
 '''def Client(request):
     template_name = 'client_form.html'

@@ -1,13 +1,14 @@
-{% extends 'base/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<form action="{%url 'crearcuenta' %}" method="post">
+<form action="{%url 'editarcuenta' %}" method="post">
+  {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Tipo de Cuenta</label>
         <select class="browser-default " name="Account_Type" id="Account_Type" value="{{bank_accounts.Account_Type}}">
-          <option value="" disabled selected>Seleccione</option>
+          <option value="{{bank_accounts.Account_Type}}" disabled selected>{{bank_accounts.Account_Type}}</option>
           <option value="normal">Ahorros</option>
           <option value="embargada">Corriente</option>
         </select>
