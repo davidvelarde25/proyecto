@@ -2,36 +2,40 @@
 
 {% block content %}
 
-<form action="{%url 'editarcertificado' %}" method="post">
+<form action="{%url 'editarcertificado' obligacionId %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
 
       <label>Tipo Certificado</label>
         <select class="browser-default " name="Type" id="Type">
-          <option value="" disabled selected>{{client.Type}}</option>
-          <option value="certificadodeuda">Certificado Deuda</option>
-          <option value="pazysalvo">Paz y Salvo</option>
+          <option value="{{certificate.Type}}" disabled selected>{{certificate.Type}}</option>
+          <option value="Certificado Deuda">Certificado Deuda</option>
+          <option value="Paz y Salvo">Paz y Salvo</option>
         </select
     </div>
   </div>
   <div class="form-group col-md-6">
     <label for="Application_Date">Fecha Solicitud</label>
-    <input type="date" class="form-control" id="Application_Date" name="Application_Date" value="{{Certificate.Application_Date}}">
+    <input type="date" class="form-control" id="Application_Date" name="Application_Date" value="{{certificate.Application_Date}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Date_Of_Receipt">Fecha Recibido</label>
-    <input type="date" class="form-control" id="Date_Of_Receipt" name="Date_Of_Receipt" value="{{Certificate.Date_Of_Receipt}}">
+    <input type="date" class="form-control" id="Date_Of_Receipt" name="Date_Of_Receipt" value="{{certificate.Date_Of_Receipt}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Certified_Value">Valor Certificado</label>
-    <input type="number" class="form-control" id="Certified_Value" name="Certified_Value" value="{{Certificate.Certified_Value}}">
+    <input type="number" class="form-control" id="Certified_Value" name="Certified_Value" value="{{certificate.Certified_Value}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Payment_Date">Fecha de Pago</label>
-    <input type="date" class="form-control" id="Payment_Date" name="Payment_Date" value="{{Certificate.Payment_Date}}">
+    <input type="date" class="form-control" id="Payment_Date" name="Payment_Date" value="{{certificate.Payment_Date}}">
   </div>
-  <button type="submit" class="btn btn-primary">Ingresar</button>
+  <div class="form-group col-md-6">
+    <label for="Payment_Date">obligacion</label>
+    <input type="hidden" class="form-control" id="Fk_Financial_Obligation" name="Fk_Financial_Obligation" value="{{certificate.Fk_Financial_Obligation.id}}">
+  </div>
+  <button type="submit" class="btn btn-primary">Actualizar</button>
 </form>
 
 {% endblock %}

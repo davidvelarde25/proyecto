@@ -8,19 +8,21 @@
 
                 <thead>
                   <tr>
-                    <th>Tipo Certificado</th>
-                    <th>Fecha Solicitud</th>
-                    <th>Valor Certificado</th>
-                    <th>Fecha de Pago</th>
+                    <th>Id</th>
+                    <th>Tipo Aplicacion</th>
+                    <th>Linea</th>
+                    <th>Fecha envio</th>
+                    <th>Radicado</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {% for data in certificado %}
+                  {% for data in derechopeticion %}
                   <tr>
-                    <td>{{ data.Type }}</td> <!-- con upper colocamos las letras en mayuscula -->
-                    <td>{{ data.Application_Date }}</td>
-                    <td>{{ data.Certified_Value }}</td>
-                    <td>{{ data.Payment_Date }}</td>
+                    <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
+                    <td>{{ data.Type_Application }}</td> <!-- con upper colocamos las letras en mayuscula -->
+                    <td>{{ data.Line }}</td>
+                    <td>{{ data.Send_Date }}</td>
+                    <td>{{ data.Filed_Number }}</td>
                     <td>
                         <a href="{% url 'editarderechopeticion' data.id %}" class="">
                           <i class="material-icons">update_forever</i>
@@ -37,7 +39,7 @@
                 </div>
               </table>
               <div class="fixed-action-btn">
-                <a href="{% url 'crearderechopeticion' %}" class="btn-floating btn-large red">
+                <a href="{% url 'crearderechopeticion' management_typeId%}" class="btn-floating btn-large red">
                   <i class="large material-icons">add</i>
                 </a>
               </div>

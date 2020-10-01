@@ -19,7 +19,7 @@
         {% for data in tipogestion %}
         <tr>
           <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
-          <td>{{ data.Fk_Advisor_Records }}</td> <!-- con upper colocamos las letras en mayuscula -->
+          <td>{{ data.Fk_Advisor_Records.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
           <td>{{ data.Date_Of_Contact }}</td> <!-- con upper colocamos las letras en mayuscula -->
           <td>{{ data.Outcome }}</td>
           <td>{{ data.Fk_Actual_State }}</td>
@@ -33,7 +33,7 @@
       </tbody>
       </div>
     </table>
-    <a href="{% url 'creargestion' %}" class="">
+    <a href="{% url 'creargestion' clientId %}" class="">
       <i class="material-icons">add</i>
     </a>
 

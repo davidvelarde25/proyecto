@@ -23,10 +23,26 @@
                     <td>{{ data.Identification }}</td>
                     <td>{{ data.Email }}</td>
                     <td>
+                        <a href="{% url 'listarnomina' data.id %}" class="">
+                          <i class="material-icons">Nomina</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'listarreferencia' data.id %}" class="">
+                          <i class="material-icons">Referencia</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'listargestion' data.id %}" class="">
+                          <i class="material-icons">Gestión</i>
+                        </a>
+                    </td>
+                    <td>
                         <a href="{% url 'editarcliente' data.id %}" class="">
                           <i class="material-icons">update_forever</i>
                         </a>
                     </td>
+
                   </tr>
                   {% endfor %}
                 </tbody>

@@ -8,6 +8,7 @@
 
                 <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Tipo Certificado</th>
                     <th>Fecha Solicitud</th>
                     <th>Valor Certificado</th>
@@ -17,6 +18,7 @@
                 <tbody>
                   {% for data in certificado %}
                   <tr>
+                    <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Type }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Application_Date }}</td>
                     <td>{{ data.Certified_Value }}</td>
@@ -37,7 +39,7 @@
                 </div>
               </table>
               <div class="fixed-action-btn">
-                <a href="{% url 'crearcertificado' %}" class="btn-floating btn-large red">
+                <a href="{% url 'crearcertificado' certificateId %}" class="btn-floating btn-large red">
                   <i class="large material-icons">add</i>
                 </a>
               </div>

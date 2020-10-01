@@ -2,15 +2,16 @@
 
 {% block content %}
 
-<form action="{%url 'crearobligacion' %}" method="post">
+<form action="{%url 'crearobligacion' management_typeId %}" method="post">
   {% csrf_token %}
   <div class="form-row">
-    <div class="form-group col-md-6">
+
+    <div class="form-group col-md-4">
       <label>Nómina Cliente</label>
-        <select class="browser-default" name="nomina">
-          <option disabled selected>Seleccione la Nómina</option>
-          {% for x in Payroll_Client.Payroll_Company %}
-            {{ x }}
+        <select class="browser-default" name="Fk_Advisor_Records" id="Fk_Advisor_Records" >
+          <option value="" disabled selected>Seleccione</option>
+          {% for x in obligacion %}
+            <option value="{{x.Fk_Management_Type.Fk_Client.id}}">{{ x.Fk_Management_Type.Fk_Client.id }}</option>
           {% endfor %}
         </select>
     </div>
@@ -29,12 +30,12 @@
   <div class="form-group col-md-6">
     <label>Estado Obligación</label>
       <select class="browser-default" name="State" id="State">
-        <option disabled selected>Seleccione Estado Obligación</option>
-        <option value="normal">Normal</option>
-        <option value="mora">En Mora</option>
-        <option value="castigada">Castigada</option>
-        <option value="embargo">Embargo</option>
-        <option value="ventanilla">Ventanilla</option>
+        <option disabled selected>Estado Obligación</option>
+        <option value="Normal">Normal</option>
+        <option value="Mora">En Mora</option>
+        <option value="Castigada">Castigada</option>
+        <option value="Embargo">Embargo</option>
+        <option value="Ventanilla">Ventanilla</option>
 
       </select>
   </div>
@@ -93,20 +94,23 @@
     <label>Negociado Con</label>
       <select class="browser-default" name="Negotiated_With" id="Negotiated_With">
         <option disabled selected>Seleccione Opción a comprar</option>
-        <option value="aboado">Abogado</option>
-        <option value="acreedor">Acreedor</option>
+        <option value="Abogado">Abogado</option>
+        <option value="Acreedor">Acreedor</option>
       </select>
   </div>
   <div class="form-group col-md-6">
     <label for="Buyer">Comprador</label>
     <input type="text" class="form-control" id="Buyer" name="Buyer">
   </div>
-  <div style="text-align: center" class="form-group col-md-5">
-    <label for="agregarobligacion">Certificado</label>
-    <a href="{% url 'listarcertificado' %}">
-      <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
-    </a>
+  <div class="form-group col-md-6">
+    <label for="Buyer">gestion</label>
+    <input type="text" class="form-control" id="Fk_Management_Type" name="Fk_Management_Type" value="{{management_typeId}}">
   </div>
+  <div class="form-group col-md-6">
+    <label for="Buyer">cliente</label>
+    <input type="text" class="form-control" id="" name="" value="{{obligacion}}">
+  </div>
+
 
 </div>
   <div style="text-align: right">

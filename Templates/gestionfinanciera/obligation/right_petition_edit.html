@@ -2,39 +2,39 @@
 
 {% block content %}
 
-<form action="{%url 'editarderechopeticion' %}" method="post">
+<form action="{%url 'editarderechopeticion' management_typeId  %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Type_Application">Tipo de Solicitud</label>
-      <input type="text" class="form-control" id="Type_Application" name="Type_Application" value="{{Right_Petition.Type_Application}}">
+      <input type="text" class="form-control" id="Type_Application" name="Type_Application" value="{{right_petition.Type_Application}}">
     </div>
     <div class="form-group col-md-6">
       <label>Linea Go</label>
-        <select class="browser-default " name="Line" id="Line" value="{{Right_Petition.Line}}">
-          <option value="{{Right_Petition.Line}}">{{Right_Petition.Line}}</option>
-          <option value="rehabilitacion">Rehabilitación Financiera</option>
-          <option value="reparacion">Reparación</option>
-          <option value="liquidacion">liquidacion</option>
-          <option value="proyecta">Proyecta</option>
+        <select class="browser-default " name="Line" id="Line" value="{{right_petition.Line}}">
+          <option value="{{right_petition.Line}}">{{right_petition.Line}}</option>
+          <option value="Rehabilitación">Rehabilitación Financiera</option>
+          <option value="Reparación">Reparación</option>
+          <option value="Liquidación">liquidacion</option>
+          <option value="Proyecta">Proyecta</option>
         </select>
     </div>
     <div class="form-group col-md-6">
       <label for="Send_Date">Fecha de Envio</label>
-      <input type="date" class="form-control" id="Send_Date" name="Send_Date" value="{{Right_Petition.Send_Date}}">
+      <input type="date" class="form-control" id="Send_Date" name="Send_Date" value="{{right_petition.Send_Date}}">
     </div>
   <div class="form-group col-md-6">
     <label for="Filed_Number">Numero de Radicado</label>
-    <input type="number" class="form-control" id="Filed_Number" name="Filed_Number" value="{{Right_Petition.Filed_Number}}">
+    <input type="number" class="form-control" id="Filed_Number" name="Filed_Number" value="{{right_petition.Filed_Number}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Reply_Date">Fecha de Respuesta</label>
-    <input type="date" class="form-control" id="Reply_Date" name="Reply_Date" value="{{Right_Petition.Reply_Date}}">
+    <input type="date" class="form-control" id="Reply_Date" name="Reply_Date" value="{{right_petition.Reply_Date}}">
   </div>
   <div class="form-group col-md-6">
     <label>Estado del proceso</label>
-      <select class="browser-default " name="Process_State" id="Process_State" value="{{Right_Petition.Process_State}}">
-        <option value="{{Right_Petition.Process_State}}">{{Right_Petition.Process_State}}</option>
+      <select class="browser-default " name="Process_State" id="Process_State" value="{{right_petition.Process_State}}">
+        <option value="{{right_petition.Process_State}}">{{right_petition.Process_State}}</option>
         <option value="enviado">Enviado</option>
         <option value="respuesto">Respuesto</option>
         <option value="aceptado">Aceptado</option>
@@ -45,28 +45,33 @@
   </div>
   <div class="form-group col-md-6">
     <label for="Reply">Respuesta</label>
-    <input type="text" class="form-control" id="Reply" name="Reply" value="{{Right_Petition.Reply}}">
+    <input type="text" class="form-control" id="Reply" name="Reply" value="{{right_petition.Reply}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Guardianship_Date">Fecha de Envio Tutela</label>
-    <input type="date" class="form-control" id="Guardianship_Date" name="Guardianship_Date" value="{{Right_Petition.Guardianship_Date}}">
+    <input type="date" class="form-control" id="Guardianship_Date" name="Guardianship_Date" value="{{right_petition.Guardianship_Date}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Court">Juzgado</label>
-    <input type="text" class="form-control" id="Court" name="Court" value="{{Right_Petition.Court}}">
+    <input type="text" class="form-control" id="Court" name="Court" value="{{right_petition.Court}}">
   </div>
 
   <div class="form-group col-md-6">
     <label for="Guardianship_Response_Date">Fecha de Respuesta Tutela</label>
-    <input type="date" class="form-control" id="Guardianship_Response_Date" name="Guardianship_Response_Date" value="{{Right_Petition.Guardianship_Response_Date}}">
+    <input type="date" class="form-control" id="Guardianship_Response_Date" name="Guardianship_Response_Date" value="{{right_petition.Guardianship_Response_Date}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Observation">Observacion</label>
-    <input type="textarea" class="form-control" id="Observation" name="Observation" value="{{Right_Petition.Observation}}">
+    <input type="textarea" class="form-control" id="Observation" name="Observation" value="{{right_petition.Observation}}">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Observation"></label>
+    <input type="hidden" class="form-control" id="Fk_Management_Type" name="Fk_Management_Type" value="{{right_petition.Fk_Management_Type.id}}">
   </div>
   </div>
+
   <div style="text-align: right">
-    <button type="submit" class="btn btn-primary">Crear</button>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
   </div>
 </form>
 

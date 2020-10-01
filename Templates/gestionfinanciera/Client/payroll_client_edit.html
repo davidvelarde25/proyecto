@@ -1,100 +1,85 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{{client}}
 <form action="{%url 'editarnomina' payroll_client.id  %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Payroll_Company">Empresa</label>
-        <input type="number" class="form-control" id="Payroll_Company" name="Payroll_Company" value="{{Payroll_Client.Payroll_Company}}">
+        <input type="text" class="form-control" id="Payroll_Company" name="Payroll_Company" value="{{payroll_client.Payroll_Company}}">
     </div>
     <div class="form-group col-md-6">
       <label>Seleccione una Nómina</label>
         <select class="browser-default " name="Payroll_Type" id="Payroll_Type">
-          <option value="" disabled selected>Seleccione</option>
-          <option value="activoestado">Activo Estado</option>
-          <option value="pensionado">Pensionado</option>
-          <option value="docente">Docente</option>
-          <option value="microempresario">Microempresario</option>
-          <option value="activoprivada">Activo Privada</option>
-          <option value="independiente">Independiente</option>
+          <option value="{{payroll_client.Payroll_Type}}"  selected>{{payroll_client.Payroll_Type}}</option>
+          <option value="Activo Estado">Activo Estado</option>
+          <option value="Pensionado">Pensionado</option>
+          <option value="Docente">Docente</option>
+          <option value="Microempresario">Microempresario</option>
+          <option value="Activo Privada">Activo Privada</option>
+          <option value="Independiente">Independiente</option>
         </select
     </div>
   </div>
     <div class="form-group col-md-6">
       <label>Tipo Contrato/Pensión</label>
-        <select class="browser-default " name="tipocontrato">
-          <option value="" disabled selected>{{Payroll_Client.Permanent_Income}}</option>
-          <option value="propiedad">Propiedad</option>
-          <option value="invalidez">Invalidez</option>
-          <option value="provisionalidad">Provisionalidad</option>
-          <option value="jubilación">Jubilación</option>
-          <option value="carrera">Carrera</option>
-          <option value="vejez">Vejez</option>
-          <option value="microempresario">Microempresario</option>
-          <option value="indefinido">Indefinido</option>
-          <option value="sustitucion">Sustitución</option>
-          <option value="superviviencia">Supervivencia</option>
+        <select class="browser-default " name="Contract_Type" id="Contract_Type">
+          <option value="{{payroll_client.Contract_Type}}"  selected>{{payroll_client.Contract_Type}}</option>
+          <option value="Propiedad">Propiedad</option>
+          <option value="Invalidez">Invalidez</option>
+          <option value="Provisionalidad">Provisionalidad</option>
+          <option value="Jubilación">Jubilación</option>
+          <option value="Carrera">Carrera</option>
+          <option value="Vejez">Vejez</option>
+          <option value="Microempresario">Microempresario</option>
+          <option value="Indefinido">Indefinido</option>
+          <option value="Sustitución">Sustitución</option>
+          <option value="Supervivencia">Supervivencia</option>
         </select>
     </div>
     <div class="form-group col-md-6">
       <label for="Salary_Value">Valor Salario</label>
-        <input type="number" class="form-control" id="Salary_Value" name="Salary_Value" value="{{Payroll_Client.Salary_Value}}">
+        <input type="number" class="form-control" id="Salary_Value" name="Salary_Value" value="{{payroll_client.Salary_Value}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Permanent_Income">Ingresos Permanentes</label>
-        <input type="number" class="form-control" id="Permanent_Income" name="Permanent_Income" value="{{Payroll_Client.Permanent_Income}}">
+        <input type="number" class="form-control" id="Permanent_Income" name="Permanent_Income" value="{{payroll_client.Permanent_Income}}">
     </div>
     <div class="form-group col-md-6">
       <label>Ley Aplica</label>
-        <select class="browser-default " name="Law_Applies" id="Law_Applies">
-          <option value="" disabled selected>{{Payroll_Client.Law_Applies}}</option>
-          <option value="ley1527">Ley 1527</option>
-          <option value="ley50">Ley 50</option>
-          <option value="smlv">SMLV</option>
+        <select class="browser-default" name="Law_Applies" id="Law_Applies">
+          <option value="{{payroll_client.Law_Applies}}"  selected>{{payroll_client.Law_Applies}}</option>
+          <option value="Ley 1527">Ley 1527</option>
+          <option value="Ley 50">Ley 50</option>
+          <option value="SMLV">SMLV</option>
         </select>
     </div>
     <div class="form-group col-md-6">
       <label for="Social_Security">Seguridad Social</label>
-      <input type="number" class="form-control" id="Social_Security" name="Social_Security" value="{{Payroll_Client.Social_Security}}">
+      <input type="number" class="form-control" id="Social_Security" name="Social_Security" value="{{payroll_client.Social_Security}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Permanent_Discounts">Descuentos Permanentes</label>
-      <input type="number" class="form-control" id="Permanent_Discounts" name="Permanent_Discounts" value="{{Payroll_Client.Permanent_Discounts}}">
+      <input type="number" class="form-control" id="Permanent_Discounts" name="Permanent_Discounts" value="{{payroll_client.Permanent_Discounts}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Non_Concellable_Value">Deudas no cancelables</label>
-      <input type="number" class="form-control" id="Non_Concellable_Value" name="Non_Concellable_Value" value="{{Payroll_Client.Non_Concellable_Value}}">
+      <input type="number" class="form-control" id="Non_Concellable_Value" name="Non_Concellable_Value" value="{{payroll_client.Non_Concellable_Value}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Payment_Capacity">Capacidad de pago</label>
-      <input type="number" class="form-control" id="Payment_Capacity" name="Payment_Capacity" value="{{Payroll_Client.Payment_Capacity}}">
+      <input type="number" class="form-control" id="Payment_Capacity" name="Payment_Capacity" value="{{payroll_client.Payment_Capacity}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Bonding_Date">Fecha de Vinculación</label>
-      <input type="date" class="form-control" id="Bonding_Date" name="Bonding_Date" value="{{Payroll_Client.Bonding_Date}}">
-    </div>
-    <div style="text-align: center" class="form-group col-md-5">
-      <label for="listarcuentas">Simulacion Bancaria</label>
-      <a href="{% url 'crearsimulacion' %}">
-        <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
-      </a>
+      <input type="date" class="form-control" id="Bonding_Date" name="Bonding_Date" value="{{payroll_client.Bonding_Date}}">
     </div>
 
     <div class="form-group col-md-6">
-      <select class="browser-default" name="Fk_Client" id="Fk_Client">
-        {% for x in client %}
-          <option value="{{x.id}}">{{x.id}}</option>
-        {% endfor %}
-      </select>
+      <input type="hidden" class="form-control" id="Fk_Client" name="Fk_Client" value="{{payroll_client.Fk_Client.id}}" hidden="True" >
     </div>
-    <div class="form-group col-md-6">
-    </div>
-
     <div style="text-align: right" class="col-md-12">
-      <button type="submit" class="btn btn-primary">Crear</button>
+      <button type="submit" class="btn btn-primary">Actualizar</button>
     </div>
 
 </form>

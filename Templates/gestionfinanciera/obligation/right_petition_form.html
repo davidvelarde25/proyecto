@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{%url 'crearderechopeticion' %}" method="post">
+<form action="{%url 'crearderechopeticion' management_typeId %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -13,10 +13,10 @@
       <label>Linea Go</label>
         <select class="browser-default " name="Line" id="Line">
           <option value="" disabled selected>Seleccione</option>
-          <option value="rehabilitacion">Rehabilitación Financiera</option>
-          <option value="reparacion">Reparación</option>
-          <option value="liquidacion">liquidacion</option>
-          <option value="proyecta">Proyecta</option>
+          <option value="Rehabilitación">Rehabilitación Financiera</option>
+          <option value="Reparación">Reparación</option>
+          <option value="Liquidacion">Liquidacion</option>
+          <option value="Proyecta">Proyecta</option>
         </select>
     </div>
     <div class="form-group col-md-6">
@@ -64,9 +64,13 @@
     <label for="Observation">Observacion</label>
     <input type="textarea" class="form-control" id="Observation" name="Observation">
   </div>
+  <div class="form-group col-md-6">
+    <label for="Observation"></label>
+    <input type="hidden" class="form-control" id="Fk_Management_Type" name="Fk_Management_Type" value="{{management_typeId}}">
+  </div>
   </div>
   <div style="text-align: right">
-    <button type="submit" class="btn btn-primary">Crear</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
   </div>
 </form>
 

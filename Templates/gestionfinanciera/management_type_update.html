@@ -11,22 +11,21 @@
     </div>
       <div class="form-group col-md-4">
         <label>Asesor Registra</label>
+
+
         <select class="browser-default" name="Fk_Advisor_Records" id="Fk_Advisor_Records" value="{{management_type.Fk_Advisor_Records}}">
-          <option value="management_type.Fk_Advisor_Records">{{management_type.Fk_Advisor_Records}}</option>
-          {% for x in advisor_records %}
+          <option value="{{management_type.Fk_Advisor_Records.id}}">{{management_type.Fk_Advisor_Records}}</option>
+          {% for x in customer_referrer %}
             <option value="{{x.id}}">{{x.Name}}</option>
           {% endfor %}
         </select>
       </div>
       <div class="form-group col-md-4">
         <label>Origen</label>
-
-            {% if management_type.Origin != 'None' %}
                 <select class="browser-default" name="Origin" id="Origin" value="{{management_type.Origin}}">
-                  <option value="{{management_type.Origin}}">Seleccione</option>
-                  <option value="{{management_type.Origin}}">{{management_type.Origin}}</option>
+                  <option value="{{management_type.Origin}}" >{{management_type.Origin}}</option>
                   <option value="Voz a Voz">Voz a Voz</option>
-                  <option value="Facbook">Facebook</option>
+                  <option value="Facebook">Facebook</option>
                   <option value="Referido">Referido</option>
                   <option value="Gestión Comercial">Gestión Comercial</option>
                   <option value="Pagina Web">Pagina Web</option>
@@ -34,17 +33,14 @@
                   <option value="Instagram">Instagram</option>
                   <option value="Telemercadeo">Telemercadeo</option>
                 </select>
-            {% endif %}
-
-
-
       </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-4">
       <label>Referenciador</label>
+
       <select class="browser-default" name="Fk_Customer_Referrer" id="Fk_Customer_Referrer" value="{{management_type.Fk_Customer_Referrer}}">
-        <option value="{{management_type.Fk_Customer_Referrer}}">{{management_type.Fk_Customer_Referrer}}</option>
+        <option value="{{management_type.Fk_Customer_Referrer.id}}" >{{management_type.Fk_Customer_Referrer}}</option>
         {% for x in customer_referrer %}
           <option value="{{x.id}}">{{x.Name}}</option>
         {% endfor %}
@@ -53,7 +49,7 @@
     <div class="form-group col-md-4">
       <label>Estado Actual</label>
         <select class="browser-default" name="Fk_Actual_State" id="Fk_Actual_State" value="{{management_type.Fk_Actual_State}}">
-          <option value="{{management_type.Fk_Actual_State}}" >{{management_type.Fk_Actual_State}}</option>
+          <option value="{{management_type.Fk_Actual_State.id}}"  >{{management_type.Fk_Actual_State}}</option>
           {% for x in actual_state %}
             <option value="{{x.id}}">{{x.Detail}}</option>
           {% endfor %}
@@ -69,15 +65,15 @@
     <div class="form-group col-md-4">
       <label>Sede</label>
         <select class="browser-default" name="Campus" id="Campus" value="{{management_type.Campus}}">
-          <option value="{{management_type.Campus}} " >{{management_type.Campus}}</option>
-          <option value="manizales">Manizales</option>
-          <option value="pereira">Pereira</option>
+          <option value="{{management_type.Campus}}" >{{management_type.Campus}}</option>
+          <option value="Manizales">Manizales</option>
+          <option value="Pereira">Pereira</option>
         </select>
     </div>
     <div class="form-group col-md-4">
         <label>Resultado</label>
         <select class="browser-default" name="Outcome" id="Outcome" value="{{management_type.Outcome}}">
-          <option value="{{management_type.Outcome}}">{{management_type.Outcome}}</option>
+          <option value="{{management_type.Outcome}}" >{{management_type.Outcome}}</option>
           <option value="Rehabilitación Financiera">Rehabilitación Financiera</option>
           <option value="Cancelado">Cancelado</option>
         </select>
@@ -87,41 +83,48 @@
       <label for="Result_Date">Fecha de Resultado</label>
       <input type="date" class="form-control" id="Result_Date" name="Result_Date" value="{{management_type.Result_Date}}">
     </div>
+    <div class="form-group col-md-4">
+      <label for="Result_Date">Campaña</label>
+      <input type="text" class="form-control" id="Campaign" name="Campaign" value="{{management_type.Campaign}}">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="Fk_Client">cliente</label>
+      <input type="text" class="form-control" id="Fk_Client" name="Fk_Client" value="{{management_type.Fk_Client.id}}">
+    </div>
   </div>
+  <div style="text-align: left">
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+  </div>
+</form>
   <div class="form-row">
     <div style="text-align: right" class="form-group col-md-6">
-      <label for="agregarobligacion">Obligaciones Financieras</label>
-      <a href="{% url 'crearobligacion' %}">
+      <label for="agregarobligacion">Obligaciones Fincieras</label>
+      <a href="{% url 'listarobligacion' management_type.id  %}">
         <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
       </a>
     </div>
     <div style="text-align: left" class="form-group col-md-6">
       <label for="listarderechopeticion">Derechos de petición</label>
-      <a href="{% url 'listarderechopeticion' %}">
+      <a href="{% url 'listarderechopeticion' management_type.id %}">
         <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
       </a>
     </div>
   </div>
-
 <div class="form-row">
   <div style="text-align: center" class="form-group col-md-3">
     <label for="listarcuentas">Cuentas Bancarias</label>
-    <a href="{% url 'listarcuenta' %}">
+    <a href="{% url 'listarcuenta' management_type.Fk_Client.id %}">
       <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
     </a>
   </div>
   <div style="text-align: left" class="form-group col-md-3">
     <label for="listardesembolso">Desembolsos</label>
-    <a href="{% url 'listardesembolso' %}">
+    <a href="{% url 'listardesembolso' management_type.id %}">
       <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
     </a>
   </div>
 </div>
 
-    <div style="text-align: left">
-      <button type="submit" class="btn btn-primary">Guardar</button>
-    </div>
-
-</form>
 
 {% endblock %}

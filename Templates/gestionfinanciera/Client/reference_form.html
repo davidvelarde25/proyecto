@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{%url 'crearreferencia' %}" method="post">
+<form action="{%url 'crearreferencia' clientId %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -47,12 +47,10 @@
   <div class="form-group col-md-6">
     <div class="form-group col-md-6">
       <label for="Phone">Cliente</label>
-      <input type="text" class="form-control" id="Fk_Client" name="Fk_Client">
+      <input type="text" class="form-control" id="Fk_Client" name="Fk_Client" value="{{clientId}}">
     </div>
 
   </div>
-
-
   <div style="text-align: right">
     <button type="submit" class="btn btn-primary">Guardar</button>
   </div>

@@ -8,6 +8,7 @@
 
                 <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Tipo Cuenta</th>
                     <th>Número</th>
                     <th>Banco</th>
@@ -15,8 +16,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for data in cuentas %}
+                  {% for data in cuenta %}
                   <tr>
+                    <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Account_Type }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Number }}</td>
                     <td>{{ data.Bank }}</td>
@@ -37,10 +39,12 @@
                 </div>
               </table>
               <div class="fixed-action-btn">
-                <a href="{% url 'crearcuenta' %}" class="btn-floating btn-large red">
+                <a href="{% url 'crearcuenta' clientId %}" class="btn-floating btn-large red">
                   <i class="large material-icons">add</i>
+
                 </a>
               </div>
+
             </div>
 
 {% endblock %}

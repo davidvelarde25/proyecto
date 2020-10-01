@@ -12,31 +12,31 @@
     <div class="form-group col-md-6">
       <label>Seleccione una Nómina</label>
         <select class="browser-default " name="Payroll_Type" id="Payroll_Type">
-          <option value="" disabled selected>Seleccione</option>
-          <option value="activoestado">Activo Estado</option>
-          <option value="pensionado">Pensionado</option>
-          <option value="docente">Docente</option>
-          <option value="microempresario">Microempresario</option>
-          <option value="activoprivada">Activo Privada</option>
-          <option value="independiente">Independiente</option>
+            <option value="" disabled selected>Seleccione</option>
+            <option value="Activo Estado">Activo Estado</option>
+            <option value="Pensionado">Pensionado</option>
+            <option value="Docente">Docente</option>
+            <option value="Microempresario">Microempresario</option>
+            <option value="Activo Privada">Activo Privada</option>
+            <option value="Independiente">Independiente</option>
         </select
     </div>
   </div>
 
     <div class="form-group col-md-6">
       <label>Tipo Contrato/Pensión</label>
-        <select class="browser-default " name="tipocontrato">
+        <select class="browser-default " name="Contract_Type" id="Contract_Type">
           <option value="" disabled selected>Seleccione</option>
-          <option value="propiedad">Propiedad</option>
-          <option value="invalidez">Invalidez</option>
-          <option value="provisionalidad">Provisionalidad</option>
-          <option value="jubilación">Jubilación</option>
-          <option value="carrera">Carrera</option>
-          <option value="vejez">Vejez</option>
-          <option value="microempresario">Microempresario</option>
-          <option value="indefinido">Indefinido</option>
-          <option value="sustitucion">Sustitución</option>
-          <option value="superviviencia">Supervivencia</option>
+          <option value="Propiedad">Propiedad</option>
+          <option value="Invalidez">Invalidez</option>
+          <option value="Provisionalidad">Provisionalidad</option>
+          <option value="Jubilación">Jubilación</option>
+          <option value="Carrera">Carrera</option>
+          <option value="Vejez">Vejez</option>
+          <option value="Microempresario">Microempresario</option>
+          <option value="Indefinido">Indefinido</option>
+          <option value="Sustitución">Sustitución</option>
+          <option value="Supervivencia">Supervivencia</option>
         </select>
     </div>
     <div class="form-group col-md-6">
@@ -49,11 +49,11 @@
     </div>
     <div class="form-group col-md-6">
       <label>Ley Aplica</label>
-        <select class="browser-default " name="Law_Applies" id="Law_Applies">
-          <option value="" disabled selected>Seleccione</option>
-          <option value="ley1527">Ley 1527</option>
-          <option value="ley50">Ley 50</option>
-          <option value="smlv">SMLV</option>
+        <select class="browser-default" name="Law_Applies" id="Law_Applies">
+          <option value="Seleccione" disabled selected>Seleccione</option>
+          <option value="Ley 1527">Ley 1527</option>
+          <option value="Ley 50">Ley 50</option>
+          <option value="SMLV">SMLV</option>
         </select>
     </div>
     <div class="form-group col-md-6">
@@ -77,15 +77,9 @@
       <input type="date" class="form-control" id="Bonding_Date" name="Bonding_Date">
     </div>
 
-    <div style="text-align: center" class="form-group col-md-5">
-      <label for="">Simulacion Bancaria</label>
-      <a href="{% url 'listarsimulacion' %}">
-        <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
-      </a>
-    </div>
-
     <div class="form-group col-md-6">
-      <input type="text" class="form-control" id="Bonding_Date" name="Fk_Client" value="{{clientId}}">
+      <label for=""></label>
+      <input type="hidden" class="form-control" id="Bonding_Date" name="Fk_Client" value="{{clientId}}">
     </div>
 
 

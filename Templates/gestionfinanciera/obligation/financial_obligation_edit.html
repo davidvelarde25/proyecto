@@ -2,34 +2,34 @@
 
 {% block content %}
 
-<form action="{%url 'editarobligacion' %}" method="post">
+<form action="{%url 'editarobligacion' management_typeId %}" method="post">
   {% csrf_token %}
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label>Nómina Cliente</label>
-        <select class="browser-default" name="Payroll_Company" id="Payroll_Company" value="{{Payroll_Client.Payroll_Company}}">
-          <option disabled selected>{{Payroll_Client.Payroll_Company}}</option>
-          {% for x in Payroll_Client.Payroll_Company %}
-            {{ x }}
+        <select class="browser-default" name="Payroll" id="Payroll" >
+          <option value="" disabled selected>Seleccione</option>
+          {% for x in obligacion %}
+            <option value="{{x.Fk_Management_Type.Fk_Client.id}}">{{ x.Fk_Management_Type.Fk_Client.id }}</option>
           {% endfor %}
         </select>
     </div>
     <div class="form-group col-md-6">
       <label for="Obligation_Number">Numero de Obligación</label>
-      <input type="text" class="form-control" id="Obligation_Number" name="Obligation_Number" value="{{Payroll_Client.Obligation_Number}}">
+      <input type="text" class="form-control" id="Obligation_Number" name="Obligation_Number" value="{{financial_obligation.Obligation_Number}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Type">Tipo Obligación</label>
-      <input type="text" class="form-control" id="Type" name="Type" value="{{Payroll_Client.Type}}">
+      <input type="text" class="form-control" id="Type" name="Type" value="{{financial_obligation.Type}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Entity_Cooperative">Entidad Financiera/Cooperativa</label>
-      <input type="text" class="form-control" id="Entity_Cooperative" name="Entity_Cooperative" value="{{Payroll_Client.Entity_Cooperative}}">
+      <input type="text" class="form-control" id="Entity_Cooperative" name="Entity_Cooperative" value="{{financial_obligation.Entity_Cooperative}}">
     </div>
   <div class="form-group col-md-6">
     <label>Estado Obligación</label>
-      <select class="browser-default" name="State" id="State" value="{{Payroll_Client.State}}">
-        <option value="{{Payroll_Client.State}}">{{Payroll_Client.Payroll_Company}}</option>
+      <select class="browser-default" name="State" id="State" value="{{financial_obligation.State}}">
+        <option value="{{financial_obligation.State}}">{{financial_obligation.State}}</option>
         <option value="normal">Normal</option>
         <option value="mora">En Mora</option>
         <option value="castigada">Castigada</option>
@@ -41,37 +41,37 @@
 <!-- campos que se colocan cuando la obigacion esta en estado normal -->
   <div class="form-group col-md-6">
     <label for="Outstanding_Fees">Cuotas Pendientes</label>
-    <input type="number" class="form-control" id="Outstanding_Fees" name="Outstanding_Fees" value="{{Payroll_Client.Outstanding_Fees}}">
+    <input type="number" class="form-control" id="Outstanding_Fees" name="Outstanding_Fees" value="{{financial_obligation.Outstanding_Fees}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Quota_Value">Valor Cuota</label>
-    <input type="number" class="form-control" id="Quota_Value" name="Quota_Value" value="{{Payroll_Client.Quota_Value}}">
+    <input type="number" class="form-control" id="Quota_Value" name="Quota_Value" value="{{financial_obligation.Quota_Value}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Future_Value_Portfolio">Valor futuro cartera</label>
-    <input type="number" class="form-control" id="Future_Value_Portfolio" name="Future_Value_Portfolio" value="{{Payroll_Client.Future_Value_Portfolio}}">
+    <input type="number" class="form-control" id="Future_Value_Portfolio" name="Future_Value_Portfolio" value="{{financial_obligation.Future_Value_Portfolio}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Certified_Value_Obligation">Valor certificado obligación</label>
-    <input type="number" class="form-control" id="Certified_Value_Obligation" name="Certified_Value_Obligation" value="{{Payroll_Client.Certified_Value_Obligation}}">
+    <input type="number" class="form-control" id="Certified_Value_Obligation" name="Certified_Value_Obligation" value="{{financial_obligation.Certified_Value_Obligation}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Saving_Value">Valor Ahorro</label>
-    <input type="number" class="form-control" id="Saving_Value" name="Saving_Value" value="{{Payroll_Client.Saving_Value}}">
+    <input type="number" class="form-control" id="Saving_Value" name="Saving_Value" value="{{financial_obligation.Saving_Value}}">
   </div>
   <!--campos que se colocal si la obligacion se encuentra en mora  -->
   <div class="form-group col-md-6">
     <label for="Default_Value">Valor Mora</label>
-    <input type="number" class="form-control" id="Default_Value" name="Default_Value" value="{{Payroll_Client.Default_Value}}">
+    <input type="number" class="form-control" id="Default_Value" name="Default_Value" value="{{financial_obligation.Default_Value}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Default_Time">Tiempo Mora</label>
-    <input type="number" class="form-control" id="Default_Time" name="Default_Time" value="{{Payroll_Client.Default_Time}}">
+    <input type="number" class="form-control" id="Default_Time" name="Default_Time" value="{{financial_obligation.Default_Time}}">
   </div>
   <div class="form-group col-md-6">
     <label>Comprar</label>
-      <select class="browser-default" name="Buy_Mora_Portfolio" id="Buy_Mora_Portfolio" value="{{Payroll_Client.Buy_Mora_Portfolio}}">
-        <option value="{{Payroll_Client.Buy_Mora_Portfolio}}">{{Payroll_Client.Negotiated_With}}</option>
+      <select class="browser-default" name="Buy_Mora_Portfolio" id="Buy_Mora_Portfolio" value="{{financial_obligation.Buy_Mora_Portfolio}}">
+        <option value="{{financial_obligation.Buy_Mora_Portfolio}}">{{financial_obligation.Buy_Mora_Portfolio}}</option>
         <option value="mora">Mora</option>
         <option value="cartera">Cartera</option>
       </select>
@@ -79,38 +79,40 @@
   <!-- campos que se colocan si son obligaciones castigadas y con embargos -->
   <div class="form-group col-md-6">
     <label for="Reported_Value">Valor Reportado</label>
-    <input type="number" class="form-control" id="Reported_Value" name="Reported_Value" value="{{Payroll_Client.Reported_Value}}">
+    <input type="number" class="form-control" id="Reported_Value" name="Reported_Value" value="{{financial_obligation.Reported_Value}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Offer_Value_To_Entity">Valor Oferta a Entidad</label>
-    <input type="number" class="form-control" id="Offer_Value_To_Entity" name="Offer_Value_To_Entity" value="{{Payroll_Client.Offer_Value_To_Entity}}">
+    <input type="number" class="form-control" id="Offer_Value_To_Entity" name="Offer_Value_To_Entity" value="{{financial_obligation.Offer_Value_To_Entity}}">
   </div>
   <div class="form-group col-md-6">
     <label for="Negotiated_Value">Valor Negociado</label>
-    <input type="number" class="form-control" id="Negotiated_Value" name="Negotiated_Value" value="{{Payroll_Client.Negotiated_Value}}">
+    <input type="number" class="form-control" id="Negotiated_Value" name="Negotiated_Value" value="{{financial_obligation.Negotiated_Value}}">
   </div>
   <div class="form-group col-md-6">
     <label>Negociado Con</label>
-      <select class="browser-default" name="Negotiated_With" id="Negotiated_With" value="{{Payroll_Client.Negotiated_With}}">
-        <option value="{{Payroll_Client.Negotiated_With}}">{{Payroll_Client.Negotiated_With}}</option>
+      <select class="browser-default" name="Negotiated_With" id="Negotiated_With" value="{{financial_obligation.Negotiated_With}}">
+        <option value="{{financial_obligation.Negotiated_With}}">{{financial_obligation.Negotiated_With}}</option>
         <option value="abogado">Abogado</option>
         <option value="acreedor">Acreedor</option>
       </select>
   </div>
   <div class="form-group col-md-6">
     <label for="Buyer">Comprador</label>
-    <input type="text" class="form-control" id="Buyer" name="Buyer" value="{{Payroll_Client.Buyer}}">
+    <input type="text" class="form-control" id="Buyer" name="Buyer" value="{{financial_obligation.Buyer}}">
   </div>
-  <div style="text-align: center" class="form-group col-md-5">
-    <label for="agregarobligacion">Certificado</label>
-    <a href="{% url 'listarcertificado' %}">
-      <i type="submit" style="background:#336EFF" class="btn btn.default">Agregar</i>
-    </a>
+  <div class="form-group col-md-6">
+    <label for="Buyer">gestion</label>
+    <input type="hidden" class="form-control" id="Fk_Management_Type" name="Fk_Management_Type" value="{{financial_obligation.Fk_Management_Type.id}}">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Buyer">cliente</label>
+    <input type="hidden" class="form-control" id="" name="" value="{{ data.Fk_Management_Type.Fk_Client.id }}">
   </div>
 
 </div>
   <div style="text-align: right">
-    <button type="submit" class="btn btn-primary">Crear</button>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
   </div>
 </form>
 

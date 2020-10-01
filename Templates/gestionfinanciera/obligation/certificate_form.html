@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{%url 'crearcertificado' %}" method="post">
+<form action="{%url 'crearcertificado' obligacionId %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -31,7 +31,11 @@
     <label for="Payment_Date">Fecha de Pago</label>
     <input type="date" class="form-control" id="Payment_Date" name="Payment_Date">
   </div>
-  <button type="submit" class="btn btn-primary">Ingresar</button>
+  <div class="form-group col-md-6">
+    <label for="Payment_Date">obligacion</label>
+    <input type="hidden" class="form-control" id="Fk_Financial_Obligation" name="Fk_Financial_Obligation" value="{{obligacionId}}">
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 
 {% endblock %}
