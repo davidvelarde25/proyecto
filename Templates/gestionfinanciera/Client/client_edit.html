@@ -1,5 +1,5 @@
 
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
@@ -44,7 +44,6 @@
       </div>
     </div>
     <div class="form-row">
-
       <div class="form-group col-md-6">
         <label for="Stratum">Estrato</label>
         <input type="number" class="form-control" id="Stratum" name="Stratum" value="{{client.Stratum}}">
@@ -55,9 +54,8 @@
       </div>
     </div>
     <div class="form-row">
-
       <div class="form-group col-md-6">
-        <label for="Phone">Telefono</label>
+        <label for="Phone">Teléfono</label>
         <input type="number" class="form-control" id="Phone" name="Phone" value="{{client.Phone}}">
       </div>
       <div class="form-group col-md-6">
@@ -66,17 +64,17 @@
       </div>
     </div>
     <div class="form-row">
-      <div style="text-align: right" class="form-group col-md-2">
+      <div class="form-group col-md-4">
         <a href="{% url 'listarreferencia' client.id %}">
-          <i type="submit" style="background:#336EFF" class="btn btn-default">Referencia</i>
+          <i type="submit" style="background:#336EFF" class="btn btn-primary">Referencia</i>
         </a>
       </div>
-      <div style="text-align: right" class="form-group col-md-2">
+      <div  class="form-group col-md-4">
         <a href="{% url 'listarnomina' client.id  %}">
-          <i type="submit" style="background:#336EFF" class="btn btn-primary">Nomina</i>
+          <i type="submit" style="background:#336EFF" class="btn btn-primary">Nómina</i>
         </a>
       </div>
-      <div style="text-align: right" class="form-group col-md-2">
+      <div  class="form-group col-md-4">
         <a href="{% url 'listargestion' client.id %}">
           <i type="submit" style="background:#336EFF" class="btn btn-primary">Gestión</i>
         </a>

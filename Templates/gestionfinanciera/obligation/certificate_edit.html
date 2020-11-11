@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
@@ -6,9 +6,8 @@
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
-
       <label>Tipo Certificado</label>
-        <select class="browser-default " name="Type" id="Type">
+        <select class="form-control" name="Type" id="Type">
           <option value="{{certificate.Type}}" disabled selected>{{certificate.Type}}</option>
           <option value="Certificado Deuda">Certificado Deuda</option>
           <option value="Paz y Salvo">Paz y Salvo</option>
@@ -32,7 +31,7 @@
     <input type="date" class="form-control" id="Payment_Date" name="Payment_Date" value="{{certificate.Payment_Date}}">
   </div>
   <div class="form-group col-md-6">
-    <label for="Payment_Date">obligacion</label>
+    <label for="Payment_Date"></label>
     <input type="hidden" class="form-control" id="Fk_Financial_Obligation" name="Fk_Financial_Obligation" value="{{certificate.Fk_Financial_Obligation.id}}">
   </div>
   <button type="submit" class="btn btn-primary">Actualizar</button>

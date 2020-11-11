@@ -1,103 +1,101 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
-
-<form action="{%url 'creargestion' clientId %}" method="post">
-  {% csrf_token %}
-  <div class="form-group col-md-12">
-      <div class="form-group col-md-4">
-        <label for="Date_Of_Contact">Fecha de Contacto</label>
-        <input type="date" class="form-control" id="Date_Of_Contact" name="Date_Of_Contact" required>
-      </div>
-      <div class="form-group col-md-4">
-        <label>Asesor Registra</label>
-          <select class="browser-default" name="Fk_Advisor_Records" id="Fk_Advisor_Records" required>
+<div class="container">
+  <form action="{%url 'creargestion' clientId %}" method="post">
+    {% csrf_token %}
+    <div class="form-row col-md-12">
+        <div class="form-content col-md-4">
+          <label for="Date_Of_Contact">Fecha de Contacto</label>
+          <input type="date" class="form-control" id="Date_Of_Contact" name="Date_Of_Contact" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Asesor Registra</label>
+            <select class="form-control" name="Fk_Advisor_Records" id="Fk_Advisor_Records" required>
+              <option value="" disabled selected>Seleccione</option>
+              {% for x in advisor_records %}
+                <option value="{{x.id}}">{{x.Name}}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Referenciador</label>
+          <select class="form-control" name="Fk_Customer_Referrer" id="Fk_Customer_Referrer">
             <option value="" disabled selected>Seleccione</option>
-            {% for x in advisor_records %}
+            {% for x in customer_referrer %}
               <option value="{{x.id}}">{{x.Name}}</option>
             {% endfor %}
           </select>
+        </div>
+    </div>
+
+    <div class="form-row col-md-12">
+      <div class="form-content col-md-4">
+        <label for="Status_Date">Fecha de Estado</label>
+        <input type="date" class="form-control" id="Status_Date" name="Status_Date">
       </div>
       <div class="form-group col-md-4">
-        <label>Referenciador</label>
-        <select class="browser-default" name="Fk_Customer_Referrer" id="Fk_Customer_Referrer">
-          <option value="" disabled selected>Seleccione</option>
-          {% for x in customer_referrer %}
-            <option value="{{x.id}}">{{x.Name}}</option>
-          {% endfor %}
-        </select>
+        <label>Origen</label>
+          <select class="form-control" name="Origin" id="Origin">
+            <option disabled selected>Seleccione</option>
+            <option value="Voz a Voz">Voz a Voz</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Referido">Referido</option>
+            <option value="Gestión Comercial">Gestión Comercial</option>
+            <option value="Pagina Web">Pagina Web</option>
+            <option value="Publicidad">Publicidad</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Telemercadeo">Telemercadeo</option>
+          </select>
       </div>
-  </div>
+      <div class="form-group col-md-4">
+        <label>Estado Actual</label>
+          <select class="form-control" name="Fk_Actual_State" id="Fk_Actual_State" required>
+            <option disabled selected>Seleccione</option>
+            {% for x in actual_state %}
+              <option value="{{x.id}}">{{x.Detail}}</option>
+            {% endfor %}
+          </select>
+      </div>
 
-  <div class="form-group col-md-12">
-    <div class="form-group col-md-4">
-      <label for="Status_Date">Fecha de Estado</label>
-      <input type="date" class="form-control" id="Status_Date" name="Status_Date">
     </div>
-    <div class="form-group col-md-4">
-      <label>Origen</label>
-        <select class="browser-default" name="Origin" id="Origin">
-          <option disabled selected>Seleccione Origen</option>
-          <option value="Voz a Voz">Voz a Voz</option>
-          <option value="Facebook">Facebook</option>
-          <option value="Referido">Referido</option>
-          <option value="Gestión Comercial">Gestión Comercial</option>
-          <option value="Pagina Web">Pagina Web</option>
-          <option value="Publicidad">Publicidad</option>
-          <option value="Instagram">Instagram</option>
-          <option value="Telemercadeo">Telemercadeo</option>
-        </select>
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4">
+        <label for="Result_Date">Fecha de Resultado</label>
+        <input type="date" class="form-control" id="Result_Date" name="Result_Date">
+      </div>
+      <div class="form-group col-md-4">
+        <label>Sede</label>
+          <select class="form-control" name="Campus" id="Campus">
+            <option disabled selected>Seleccione</option>
+            <option value="Manizales">Manizales</option>
+            <option value="Pereira">Pereira</option>
+          </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Resultado</label>
+          <select class="form-control" name="Outcome" id="Outcome">
+            <option disabled selected>Seleccione</option>
+            <option value="Rehabilitación Financiera">Rehabilitación Financiera</option>
+            <option value="Cancelado">Cancelado</option>
+          </select>
+      </div>
     </div>
-    <div class="form-group col-md-4">
-      <label>Estado Actual</label>
-        <select class="browser-default" name="Fk_Actual_State" id="Fk_Actual_State" required>
-          <option disabled selected>Seleccione</option>
-          {% for x in actual_state %}
-            <option value="{{x.id}}">{{x.Detail}}</option>
-          {% endfor %}
-        </select>
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4">
+        <label for="Result_Date">Campaña</label>
+        <input type="text" class="form-control" id="Campaign" name="Campaign">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="Campaign"></label>
+        <input type="hidden" class="form-control" id="Fk_Client" name="Fk_Client" value="{{clientId}}">
+      </div>
     </div>
+    <div style="text-align: right">
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </div>
+  </form>
+</div>
 
-  </div>
-  <div class="form-group col-md-12">
-    <div class="form-group col-md-4">
-      <label for="Result_Date">Fecha de Resultado</label>
-      <input type="date" class="form-control" id="Result_Date" name="Result_Date">
-    </div>
-    <div class="form-group col-md-4">
-      <label>Sede</label>
-        <select class="browser-default" name="Campus" id="Campus">
-          <option disabled selected>Seleccione</option>
-          <option value="Manizales">Manizales</option>
-          <option value="Pereira">Pereira</option>
-        </select>
-    </div>
-    <div class="form-group col-md-4">
-      <label>Resultado</label>
-        <select class="browser-default" name="Outcome" id="Outcome">
-          <option disabled selected>Seleccione</option>
-          <option value="Rehabilitación Financiera">Rehabilitación Financiera</option>
-          <option value="Cancelado">Cancelado</option>
-        </select>
-    </div>
-
-  </div>
-  <div class="form-group col-md-12">
-
-    <div class="form-group col-md-4">
-      <label for="Result_Date">Campaña</label>
-      <input type="text" class="form-control" id="Campaign" name="Campaign">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="Campaign"></label>
-      <input type="hidden" class="form-control" id="Fk_Client" name="Fk_Client" value="{{clientId}}">
-    </div>
-
-  </div>
-
-  <div class="form-group col-md-12">
-    <button type="submit" class="btn btn-primary">Registrar</button>
-  </div>
-</form>
 
 {% endblock %}

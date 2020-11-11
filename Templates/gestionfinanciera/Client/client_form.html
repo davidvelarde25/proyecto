@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
@@ -47,7 +47,6 @@
     </div>
   </div>
   <div class="form-row">
-
     <div class="form-group col-md-6">
       <label for="Phone">Telefono</label>
       <input type="number" class="form-control" id="Phone" name="Phone" value="{{client.Phone}}">
@@ -57,7 +56,6 @@
       <input type="date" class="form-control" id="Date_of_birth" name="Date_of_birth" value="{{client.Date_of_birth}}">
     </div>
   </div>
-
   <div style="text-align: right">
     <button type="submit" class="btn btn-primary">Guardar</button>
   </div>

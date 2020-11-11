@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
@@ -17,27 +17,27 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Banking_Entity">Entidad Bancaria</label>
-      <input type="text" class="form" id="Banking_Entity" name="Banking_Entity" value="{{disbursement.Banking_Entity}}">
+      <input type="text" class="form-control" id="Banking_Entity" name="Banking_Entity" value="{{disbursement.Banking_Entity}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Disbursement_Amount">Monto desembolso</label>
-      <input type="number" class="form" id="Disbursement_Amount" name="Disbursement_Amount" placeholder="" value="{{disbursement.Disbursement_Amount}}">
+      <input type="number" class="form-control" id="Disbursement_Amount" name="Disbursement_Amount" placeholder="" value="{{disbursement.Disbursement_Amount}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Number_Installment">Numero Cuotas</label>
-      <input type="text" class="form" id="Number_Installment" name="Number_Installment" value="{{disbursement.Number_Installment}}">
+      <input type="text" class="form-control" id="Number_Installment" name="Number_Installment" value="{{disbursement.Number_Installment}}">
     </div>
     <div class="form-group col-md-6">
       <label for="Adviser">Asesor</label>
-      <input type="text" class="form" id="Adviser" name="Adviser" placeholder="" value="{{disbursement.Adviser}}">
+      <input type="text" class="form-control" id="Adviser" name="Adviser" placeholder="" value="{{disbursement.Adviser}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Estado Desembolso</label>
-        <select class="browser-default " name="State" id="State" value="{{disbursement.State}}">
+        <select class="form-control " name="State" id="State" value="{{disbursement.State}}">
           <option value="{{disbursement.State}}" disabled selected>{{disbursement.State}}</option>
           <option value="En Proceso">En Proceso</option>
           <option value="Radicado">Radicado</option>

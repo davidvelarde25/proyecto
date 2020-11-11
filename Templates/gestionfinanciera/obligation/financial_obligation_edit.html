@@ -1,13 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
 <form action="{%url 'editarobligacion' management_typeId %}" method="post">
   {% csrf_token %}
   <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <label>Nómina Cliente</label>
-        <select class="browser-default" name="Payroll" id="Payroll" >
+        <select class="form-control" name="Payroll" id="Payroll" >
           <option value="" disabled selected>Seleccione</option>
           {% for x in obligacion %}
             <option value="{{x.Fk_Management_Type.Fk_Client.id}}">{{ x.Fk_Management_Type.Fk_Client.id }}</option>
@@ -28,7 +28,7 @@
     </div>
   <div class="form-group col-md-6">
     <label>Estado Obligación</label>
-      <select class="browser-default" name="State" id="State" value="{{financial_obligation.State}}">
+      <select class="form-control" name="State" id="State" value="{{financial_obligation.State}}">
         <option value="{{financial_obligation.State}}">{{financial_obligation.State}}</option>
         <option value="normal">Normal</option>
         <option value="mora">En Mora</option>
@@ -70,7 +70,7 @@
   </div>
   <div class="form-group col-md-6">
     <label>Comprar</label>
-      <select class="browser-default" name="Buy_Mora_Portfolio" id="Buy_Mora_Portfolio" value="{{financial_obligation.Buy_Mora_Portfolio}}">
+      <select class="form-control" name="Buy_Mora_Portfolio" id="Buy_Mora_Portfolio" value="{{financial_obligation.Buy_Mora_Portfolio}}">
         <option value="{{financial_obligation.Buy_Mora_Portfolio}}">{{financial_obligation.Buy_Mora_Portfolio}}</option>
         <option value="mora">Mora</option>
         <option value="cartera">Cartera</option>
@@ -91,7 +91,7 @@
   </div>
   <div class="form-group col-md-6">
     <label>Negociado Con</label>
-      <select class="browser-default" name="Negotiated_With" id="Negotiated_With" value="{{financial_obligation.Negotiated_With}}">
+      <select class="form-control" name="Negotiated_With" id="Negotiated_With" value="{{financial_obligation.Negotiated_With}}">
         <option value="{{financial_obligation.Negotiated_With}}">{{financial_obligation.Negotiated_With}}</option>
         <option value="abogado">Abogado</option>
         <option value="acreedor">Acreedor</option>
@@ -102,11 +102,11 @@
     <input type="text" class="form-control" id="Buyer" name="Buyer" value="{{financial_obligation.Buyer}}">
   </div>
   <div class="form-group col-md-6">
-    <label for="Buyer">gestion</label>
+    <label for="Buyer"></label>
     <input type="hidden" class="form-control" id="Fk_Management_Type" name="Fk_Management_Type" value="{{financial_obligation.Fk_Management_Type.id}}">
   </div>
   <div class="form-group col-md-6">
-    <label for="Buyer">cliente</label>
+    <label for="Buyer"></label>
     <input type="hidden" class="form-control" id="" name="" value="{{ data.Fk_Management_Type.Fk_Client.id }}">
   </div>
 

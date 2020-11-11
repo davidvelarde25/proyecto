@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
@@ -6,9 +6,9 @@
   {% csrf_token %}
   <div class="form-row">
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <label>Nómina Cliente</label>
-        <select class="browser-default" name="Fk_Advisor_Records" id="Fk_Advisor_Records" >
+        <select class="form-control" name="Fk_Advisor_Records" id="Fk_Advisor_Records" >
           <option value="" disabled selected>Seleccione</option>
           {% for x in obligacion %}
             <option value="{{x.Fk_Management_Type.Fk_Client.id}}">{{ x.Fk_Management_Type.Fk_Client.id }}</option>
@@ -29,7 +29,7 @@
     </div>
   <div class="form-group col-md-6">
     <label>Estado Obligación</label>
-      <select class="browser-default" name="State" id="State">
+      <select class="form-control" name="State" id="State">
         <option disabled selected>Estado Obligación</option>
         <option value="Normal">Normal</option>
         <option value="Mora">En Mora</option>
@@ -71,7 +71,7 @@
   </div>
   <div class="form-group col-md-6">
     <label>Comprar</label>
-      <select class="browser-default" name="Buy_Mora_Portfolio" id="Buy_Mora_Portfolio">
+      <select class="form-control" name="Buy_Mora_Portfolio" id="Buy_Mora_Portfolio">
         <option disabled selected>Seleccione Opción a comprar</option>
         <option value="mora">Mora</option>
         <option value="cartera">Cartera</option>
@@ -92,7 +92,7 @@
   </div>
   <div class="form-group col-md-6">
     <label>Negociado Con</label>
-      <select class="browser-default" name="Negotiated_With" id="Negotiated_With">
+      <select class="form-control" name="Negotiated_With" id="Negotiated_With">
         <option disabled selected>Seleccione Opción a comprar</option>
         <option value="Abogado">Abogado</option>
         <option value="Acreedor">Acreedor</option>
@@ -103,15 +103,13 @@
     <input type="text" class="form-control" id="Buyer" name="Buyer">
   </div>
   <div class="form-group col-md-6">
-    <label for="Buyer">gestion</label>
-    <input type="text" class="form-control" id="Fk_Management_Type" name="Fk_Management_Type" value="{{management_typeId}}">
+    <label for="Buyer"></label>
+    <input type="hidden" class="form-control" id="Fk_Management_Type" name="Fk_Management_Type" value="{{management_typeId}}">
   </div>
   <div class="form-group col-md-6">
-    <label for="Buyer">cliente</label>
-    <input type="text" class="form-control" id="" name="" value="{{obligacion}}">
+    <label for="Buyer"></label>
+    <input type="hidden" class="form-control" id="" name="" value="{{Fk_Management_Type.Fk_Client.id}}">
   </div>
-
-
 </div>
   <div style="text-align: right">
     <button type="submit" class="btn btn-primary">Crear</button>

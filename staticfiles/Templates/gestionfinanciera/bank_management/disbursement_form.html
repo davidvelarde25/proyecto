@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="{%url 'creardesembolso' management_typeId %}" method="post">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Payment_Value">Valor Desembolso</label>
+      <input type="number" class="Form" id="Payment_Value" name="Payment_Value">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Pay_Date">Fecha de Pago</label>
+      <input type="date" class="form-control" id="Pay_Date" name="Pay_Date">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Banking_Entity">Entidad Bancaria</label>
+      <input type="text" class="form" id="Banking_Entity" name="Banking_Entity" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Disbursement_Amount">Monto desembolso</label>
+      <input type="number" class="form" id="Disbursement_Amount" name="Disbursement_Amount" placeholder="">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Number_Installment">Numero Cuotas</label>
+      <input type="text" class="form" id="Number_Installment" name="Number_Installment" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Adviser">Asesor</label>
+      <input type="text" class="form" id="Adviser" name="Adviser" placeholder="">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Estado Desembolso</label>
+        <select class="browser-default " name="State" id="State">
+          <option value="" disabled selected>Seleccione</option>
+          <option value="En Proceso">En Proceso</option>
+          <option value="Radicado">Radicado</option>
+          <option value="Desembolsado">Desembolsado</option>
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Fk_Management_Type"></label>
+      <input type="hidden" class="form" id="Fk_Management_Type" name="Fk_Management_Type" value="{{management_typeId}}">
+    </div>
+  </div>
+
+
+  <div style="text-align: right">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </div>
+</form>
+{% endblock %}
+
+<!--  <label class="form-check-label" for="gridCheck">
+
+  </label>
+
+  <div class="form-group col-md-4">
+    <label for="inputState">Celular</label>
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+
+-->

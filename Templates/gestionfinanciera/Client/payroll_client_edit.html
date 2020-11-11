@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 <form action="{%url 'editarnomina' payroll_client.id  %}" method="post">
@@ -10,7 +10,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Seleccione una Nómina</label>
-        <select class="browser-default " name="Payroll_Type" id="Payroll_Type">
+        <select class="form-control" name="Payroll_Type" id="Payroll_Type">
           <option value="{{payroll_client.Payroll_Type}}"  selected>{{payroll_client.Payroll_Type}}</option>
           <option value="Activo Estado">Activo Estado</option>
           <option value="Pensionado">Pensionado</option>
@@ -23,7 +23,7 @@
   </div>
     <div class="form-group col-md-6">
       <label>Tipo Contrato/Pensión</label>
-        <select class="browser-default " name="Contract_Type" id="Contract_Type">
+        <select class="form-control" name="Contract_Type" id="Contract_Type">
           <option value="{{payroll_client.Contract_Type}}"  selected>{{payroll_client.Contract_Type}}</option>
           <option value="Propiedad">Propiedad</option>
           <option value="Invalidez">Invalidez</option>
@@ -47,7 +47,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Ley Aplica</label>
-        <select class="browser-default" name="Law_Applies" id="Law_Applies">
+        <select class="form-control" name="Law_Applies" id="Law_Applies">
           <option value="{{payroll_client.Law_Applies}}"  selected>{{payroll_client.Law_Applies}}</option>
           <option value="Ley 1527">Ley 1527</option>
           <option value="Ley 50">Ley 50</option>
@@ -76,7 +76,7 @@
     </div>
 
     <div class="form-group col-md-6">
-      <input type="hidden" class="form-control" id="Fk_Client" name="Fk_Client" value="{{payroll_client.Fk_Client.id}}" hidden="True" >
+      <input type="hidden" class="form-control" id="Fk_Client" name="Fk_Client" value="{{payroll_client.Fk_Client.id}}">
     </div>
     <div style="text-align: right" class="col-md-12">
       <button type="submit" class="btn btn-primary">Actualizar</button>

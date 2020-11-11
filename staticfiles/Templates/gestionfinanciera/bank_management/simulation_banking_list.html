@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+          <div class="card blue darken-1">
+            <table class="table table-dark">
+              <div class="card-content white-text">
+
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Banco</th>
+                    <th>Numero Cuotas</th>
+                    <th>Valor Cuota</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for data in simulacion %}
+                  <tr>
+                    <td>{{ data.id}}</td> <!-- con upper colocamos las letras en mayuscula -->
+                    <td>{{ data.Bank }}</td>
+                    <td>{{ data.Number_Quotas }}</td>
+                    <td>{{ data.Quota_Value }}</td>
+                    <td>
+                        <a href="{% url 'editarsimulacion' data.id %}" class="">
+                          <i class="material-icons">update_forever</i>
+                        </a>
+                    </td>
+                    <td>
+                      <a href="{% url 'eliminarsimulacion' data.id %}" class="">
+                        <i class="material-icons">delete_forever</i>
+                      </a>
+                  </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                </div>
+              </table>
+              <div class="fixed-action-btn">
+                <a href="{% url 'crearsimulacion' payrollId %}" class="btn-floating btn-large red">
+                  <i class="large material-icons">add</i>
+                </a>
+              </div>
+
+            </div>
+
+{% endblock %}

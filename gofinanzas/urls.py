@@ -57,13 +57,11 @@ urlpatterns = [
     path('crearsimulacion/<int:pk>/', views.SimulationBankingCreate.as_view(), name="crearsimulacion"), # ruta para crear la simulacion bancaria de los clientes
     path('listarsimulacion/<int:pk>/', views.SimulationBankingView.as_view(), name= 'listarsimulacion'),# ruta pra mostrar las desembolsos registrados de cada cliente
     path('editarsimulacion/<int:pk>/', views.SimulationBankingUpdate.as_view(), name="editarsimulacion"), # ruta para editar los datos de los desembolsos de un cliente
-    #path('eliminarsimulacion/<int:pk>/', views.SimulationDelete.as_view(), name="eliminarsimulacion"),# ruta para eliminar las desembolsos de un cliente
+    path('eliminarsimulacion/<int:pk>/', views.SimulationBankingDelete.as_view(), name="eliminarsimulacion"),# ruta para eliminar las desembolsos de un cliente
 
     #path('estion_cliente/', views.gestion_cliente, name="gestion_cliente"), # ruta para crear nuevos clientes
     path('accounts/', include('django.contrib.auth.urls')),
-    #path('users/', include(('users.urls','users'), namespace='users')),
-
-
+    path('users/', include(('users.urls', 'users'), namespace='users')),
 ]
 
 urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),

@@ -1,14 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
-          <div class="card blue darken-1">
-            <table class="table table-dark">
-              <div class="card-content white-text">
-
-                <thead>
+          <div class="container ">
+            <h1 class="m-0 text-dark">Clientes</h1>
+            <div  style="text-align: right" class="fixed-action-btn">
+              <a href="{% url 'crearcliente' %}" class="btn btn-success">
+                <i class="material-icons">Crear Cliente</i>
+              </a>
+            </div>
+            <table class="table">
+                <thead class="thead">
                   <tr>
-                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Cedula</th>
                     <th>Email</th>
@@ -18,42 +21,36 @@
 
                   {% for data in clientes %}
                   <tr>
-                    <td>{{ data.id }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Name }}</td> <!-- con upper colocamos las letras en mayuscula -->
                     <td>{{ data.Identification }}</td>
                     <td>{{ data.Email }}</td>
                     <td>
-                        <a href="{% url 'listarnomina' data.id %}" class="">
-                          <i class="material-icons">Nomina</i>
+                        <a href="{% url 'listarnomina' data.id %}" class="btn btn-primary">
+                          <i class="material-icons">Nómina</i>
                         </a>
                     </td>
                     <td>
-                        <a href="{% url 'listarreferencia' data.id %}" class="">
+                        <a href="{% url 'listarreferencia' data.id %}" class="btn btn-primary">
                           <i class="material-icons">Referencia</i>
                         </a>
                     </td>
                     <td>
-                        <a href="{% url 'listargestion' data.id %}" class="">
+                        <a href="{% url 'listargestion' data.id %}" class="btn btn-primary">
                           <i class="material-icons">Gestión</i>
                         </a>
                     </td>
                     <td>
-                        <a href="{% url 'editarcliente' data.id %}" class="">
-                          <i class="material-icons">update_forever</i>
+                        <a href="{% url 'editarcliente' data.id %}" class="btn btn-warning">
+                          <i class="material-icons">Actualizar</i>
                         </a>
                     </td>
 
                   </tr>
                   {% endfor %}
                 </tbody>
-                </div>
-              </table>
-              <div class="fixed-action-btn">
-                <a href="{% url 'crearcliente' %}" class="btn-floating btn-large red">
-                  <i class="material-icons">add</i>
 
-                </a>
-              </div>
+              </table>
+
             </div>
 
 {% endblock %}

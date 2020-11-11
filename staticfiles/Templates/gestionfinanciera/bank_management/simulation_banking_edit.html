@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="{%url 'editarsimulacion' simulation_banking.id %}" method="post">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Bank">Banco</label>
+      <input type="text" class="form-control" id="Bank" name="Bank" value="{{simulation_banking.Bank}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Number_Quotas">Numero cuotas</label>
+      <input type="number" class="form-control" id="Number_Quotas" name="Number_Quotas" value="{{simulation_banking.Number_Quotas}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Factor">Factor</label>
+      <input type="number" class="form-control" id="Factor" name="Factor" value="{{simulation_banking.Factor}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Estimed_Credit">Credito estimado</label>
+      <input type="number" class="form-control" id="Estimed_Credit" name="Estimed_Credit" value="{{simulation_banking.Estimed_Credit}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Quota_Value">Valor cuota</label>
+      <input type="number" class="form-control" id="Quota_Value" name="Quota_Value" value="{{simulation_banking.Quota_Value}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Fk_Client_Payroll">nomina</label>
+      <input type="hidden" class="form-control" id="Fk_Client_Payroll" name="Fk_Client_Payroll" value="{{simulation_banking.Fk_Client_Payroll.id}}">
+    </div>
+
+
+  </div>
+  <div style="text-align: right">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </div>
+</form>
+{% endblock %}
+
+<!--  <label class="form-check-label" for="gridCheck">
+
+  </label>
+
+  <div class="form-group col-md-4">
+    <label for="inputState">Celular</label>
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+
+-->

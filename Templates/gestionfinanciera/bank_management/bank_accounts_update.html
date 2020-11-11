@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
@@ -7,25 +7,25 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Tipo de Cuenta</label>
-        <select class="browser-default " name="Account_Type" id="Account_Type" value="{{bank_accounts.Account_Type}}">
+        <select class="form-control" name="Account_Type" id="Account_Type" value="{{bank_accounts.Account_Type}}">
           <option value="{{bank_accounts.Account_Type}}" selected>{{bank_accounts.Account_Type}}</option>
-          <option value="Noemal">Ahorros</option>
+          <option value="Ahorros">Ahorros</option>
           <option value="Corriente">Corriente</option>
         </select>
     </div>
     <div class="form-group col-md-6">
       <label for="Number">Numero cuenta</label>
-      <input type="number" class="form" id="Number" name="Number" value="{{bank_accounts.Number}}">
+      <input type="number" class="form-control" id="Number" name="Number" value="{{bank_accounts.Number}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="banco">Banco</label>
-      <input type="text" class="form" id="Bank" name="Bank" value="{{bank_accounts.Bank}}">
+      <input type="text" class="form-control" id="Bank" name="Bank" value="{{bank_accounts.Bank}}">
     </div>
     <div class="form-group col-md-6">
       <label>Estado Cuenta</label>
-        <select class="browser-default " name="State" id="State" value="{{bank_accounts.State}}">
+        <select class="form-control" name="State" id="State" value="{{bank_accounts.State}}">
           <option value="{{bank_accounts.State}}"  selected>{{bank_accounts.State}}</option>
           <option value="Normal">Normal</option>
           <option value="Embargada">Embargada</option>

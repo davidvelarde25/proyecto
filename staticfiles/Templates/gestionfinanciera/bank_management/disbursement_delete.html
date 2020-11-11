@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang = "en" dir="ltr">
+  <head>
+    <meta caret="utf-8">
+    <title>Desembolso</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12">
+          <div class="card red darken-1">
+            <div class="card-content white-text">
+              <span class="car-title">Eliminar Desembolso</span>
+
+            </div>
+          </div>
+      </div>
+      <div class="">
+
+        <form method="post">
+            {% csrf_token %}
+              <p>Está seguro de eliminar la Desembolso? "{{object}}"</p>
+              <input type="submit" value="Confirmar" class="blue darken-1 btn">
+        </form>
+      </div>
+
+
+    </div>
+  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </html>

@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
-<form action="{%url 'editarreferencia' reference.id %}" method="post">
+<form action="{%url 'editarreferencia' referencia_id %}" method="post">
   {% csrf_token %}
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -43,12 +43,10 @@
       <label for="Phone">Telefono</label>
       <input type="number" class="form-control" id="Phone" name="Phone" value="{{reference.Phone}}">
     </div>
+    <div class="form-group col-md-6">
+      <input type="hidden" class="form-control" id="Fk_Client" name="Fk_Client" value="{{reference.Fk_Client.id}}">
+    </div>
   </div>
-  <div class="form-group col-md-6">
-
-  </div>
-
-
   <div style="text-align: right">
     <button type="submit" class="btn btn-primary">Actualizar</button>
   </div>

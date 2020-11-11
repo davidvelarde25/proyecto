@@ -1,0 +1,14 @@
+
+{% extends 'adminlte/base.html' %}
+
+{% block title %}Go Finanzas{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h6 class="ml-5">Hola </h6>
+  <a href="{% url 'logout' %}" class="btn btn-info ml-2">Cerrar Sesión</a>
+{% else %}
+  <a href="{% url 'signup' %}" class="btn btn-light ml-5">Registrarse</a>
+  <a href="{% url 'login' %}" class="btn btn-danger ml-2">Iniciar Sesión</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="{%url 'crearobligacion' management_typeId %}" method="post">
+  {% csrf_token %}
+  <div class="form-row">
+
+    <div class="form-group col-md-4">
+      <label>Nómina Cliente</label>
+        <select class="browser-default" name="Fk_Advisor_Records" id="Fk_Advisor_Records" >
+          <option value="" disabled selected>Seleccione</option>
+          {% for x in obligacion %}
+            <option value="{{x.Fk_Management_Type.Fk_Client.id}}">{{ x.Fk_Management_Type.Fk_Client.id }}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Obligation_Number">Numero de Obligación</label>
+      <input type="text" class="form-control" id="Obligation_Number" name="Obligation_Number">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Type">Tipo Obligación</label>
+      <input type="text" class="form-control" id="Type" name="Type">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Entity_Cooperative">Entidad Financiera/Cooperativa</label>
+      <input type="text" class="form-control" id="Entity_Cooperative" name="Entity_Cooperative">
+    </div>
+  <div class="form-group col-md-6">
+    <label>Estado Obligación</label>
+      <select class="browser-default" name="State" id="State">
+        <option disabled selected>Estado Obligación</option>
+        <option value="Normal">Normal</option>
+        <option value="Mora">En Mora</option>
+        <option value="Castigada">Castigada</option>
+        <option value="Embargo">Embargo</option>
+        <option value="Ventanilla">Ventanilla</option>
+
+      </select>
+  </div>
+<!-- campos que se colocan cuando la obigacion esta en estado normal -->
+  <div class="form-group col-md-6">
+    <label for="Outstanding_Fees">Cuotas Pendientes</label>
+    <input type="number" class="form-control" id="Outstanding_Fees" name="Outstanding_Fees">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Quota_Value">Valor Cuota</label>
+    <input type="number" class="form-control" id="Quota_Value" name="Quota_Value">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Future_Value_Portfolio">Valor futuro cartera</label>
+    <input type="number" class="form-control" id="Future_Value_Portfolio" name="Future_Value_Portfolio">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Certified_Value_Obligation">Valor certificado obligación</label>
+    <input type="number" class="form-control" id="Certified_Value_Obligation" name="Certified_Value_Obligation">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Saving_Value">Valor Ahorro</label>
+    <input type="number" class="form-control" id="Saving_Value" name="Saving_Value">
+  </div>
+  <!--campos que se colocal si la obligacion se encuentra en mora  -->
+  <div class="form-group col-md-6">
+    <label for="Default_Value">Valor Mora</label>
+    <input type="number" class="form-control" id="Default_Value" name="Default_Value">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Default_Time">Tiempo Mora</label>
+    <input type="number" class="form-control" id="Default_Time" name="Default_Time">
+  </div>
+  <div class="form-group col-md-6">
+    <label>Comprar</label>
+      <select class="browser-default" name="Buy_Mora_Portfolio" id="Buy_Mora_Portfolio">
+        <option disabled selected>Seleccione Opción a comprar</option>
+        <option value="mora">Mora</option>
+        <option value="cartera">Cartera</option>
+      </select>
+  </div>
+  <!-- campos que se colocan si son obligaciones castigadas y con embargos -->
+  <div class="form-group col-md-6">
+    <label for="Reported_Value">Valor Reportado</label>
+    <input type="number" class="form-control" id="Reported_Value" name="Reported_Value">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Offer_Value_To_Entity">Valor Oferta a Entidad</label>
+    <input type="number" class="form-control" id="Offer_Value_To_Entity" name="Offer_Value_To_Entity">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Negotiated_Value">Valor Negociado</label>
+    <input type="number" class="form-control" id="Negotiated_Value" name="Negotiated_Value">
+  </div>
+  <div class="form-group col-md-6">
+    <label>Negociado Con</label>
+      <select class="browser-default" name="Negotiated_With" id="Negotiated_With">
+        <option disabled selected>Seleccione Opción a comprar</option>
+        <option value="Abogado">Abogado</option>
+        <option value="Acreedor">Acreedor</option>
+      </select>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Buyer">Comprador</label>
+    <input type="text" class="form-control" id="Buyer" name="Buyer">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Buyer">gestion</label>
+    <input type="text" class="form-control" id="Fk_Management_Type" name="Fk_Management_Type" value="{{management_typeId}}">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="Buyer">cliente</label>
+    <input type="text" class="form-control" id="" name="" value="{{obligacion}}">
+  </div>
+
+
+</div>
+  <div style="text-align: right">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </div>
+</form>
+
+{% endblock %}

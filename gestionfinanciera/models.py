@@ -53,6 +53,8 @@ class Management_Type(models.Model):
     Fk_Client  = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
     Fk_Advisor_Records  = models.ForeignKey(Advisor_Records, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
     Fk_Actual_State = models.ForeignKey(Actual_State, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
+    def __str__(self):
+        return '{}'.format(self.Outcome)
 
 #  modelo  de los datos de las referencias de los usuarios
 class Reference(models.Model):
@@ -70,7 +72,6 @@ class Reference(models.Model):
 
 # tabla nomina cliente
 class Payroll_Client(models.Model):
-
     Payroll_Company = models.CharField(max_length=20, null=False,blank=True)
     Payroll_Type = models.CharField(max_length=20, null=True,blank=True)
     Contract_Type = models.CharField(max_length=20, null=True,blank=True)
@@ -94,6 +95,8 @@ class Simulation_Banking(models.Model):
     Estimed_Credit = models.DecimalField(max_digits=20, decimal_places=2,blank=True, null=True)
     Quota_Value = models.DecimalField(max_digits=20, decimal_places=2,blank=True, null=True)
     Fk_Client_Payroll = models.ForeignKey(Payroll_Client, null=True, on_delete = models.CASCADE,blank=True)
+    def __str__(self):
+        return '{}'.format(self.Bank)
 
 # tabla derecho peticion
 class Right_Petition(models.Model):
@@ -109,7 +112,8 @@ class Right_Petition(models.Model):
     Guardianship_Response_Date = models.DateField(default=datetime.datetime.today, blank=True, null=True)
     Observation = models.CharField(max_length=1000, null=True,blank=True)
     Fk_Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
-
+    def __str__(self):
+        return '{}'.format(self.Type_Application)
 # tabla cuentas bancarias
 class Bank_Accounts(models.Model):
     Account_Type = models.CharField(max_length=20, null=False,blank=True)
@@ -117,6 +121,8 @@ class Bank_Accounts(models.Model):
     Bank = models.CharField(max_length=20, null=True,blank=True)
     State = models.CharField(max_length=20, null=True,blank=True)
     Fk_Client = models.ForeignKey(Client, null=True, on_delete = models.CASCADE,blank=True)
+    def __str__(self):
+        return '{}'.format(self.Account_Type)
 
 #creacion tabla desembolso
 class Disbursement(models.Model):
@@ -130,6 +136,8 @@ class Disbursement(models.Model):
     Adviser = models.CharField(max_length=20, null=True,blank=True)
     State = models.CharField(max_length=20, blank=True, null=True)
     Fk_Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
+    def __str__(self):
+        return '{}'.format(self.Banking_Entity)
 
 # creacion tabla obigaciones  financieras
 class Financial_Obligation(models.Model):
@@ -151,9 +159,9 @@ class Financial_Obligation(models.Model):
     Offer_Value_To_Entity = models.DecimalField(max_digits=20, decimal_places=2,blank=True, null=True)
     Negotiated_Value = models.DecimalField(max_digits=20, decimal_places=2,blank=True, null=True)
     Negotiated_With = models.CharField(max_length=20, null=True,blank=True)
-
     Fk_Management_Type = models.ForeignKey(Management_Type, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo
-
+    def __str__(self):
+        return '{}'.format(self.Payroll)
 # tabla certificados
 class Certificate(models.Model):
     Type = models.CharField(max_length=20, null=False,blank=True)
@@ -163,3 +171,5 @@ class Certificate(models.Model):
     Certified_Value =  models.DecimalField(max_digits=20, decimal_places=2,blank=True, null=True)
     Payment_Date = models.DateField(default=datetime.datetime.today, blank=True, null=True)
     Fk_Financial_Obligation = models.ForeignKey(Financial_Obligation, null=True, on_delete = models.CASCADE,blank=True) # se crea una llave foranea llamando al modelo categoria
+    def __str__(self):
+        return '{}'.format(self.Type)

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
 
@@ -11,7 +11,7 @@
     </div>
     <div class="form-group col-md-6">
       <label>Linea Go</label>
-        <select class="browser-default " name="Line" id="Line">
+        <select class="form-control" name="Line" id="Line">
           <option value="" disabled selected>Seleccione</option>
           <option value="Rehabilitación">Rehabilitación Financiera</option>
           <option value="Reparación">Reparación</option>
@@ -33,14 +33,14 @@
   </div>
   <div class="form-group col-md-6">
     <label>Estado del proceso</label>
-      <select class="browser-default " name="Process_State" id="Process_State">
+      <select class="form-control" name="Process_State" id="Process_State">
         <option value="" disabled selected>Seleccione</option>
-        <option value="enviado">Enviado</option>
-        <option value="respuesto">Respuesto</option>
-        <option value="aceptado">Aceptado</option>
-        <option value="noaceptado">No aceptado</option>
-        <option value="terminado">Terminado</option>
-        <option value="pendiente">Pendiente</option>
+        <option value="Enviado">Enviado</option>
+        <option value="Respuesto">Respuesto</option>
+        <option value="Aceptado">Aceptado</option>
+        <option value="No Aceptado">No aceptado</option>
+        <option value="Terminado">Terminado</option>
+        <option value="Pendiente">Pendiente</option>
       </select>
   </div>
   <div class="form-group col-md-6">

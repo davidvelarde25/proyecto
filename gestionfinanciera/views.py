@@ -13,26 +13,10 @@ from django.views.generic import DetailView
 # importamos el logging
 import logging
 
-#importamos el formulario
-'''from .forms import ClienteForm
-
-def Client(request):
-    template_name = 'client_form.html'
-    form = ClienteForm()
-    if request.method == ' POST':
-        form= ClienteForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return HttpResponseRedirect('/')
-
-    return render(request, template_name, {'form':form})
-
-'''
-
 # muestra todos los clientes
 def index(request):
     dataClient = Client.objects.all()
-    return render(request, "base.html", { "clientes" : dataClient })
+    return render(request, "base/base.html", { "clientes" : dataClient })
 
 # clase para listar los clientes
 class ClientView(ListView):
@@ -48,7 +32,7 @@ class ClientCreate(CreateView):
     'Phone', 'Date_of_birth','Stratum','Neighborhood']
 
     def get_success_url(self):
-        return reverse('listarcliente')
+        return reverse('listarcliente', args=[self.kwargs['pk']])
 
 # clase para actualziar los clientes
 class ClientUpdate(UpdateView):
@@ -78,7 +62,7 @@ class ManagementTypeCreate(CreateView):
         #context['client'] = Client.objects.all()
         return context
     def get_success_url(self):
-        return reverse('editarcliente')
+        return reverse('listargestion', args=[self.kwargs['pk']] )
 
 # clase para listar la gestion que se le va a realziar al cliente
 class ManagementTypeView(ListView):
@@ -103,7 +87,6 @@ class ManagementTypeUpdate(UpdateView):
     'Fk_Advisor_Records','Fk_Actual_State']
 
      #se sobreescribe este método para obtener información de otros modelos
-
     def get_context_data(self,**kwargs):
         context = super(ManagementTypeUpdate,self).get_context_data(**kwargs)
         context['tipogestion'] = Management_Type.objects.filter(Fk_Client=self.kwargs['pk'])
@@ -113,7 +96,7 @@ class ManagementTypeUpdate(UpdateView):
         context['client'] = self.kwargs['pk']
         return context
     def get_success_url(self):
-        return reverse('editarcliente')
+        return reverse('editargestion',self.kwargs['pk'])
 
 # clase para crear el la nomina del cliente
 class PayrollClientCreate(CreateView):
@@ -127,12 +110,10 @@ class PayrollClientCreate(CreateView):
         context = super(PayrollClientCreate,self).get_context_data(**kwargs)
         context['client'] = Client.objects.all()
         context['clientId'] = self.kwargs['pk']
-
         return context
 
     def get_success_url(self):
-
-        return reverse('listarnomina', args=('1'))
+        return reverse('listarnomina', args=[self.kwargs['pk']])
 
 # clase para listar las nominas de los clientes
 class PayrollClientView(ListView):
@@ -160,15 +141,18 @@ class PayrollClientUpdate(UpdateView):
         context['client'] = self.kwargs['pk']
         return context
 
-    def get_success_url(self):
-        return reverse('listarnomina')
+        def get_success_url(self,**kwargs):
+            payroll = Payroll_Client.objects.get(pk = self.kwargs['pk'])
+            return reverse('listarreferencia', args=[payroll.Fk_Client.id])
 
 # se crea la clase para eliminar las nominas
 class PayrollClientDelete(DeleteView):
     model= Payroll_Client
     template_name = 'gestionfinanciera/Client/payroll_client_delete.html'
-    def get_success_url(self):
-        return reverse('listarnomina',args=('1') )
+
+    def get_success_url(self,**kwargs):
+        payroll = Payroll_Client.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarreferencia', args=[payroll.Fk_Client.id])
 
 # clase para crear las referencias del cliente
 class ReferenceCreate(CreateView):
@@ -176,15 +160,22 @@ class ReferenceCreate(CreateView):
     template_name = 'gestionfinanciera/Client/reference_form.html'
     fields = ['Name','Email','Address','Labor_Company','City','Relationship',
     'Cell_Phone','Phone','Fk_Client']
+    client_id = None
+
+    '''def get_form_kwargs(self):
+        form_kwargs = super().get_form_kwargs()
+        self.client_id = self.kwargs['pk']
+        return form_kwargs'''
 
     def get_context_data(self,**kwargs):
         context = super(ReferenceCreate,self).get_context_data(**kwargs)
         context['client'] = Client.objects.all()
         context['clientId'] = self.kwargs['pk']
+        #print(self.client_id)
         return context
 
-    def get_success_url(self):
-        return reverse('editarcliente')
+    def get_success_url(self,**kwargs):
+        return reverse('listarreferencia',args=[self.kwargs['pk']])
 
 # clase para listar las referencias de los clientes
 class ReferenceView(ListView):
@@ -193,8 +184,7 @@ class ReferenceView(ListView):
 
     def get_context_data(self,**kwargs):
         context = super(ReferenceView,self).get_context_data(**kwargs)
-        #context['nomina'] = model.objects.filter(Fk_Client=self.kwargs['pk'])
-        context['referencia'] = Reference.objects.all()
+        context['referencia'] = Reference.objects.filter(Fk_Client=self.kwargs['pk'])
         context['clientId'] = self.kwargs['pk']
         return context
 
@@ -204,15 +194,26 @@ class ReferenceUpdate(UpdateView):
     template_name = 'gestionfinanciera/Client/reference_edit.html'
     fields = ['Name', 'Email','Address','Labor_Company','Cell_Phone',
     'Phone', 'City','Relationship','Fk_Client']
+    client_id = None
 
-    def get_success_url(self):
-        return reverse('editarcliente' )
+    def get_context_data(self,**kwargs):
+        context = super(ReferenceUpdate,self).get_context_data(**kwargs)
+        context['referencia'] = Reference.objects.filter(Fk_Client=self.kwargs['pk'])
+        #context['client'] = Client.objects.all()
+        context['referencia_id'] = self.kwargs['pk']
+        return context
+
+    def get_success_url(self,**kwargs):
+        reference = Reference.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarreferencia', args=[reference.Fk_Client.id])
 
 # se crea la clase para eliminar las referencias
 class ReferenceDelete(DeleteView):
     model= Reference
-    def get_success_url(self):
-        return reverse('listarreferencia')
+    template_name = 'gestionfinanciera/Client/reference_delete.html'
+    def get_success_url(self,**kwargs):
+        reference = Reference.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarreferencia', args=[reference.Fk_Client.id])
 
 # clase para crear las obligaciones de los clientes
 class FinancialObligationCreate(CreateView):
@@ -233,13 +234,12 @@ class FinancialObligationCreate(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('editarcliente')
+        return reverse('listarobligacion',args=[self.kwargs['pk']])
 
 # clase para listar las referencias de los clientes
 class FinancialObligationView(ListView):
     model = Financial_Obligation
     template_name = 'gestionfinanciera/obligation/financial_obligation_list.html'
-
 
     def get_context_data(self,**kwargs):
         context = super(FinancialObligationView,self).get_context_data(**kwargs)
@@ -263,16 +263,19 @@ class FinancialObligationUpdate(UpdateView):
         context['management_typeId'] = self.kwargs['pk']
         return context
 
-    def get_success_url(self):
-        return reverse('editarcliente')
+    def get_success_url(self,**kwargs):
+        obligation = Financial_Obligation.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarobligacion', args=[obligation.Fk_Management_Type.id])
 
 # se crea la clase para eliminar las referencias
 
 class FinancialObligationDelete(DeleteView):
     model= Financial_Obligation
     template_name = 'gestionfinanciera/obligation/financial_obligation_delete.html'
-    def get_success_url(self):
-        return reverse('listarobligacion',args=('2') )
+
+    def get_success_url(self,**kwargs):
+        obligation = Financial_Obligation.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarobligacion', args=[obligation.Fk_Management_Type.id])
 
 # cl3ase para crear el certificado
 class CertificateCreate(CreateView):
@@ -288,7 +291,7 @@ class CertificateCreate(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('listarcertificado')
+        return reverse('listarcertificado', args=[self.kwargs['pk']])
 
 # clase para listar los certifiados de los clientes
 class CertificateView(ListView):
@@ -314,14 +317,20 @@ class CertificateUpdate(UpdateView):
         context['certificado'] = Certificate.objects.filter(Fk_Financial_Obligation=self.kwargs['pk'])
         context['obligacionId'] = self.kwargs['pk']
         return context
-    def get_success_url(self):
-        return reverse('editarcliente')
+
+    def get_success_url(self,**kwargs):
+        certificate = Certificate.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarcertificado', args=[certificate.Fk_Financial_Obligation.id])
 
 # se crea la clase para eliminar las certificados
 class CertificateDelete(DeleteView):
     model= Certificate
-    def get_success_url(self):
-        return reverse('eliminarcertificado')
+    template_name = 'gestionfinanciera/obligation/certificate_delete.html'
+
+    def get_success_url(self,**kwargs):
+        certificate = Certificate.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarcertificado', args=[certificate.Fk_Financial_Obligation.id])
+
 
 # clase para crear los derechos de peticion
 class RightPetitionCreate(CreateView):
@@ -337,7 +346,7 @@ class RightPetitionCreate(CreateView):
         context['management_typeId'] = self.kwargs['pk']
         return context
     def get_success_url(self):
-        return reverse('editarcliente')
+        return reverse('listarderechopeticion', args=[self.kwargs['pk']])
 
 # clase para listar los derechoos de peticion de los clientes
 class RightPetitionView(ListView):
@@ -365,18 +374,21 @@ class RightPetitionUpdate(UpdateView):
         context['management_typeId'] = self.kwargs['pk']
         return context
 
-    def get_success_url(self):
-        return reverse('editarcliente')
+    def get_success_url(self,**kwargs):
+        rightPetition = Right_Petition.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarderechopeticion', args=[rightPetition.Fk_Management_Type.id])
 
-
+# funcion para eliminar los derechos de peticion
 class RightPetitionDelete(DeleteView):
     model= Right_Petition
     template_name = 'gestionfinanciera/obligation/right_petition_delete.html'
-    def get_success_url(self):
-        return reverse('listarnomina',args=('6') )
+
+    def get_success_url(self,**kwargs):
+        rightPetition = Right_Petition.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarcertificado', args=[rightPetition.Fk_Management_Type.id])
 
 
-# clase para crear los derechos de peticion
+# clase para crear las cuentas bancarias
 class BankAccountsCreate(CreateView):
     model = Bank_Accounts
     template_name = 'gestionfinanciera/bank_management/bank_accounts_form.html'
@@ -388,7 +400,7 @@ class BankAccountsCreate(CreateView):
         context['clientId'] = self.kwargs['pk']
         return context
     def get_success_url(self):
-        return reverse('listarcuenta')
+        return reverse('listarcuenta', args=[self.kwargs['pk']])
 
 # clase para listar los cuentas bancarias de peticion de los clientes
 class BankAccountsView(ListView):
@@ -412,15 +424,17 @@ class BankAccountsUpdate(UpdateView):
         context['clientId'] = self.kwargs['pk']
         return context
 
-
-    def get_success_url(self):
-        return reverse('listarcuenta')
+    def get_success_url(self,**kwargs):
+        account = Bank_Accounts.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarcuenta', args=[account.Fk_Client.id])
 
 # se crea la clase para eliminar las derechos de peticion
 class BankAccountsDelete(DeleteView):
     model= Bank_Accounts
-    def get_success_url(self):
-        return reverse('eliminarcuenta')
+    template_name = 'gestionfinanciera/bank_management/bank_accounts_delete.html'
+    def get_success_url(self,**kwargs):
+        account = Bank_Accounts.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarcuenta', args=[account.Fk_Client.id])
 
 # clase para crear ls desembolsos
 class DisbursementCreate(CreateView):
@@ -437,7 +451,7 @@ class DisbursementCreate(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('editarcliente')
+        return reverse('listardesembolso', args=[self.kwargs['pk']])
 
 # clase para listar los deembolsos de peticion de los clientes
 class DisbursementView(ListView):
@@ -465,15 +479,18 @@ class DisbursementUpdate(UpdateView):
         context['management_typeId'] = self.kwargs['pk']
         return context
 
-    def get_success_url(self):
-        return reverse('editarcliente')
+    def get_success_url(self,**kwargs):
+        disburment = Disbursement.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarcuenta', args=[disburment.Fk_Management_Type.id])
 
 # se crea la clase para eliminar las desembolsos
 class DisbursementDelete(DeleteView):
     model= Disbursement
     template_name = 'gestionfinanciera/bank_management/disbursement_delete.html'
-    def get_success_url(self):
-        return reverse('listarcliente')
+
+    def get_success_url(self,**kwargs):
+        disburment = Disbursement.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarcuenta', args=[disburment.Fk_Management_Type.id])
 
 #clase para crear la simluacion bancaria
 class SimulationBankingCreate(CreateView):
@@ -489,7 +506,7 @@ class SimulationBankingCreate(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('editarcliente')
+        return reverse('listarsimulacion', args=[self.kwargs['pk']])
 
 # clase para listar las simulaciones bancariaas de los clientes
 class SimulationBankingView(ListView):
@@ -512,14 +529,21 @@ class SimulationBankingUpdate(UpdateView):
 
     def get_context_data(self,**kwargs):
         context = super(SimulationBankingUpdate,self).get_context_data(**kwargs)
-        context['simulacion'] = Payroll_Client.objects.filter(Fk_Client=self.kwargs['pk'])
+        context['simulacion'] = Simulation_Banking.objects.filter(Fk_Client_Payroll=self.kwargs['pk'])
         context['nomina'] = self.kwargs['pk']
         return context
 
-    def get_success_url(self):
-        return reverse('listarnomina')
+    def get_success_url(self,**kwargs):
+        simulation = Simulation_Banking.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarsimulacion', args=[simulation.Fk_Client_Payroll.id])
 
-
+# se crea la clase para eliminar las simulaciones
+class SimulationBankingDelete(DeleteView):
+    model= Simulation_Banking
+    template_name = 'gestionfinanciera/bank_management/SimulationBanking_delete.html'
+    def get_success_url(self,**kwargs):
+        simulation = Simulation_Banking.objects.get(pk = self.kwargs['pk'])
+        return reverse('listarsimulacion', args=[simulation.Fk_Client_Payroll.id])
 
 '''def Client(request):
     template_name = 'client_form.html'
@@ -541,7 +565,7 @@ class SimulationBankingUpdate(UpdateView):
 
 # se crea la funcion la cual valida la informacion que llega del formulari
 
-def Reference(request):
+'''def Reference(request):
     template_name = 'crear_referencia.html'
     form = ReferenciaForm()
 
@@ -551,7 +575,7 @@ def Reference(request):
             form.save()
 
             return HttpResponseRedirect('/')
-    return render(request, template_name, {'form':form})
+    return render(request, template_name, {'form':form})'''
 
 
 
